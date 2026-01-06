@@ -7,25 +7,25 @@ from .models import Contacto  # <--- IMPORTANTE: Importamos el modelo nuevo
 def home(request):
     services = [
         {
-            'title': "Inspección y Sello Verde",
+            'title': "INSPECCIÓN Y SELLO VERDE",
             'icon': "check-circle-2",
-            'desc': "Certificación oficial para edificios y hogares. Realizamos la inspección periódica y gestionamos tu Sello Verde ante la SEC.",
+            'desc': "Certificación oficial para edificios, hogares y locales. Realizamos la inspección periódica y gestionamos tu Sello Verde ante la SEC.",
             'border_color': "border-green-600",
             'icon_color': "text-green-600",
             'bg_color': "bg-green-100"
         },
         {
-            'title': "Declaración y Trámites TC6",
+            'title': "DECLARACIÓN Y TRÁMITES SEC",
             'icon': "file-signature",
-            'desc': "Regularizamos tus instalaciones. Tramitamos Anexo A, TC6, TC5 y TC7 encargándonos de toda la burocracia administrativa.",
+            'desc': "Regularizamos tus instalaciones. Tramitamos TC2, TC6, TC5 y TC7 encargándonos de toda la burocracia administrativa.",
             'border_color': "border-blue-600",
             'icon_color': "text-blue-600",
             'bg_color': "bg-blue-100"
         },
         {
-            'title': "Proyectos de Ingeniería",
+            'title': "PROYECTOS DE INGENIERÍA",
             'icon': "ruler",
-            'desc': "Memorias de cálculo y planos para Gas Natural y Gas Licuado. Dimensionamiento normado de cilindros y estanques.",
+            'desc': "Informes técnicos, Memorias de cálculo y Proyectos de Gas. Dimensionamiento normado de cilindros y estanques.",
             'border_color': "border-orange-500",
             'icon_color': "text-orange-600",
             'bg_color': "bg-orange-100"
