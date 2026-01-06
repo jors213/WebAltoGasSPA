@@ -35,15 +35,49 @@ Este proyecto fue construido utilizando una arquitectura moderna y escalable:
 
 ### 📸 Galería
 
-<img width="1903" height="915" alt="image" src="https://github.com/user-attachments/assets/78cd5673-648f-47bb-af2b-e231e7bd632d" />
+<img width="100%" alt="Vista Home Desktop" src="https://github.com/user-attachments/assets/78cd5673-648f-47bb-af2b-e231e7bd632d" />
+<br><br>
 
-<img width="1898" height="914" alt="image" src="https://github.com/user-attachments/assets/8feb7125-2891-410e-aa2d-9ecf34243eff" />
+<img width="100%" alt="Vista Servicios" src="https://github.com/user-attachments/assets/8feb7125-2891-410e-aa2d-9ecf34243eff" />
+<br><br>
 
-<img width="1899" height="915" alt="image" src="https://github.com/user-attachments/assets/c55a3f36-8a47-4b51-9593-69f7ab8966a9" />
-
-
-
+<img width="100%" alt="Vista Contacto" src="https://github.com/user-attachments/assets/c55a3f36-8a47-4b51-9593-69f7ab8966a9" />
 
 ---
 
+## 🔧 Ejecución Local (Para Desarrolladores)
+
+Este proyecto requiere variables de entorno para funcionar correctamente en local.
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/tu-usuario/WebAltoGasSPA.git](https://github.com/tu-usuario/WebAltoGasSPA.git)
+    cd WebAltoGasSPA
+    ```
+
+2.  **Crear entorno virtual:**
+    ```bash
+    python -m venv venv
+    # En Windows:
+    venv\Scripts\activate
+    # En Mac/Linux:
+    source venv/bin/activate
+    ```
+
+3.  **Instalar dependencias:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Configuración:**
+    Crea un archivo `.env` en la raíz basado en `.env.example` y configura tus credenciales de base de datos y SMTP.
+
+5.  **Ejecutar:**
+    ```bash
+    python manage.py runserver
+    ```
+
+---
+### 📄 Licencia
+Este proyecto es de uso comercial exclusivo para **Alto Gas SPA**. El código fuente se expone aquí únicamente con fines de portafolio académico y profesional.
 Designed & Developed by Jorge Soto - 2026.
