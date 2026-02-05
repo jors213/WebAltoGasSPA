@@ -22,7 +22,8 @@ ALLOWED_HOSTS = [
     'web-production-2aa7b.up.railway.app', 
     'altogasspa.cl', 
     'www.altogasspa.cl', 
-    'localhost'
+    'localhost',
+    '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
