@@ -1,14 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.contrib import messages
 from django.views.decorators.cache import cache_page, never_cache
+from django.urls import reverse
 from .forms import ContactForm
 from .models import Contacto, SolicitudAsesoria
 
-# Home: cacheable solo en GET. Los POST (formulario) invalidan la caché
-# automáticamente porque Django no cachea respuestas con cookies de mensajes.
-@cache_page(60 * 15)  # 15 minutos
+
+# ──────────────────────────────────────────────────────────
+# Vista principal: Home + Asesoría Online (Single Page)
+# ──────────────────────────────────────────────────────────
 def home(request):
     services = [
         {
@@ -37,52 +41,6 @@ def home(request):
         }
     ]
 
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            # Extraemos los datos limpios
-            nombre = form.cleaned_data['nombre']
-            email = form.cleaned_data['email']
-            telefono = form.cleaned_data['telefono']
-            mensaje_cliente = form.cleaned_data['mensaje']
-
-            # 1. GUARDAR EN BASE DE DATOS (NUEVO)
-            Contacto.objects.create(
-                nombre=nombre,
-                email=email,
-                telefono=telefono,
-                mensaje=mensaje_cliente
-            )
-
-            # 2. ENVIAR CORREO (Como antes)
-            cuerpo_correo = f"Nuevo contacto de: {nombre}\nTelefono: {telefono}\nEmail: {email}\n\nMensaje:\n{mensaje_cliente}"
-            
-            send_mail(
-                subject=f"Nuevo Lead Web: {nombre}",
-                message=cuerpo_correo,
-                from_email='web@altogasspa.cl',
-                recipient_list=['Altogasspa@gmail.com'],
-                fail_silently=False,
-            )
-
-            messages.success(request, "¡Solicitud recibida! Te contactaremos a la brevedad para coordinar la inspección.")
-
-            return redirect('home')
-    else:
-        form = ContactForm()
-
-    context = {
-        'title': 'Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile',
-        'services': services,
-        'form': form,
-    }
-    return render(request, 'core/home.html', context)
-
-
-# ──────────────────────────────────────────────────────────
-# Vista: Asesoría y Revisión de Proyectos de Gas Online
-# ──────────────────────────────────────────────────────────
-def asesoria_online(request):
     expertise_areas = [
         {
             'title': 'Trazado y Recorrido de Tuberías',
@@ -128,54 +86,126 @@ def asesoria_online(request):
         },
     ]
 
+    # ── POST del formulario de contacto (sección #contacto) ──
     if request.method == 'POST':
-        nombre         = request.POST.get('nombre', '').strip()
-        email          = request.POST.get('email', '').strip()
-        telefono       = request.POST.get('telefono', '').strip()
-        tipo_asesoria  = request.POST.get('tipo_asesoria', 'completa')
-        mensaje_cliente = request.POST.get('mensaje', '').strip()
 
-        if nombre and email and telefono and mensaje_cliente:
-            # 1. Guardar en base de datos
-            SolicitudAsesoria.objects.create(
-                nombre=nombre,
-                email=email,
-                telefono=telefono,
-                tipo_asesoria=tipo_asesoria,
-                mensaje=mensaje_cliente,
-            )
+        # ── Formulario de Asesoría Online ──
+        if request.POST.get('form_type') == 'asesoria':
+            nombre          = request.POST.get('nombre', '').strip()
+            email           = request.POST.get('email', '').strip()
+            telefono        = request.POST.get('telefono', '').strip()
+            tipo_asesoria   = request.POST.get('tipo_asesoria', 'completa')
+            mensaje_cliente = request.POST.get('mensaje', '').strip()
 
-            # 2. Enviar correo de notificación
-            tipo_label = dict(SolicitudAsesoria.TIPO_CHOICES).get(tipo_asesoria, tipo_asesoria)
-            cuerpo = (
-                f"Nueva solicitud de ASESORÍA ONLINE\n\n"
-                f"Tipo: {tipo_label}\n"
-                f"Nombre: {nombre}\n"
-                f"Teléfono: {telefono}\n"
-                f"Email: {email}\n\n"
-                f"Proyecto / Consulta:\n{mensaje_cliente}"
-            )
-            send_mail(
-                subject=f"[Asesoría Online] Nueva solicitud: {nombre}",
-                message=cuerpo,
-                from_email='web@altogasspa.cl',
-                recipient_list=['Altogasspa@gmail.com'],
-                fail_silently=False,
-            )
+            if nombre and email and telefono and mensaje_cliente:
+                # 1. Guardar en base de datos como PENDIENTE
+                solicitud = SolicitudAsesoria.objects.create(
+                    nombre=nombre,
+                    email=email,
+                    telefono=telefono,
+                    gateway='transferencia',
+                    tipo_asesoria=tipo_asesoria,
+                    mensaje=mensaje_cliente,
+                    estado='PENDIENTE'
+                )
 
-            messages.success(
-                request,
-                "¡Solicitud recibida! Te contactaremos en menos de 24h hábiles para coordinar tu sesión."
-            )
-            if request.POST.get('source') == 'home':
-                return HttpResponseRedirect('/#asesoria-online')
-            return redirect('asesoria_online')
+                # 2. Calcular monto
+                monto = 40000 if tipo_asesoria == 'completa' else 20000
+                tipo_label = dict(SolicitudAsesoria.TIPO_CHOICES).get(tipo_asesoria, tipo_asesoria)
+
+                # 3. Correo HTML al cliente
+                monto_fmt = f"${monto:,}".replace(",", ".")
+                email_context = {
+                    'solicitud': solicitud,
+                    'nombre': nombre,
+                    'monto': monto,
+                    'monto_fmt': monto_fmt,
+                    'tipo_label': tipo_label,
+                    'telefono': telefono,
+                    'email': email,
+                }
+                html_content = render_to_string('core/email_asesoria.html', email_context)
+                text_content = strip_tags(html_content)
+                send_mail(
+                    subject=f"Solicitud #{solicitud.pk} confirmada - Alto Gas SPA",
+                    message=text_content,
+                    from_email='web@altogasspa.cl',
+                    recipient_list=[email],
+                    html_message=html_content,
+                    fail_silently=False,
+                )
+
+                # 4. Correo al admin
+                cuerpo_admin = (
+                    f"Nueva solicitud de ASESORÍA ONLINE #{solicitud.pk}\n\n"
+                    f"Gateway: TRANSFERENCIA\n"
+                    f"Tipo: {tipo_label}\n"
+                    f"Nombre: {nombre}\n"
+                    f"Teléfono: {telefono}\n"
+                    f"Email: {email}\n\n"
+                    f"Proyecto / Consulta:\n{mensaje_cliente}"
+                )
+                send_mail(
+                    subject=f"[Asesoría Online] #{solicitud.pk} TRANSFERENCIA: {nombre}",
+                    message=cuerpo_admin,
+                    from_email='web@altogasspa.cl',
+                    recipient_list=['Altogasspa@gmail.com'],
+                    fail_silently=False,
+                )
+
+                # 5. Mostrar modal con datos bancarios en el home
+                # monto_fmt ya fue calculado arriba al preparar el email
+                context = {
+                    'title': 'Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile',
+                    'services': services,
+                    'expertise_areas': expertise_areas,
+                    'mostrar_modal': True,
+                    'solicitud': solicitud,
+                    'monto': monto,
+                    'monto_fmt': monto_fmt,
+                }
+                return render(request, 'core/home.html', context)
+
+            messages.error(request, "Por favor completa todos los campos correctamente.")
+            return redirect('home')
+
+        # ── Formulario de Contacto general ──
+        else:
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                nombre = form.cleaned_data['nombre']
+                email = form.cleaned_data['email']
+                telefono = form.cleaned_data['telefono']
+                mensaje_cliente = form.cleaned_data['mensaje']
+
+                Contacto.objects.create(
+                    nombre=nombre,
+                    email=email,
+                    telefono=telefono,
+                    mensaje=mensaje_cliente
+                )
+
+                cuerpo_correo = f"Nuevo contacto de: {nombre}\nTelefono: {telefono}\nEmail: {email}\n\nMensaje:\n{mensaje_cliente}"
+                send_mail(
+                    subject=f"Nuevo Lead Web: {nombre}",
+                    message=cuerpo_correo,
+                    from_email='web@altogasspa.cl',
+                    recipient_list=['Altogasspa@gmail.com'],
+                    fail_silently=False,
+                )
+
+                messages.success(request, "¡Solicitud recibida! Te contactaremos a la brevedad para coordinar la inspección.")
+                return redirect('home')
+    else:
+        form = ContactForm()
 
     context = {
-        'title': 'Asesoría Online de Proyectos de Gas | Alto Gas SPA',
+        'title': 'Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile',
+        'services': services,
         'expertise_areas': expertise_areas,
+        'form': form,
     }
-    return render(request, 'core/asesoria_online.html', context)
+    return render(request, 'core/home.html', context)
 
 
 # ──────────────────────────────────────────────────────────
@@ -256,3 +286,17 @@ def servicio_proyectos(request):
         },
     ]
     return render(request, 'core/servicio_proyectos.html', {'deliverables': deliverables})
+
+
+def pago_transferencia(request, pk):
+    """
+    Vista para Transferencia Bancaria Manual - muestra instrucciones y monto
+    """
+    solicitud = get_object_or_404(SolicitudAsesoria, pk=pk, estado='PENDIENTE')
+    monto = 60000 if solicitud.tipo_asesoria == 'completa' else 30000
+    context = {
+        'solicitud': solicitud,
+        'monto': monto,
+        'title': f'Pago Transferencia #{pk} - Alto Gas SPA'
+    }
+    return render(request, 'core/pago_transferencia.html', context)

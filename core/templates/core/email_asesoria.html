@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitud Confirmada - Alto Gas SPA</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f0f4f8;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;">
+
+  <!-- Preheader (texto oculto que aparece en la lista de correos) -->
+  <span style="display:none;max-height:0;overflow:hidden;color:#f0f4f8;">
+    Solicitud #{{ solicitud.pk }} recibida. Transfiere ${{ monto_fmt }} CLP para confirmar tu sesión de asesoría con David Torres.
+  </span>
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f4f8;padding:32px 16px;">
+    <tr>
+      <td align="center">
+
+        <!-- Contenedor principal: máx 600px -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;">
+
+          <!-- ══ HEADER ══════════════════════════════════════════════ -->
+          <tr>
+            <td align="center" style="background:linear-gradient(135deg,#0d1b35 0%,#1a3a6e 100%);
+                                       border-radius:12px 12px 0 0;padding:36px 32px 28px;">
+              <!-- Logo textual -->
+              <div style="font-family:Arial,sans-serif;font-size:26px;font-weight:900;
+                          letter-spacing:-0.5px;color:#ffffff;margin-bottom:8px;">
+                ALTO<span style="color:#ea580c;">GAS</span>&nbsp;SPA
+              </div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:2px;
+                          text-transform:uppercase;margin-bottom:20px;">
+                Ingeniería · Inspección · Certificación de Gas
+              </div>
+
+              <!-- Badge estado -->
+              <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+                <tr>
+                  <td style="background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.4);
+                              border-radius:100px;padding:6px 18px;">
+                    <span style="color:#4ade80;font-size:12px;font-weight:700;letter-spacing:1px;">
+                      ✓ &nbsp;SOLICITUD RECIBIDA
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ══ CUERPO PRINCIPAL ════════════════════════════════════ -->
+          <tr>
+            <td style="background:#ffffff;padding:36px 36px 28px;">
+
+              <!-- Saludo -->
+              <p style="font-size:22px;font-weight:700;color:#0f172a;margin:0 0 8px;">
+                Hola, {{ nombre }} 👋
+              </p>
+              <p style="font-size:15px;color:#475569;line-height:1.7;margin:0 0 24px;">
+                Hemos registrado tu solicitud de <strong style="color:#0f172a;">Asesoría Online</strong>
+                con número <strong style="color:#ea580c;">#{{ solicitud.pk }}</strong>.
+                Para asegurar tu hora en nuestro calendario, completa la transferencia con los datos a continuación.
+              </p>
+
+              <!-- ── Monto destacado ── -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+                <tr>
+                  <td align="center" style="background:#0f172a;border-radius:10px;padding:20px 24px;">
+                    <p style="font-size:11px;color:#94a3b8;text-transform:uppercase;
+                               letter-spacing:2px;margin:0 0 6px;">Monto a Transferir</p>
+                    <p style="font-size:42px;font-weight:900;color:#ffffff;margin:0;line-height:1.1;">
+                      {{ monto_fmt }}
+                      <span style="font-size:18px;color:#93c5fd;font-weight:600;">&nbsp;CLP</span>
+                    </p>
+                    <p style="font-size:12px;color:#64748b;margin:6px 0 0;">
+                      {{ tipo_label }}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ── Datos bancarios ── -->
+              <p style="font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;
+                         letter-spacing:1.5px;margin:0 0 12px;">
+                Datos de Transferencia
+              </p>
+
+              <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                     style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;
+                            border-collapse:separate;overflow:hidden;margin-bottom:28px;">
+                <!-- Titular -->
+                <tr style="border-bottom:1px solid #e2e8f0;">
+                  <td style="padding:13px 18px;font-size:13px;color:#64748b;
+                              border-bottom:1px solid #e2e8f0;width:38%;">Titular</td>
+                  <td style="padding:13px 18px;font-size:13px;font-weight:700;color:#0f172a;
+                              border-bottom:1px solid #e2e8f0;">DAVID RUBEN TORRES</td>
+                </tr>
+                <!-- RUT -->
+                <tr>
+                  <td style="padding:13px 18px;font-size:13px;color:#64748b;
+                              border-bottom:1px solid #e2e8f0;">RUT</td>
+                  <td style="padding:13px 18px;font-size:13px;font-weight:700;color:#0f172a;
+                              border-bottom:1px solid #e2e8f0;font-family:monospace;">18.530.633-K</td>
+                </tr>
+                <!-- Banco -->
+                <tr>
+                  <td style="padding:13px 18px;font-size:13px;color:#64748b;
+                              border-bottom:1px solid #e2e8f0;">Banco</td>
+                  <td style="padding:13px 18px;font-size:13px;font-weight:700;color:#0f172a;
+                              border-bottom:1px solid #e2e8f0;">Banco BCI</td>
+                </tr>
+                <!-- Tipo cuenta -->
+                <tr>
+                  <td style="padding:13px 18px;font-size:13px;color:#64748b;
+                              border-bottom:1px solid #e2e8f0;">Tipo de Cuenta</td>
+                  <td style="padding:13px 18px;font-size:13px;font-weight:700;color:#0f172a;
+                              border-bottom:1px solid #e2e8f0;">Cuenta Corriente</td>
+                </tr>
+                <!-- N° cuenta -->
+                <tr>
+                  <td style="padding:13px 18px;font-size:13px;color:#64748b;">N° de Cuenta</td>
+                  <td style="padding:13px 18px;font-size:15px;font-weight:900;color:#ea580c;
+                              letter-spacing:1px;font-family:monospace;">51331250</td>
+                </tr>
+              </table>
+
+              <!-- ── Instrucción ── -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+                <tr>
+                  <td style="background:#fff7ed;border-left:4px solid #ea580c;border-radius:0 8px 8px 0;
+                              padding:14px 18px;">
+                    <p style="font-size:13px;color:#7c2d12;line-height:1.6;margin:0;">
+                      <strong>Próximo paso:</strong> Realiza la transferencia y
+                      <strong>envíanos el comprobante por WhatsApp</strong>.
+                      Apenas lo recibamos, te enviaremos la <strong>invitación oficial de Google Calendar</strong>
+                      con el enlace a tu videollamada.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ── CTA WhatsApp ── -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
+                <tr>
+                  <td align="center">
+                    <a href="https://wa.me/56931187107?text=Hola%20David%2C%20acabo%20de%20realizar%20la%20transferencia%20de%20mi%20solicitud%20%23{{ solicitud.pk }}%20y%20quiero%20enviar%20el%20comprobante."
+                       style="display:inline-block;background:#16a34a;color:#ffffff;
+                              font-size:15px;font-weight:700;text-decoration:none;
+                              padding:16px 36px;border-radius:8px;letter-spacing:0.3px;">
+                      💬 &nbsp;Enviar Comprobante por WhatsApp
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="text-align:center;font-size:12px;color:#94a3b8;margin:0 0 4px;">
+                +56 9 3118 7107 · Disponible Lun–Vie 9:00–18:00
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- ══ RESUMEN DE TU SOLICITUD ═══════════════════════════ -->
+          <tr>
+            <td style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:24px 36px;">
+              <p style="font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;
+                         letter-spacing:1.5px;margin:0 0 14px;">Resumen de tu Solicitud</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="font-size:13px;color:#64748b;padding-bottom:6px;">Tipo de asesoría</td>
+                  <td style="font-size:13px;font-weight:600;color:#0f172a;padding-bottom:6px;text-align:right;">
+                    {{ tipo_label }}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size:13px;color:#64748b;padding-bottom:6px;">Teléfono registrado</td>
+                  <td style="font-size:13px;font-weight:600;color:#0f172a;padding-bottom:6px;text-align:right;">
+                    {{ telefono }}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-size:13px;color:#64748b;">Correo registrado</td>
+                  <td style="font-size:13px;font-weight:600;color:#0f172a;text-align:right;">
+                    {{ email }}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ══ GARANTÍA ════════════════════════════════════════════ -->
+          <tr>
+            <td style="background:#f0fdf4;border-top:1px solid #bbf7d0;padding:18px 36px;">
+              <p style="font-size:13px;color:#166534;line-height:1.6;margin:0;">
+                <strong>🛡️ Garantía de Satisfacción:</strong> Si el resultado no cubre tus expectativas técnicas,
+                coordinamos una sesión de seguimiento <strong>sin costo adicional</strong>.
+              </p>
+            </td>
+          </tr>
+
+          <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+          <tr>
+            <td style="background:#0f172a;border-radius:0 0 12px 12px;padding:24px 36px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td>
+                    <p style="font-size:15px;font-weight:900;color:#ffffff;margin:0 0 4px;">
+                      ALTO<span style="color:#ea580c;">GAS</span> SPA
+                    </p>
+                    <p style="font-size:12px;color:#475569;margin:0;">
+                      Ingeniería, Inspección y Certificación de Gas · Chile
+                    </p>
+                  </td>
+                  <td align="right" valign="top">
+                    <a href="mailto:Altogasspa@gmail.com"
+                       style="font-size:12px;color:#475569;text-decoration:none;">
+                      Altogasspa@gmail.com
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <hr style="border:none;border-top:1px solid #1e293b;margin:16px 0;">
+              <p style="font-size:11px;color:#334155;text-align:center;margin:0;">
+                Este correo fue generado automáticamente porque realizaste una solicitud en
+                <a href="https://www.altogasspa.cl" style="color:#475569;">altogasspa.cl</a>.
+                Si no reconoces esta solicitud, ignora este mensaje.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Contenedor principal -->
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

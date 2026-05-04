@@ -1,0 +1,142 @@
+{% extends "core/asesoria_online.html" %}
+{% load static %}
+
+{% block title %}Pago Transferencia - Alto Gas SPA{% endblock %}
+
+{% block content %}
+<!-- ═══════════════════════════════════════════════════════════
+     HERO - Confirmación Transferencia
+═══════════════════════════════════════════════════════════ -->
+<section class="min-h-screen pt-36 pb-28 bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
+    
+    <div class="container mx-auto px-6 max-w-2xl relative z-10">
+        <div data-reveal class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 bg-green-600 text-white text-sm font-bold px-6 py-3 rounded-full mb-8 shadow-2xl">
+                <span class="w-2 h-2 bg-green-300 rounded-full animate-ping"></span>
+                ✓ SOLICITUD #{ { solicitud.pk } } RECIBIDA
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+                Transferencia Bancaria
+                <span class="text-orange-400 block">Manual - Instrucciones</span>
+            </h1>
+            <p class="text-xl text-blue-100 max-w-lg mx-auto leading-relaxed">
+                Realiza la transferencia y envíanos el comprobante por WhatsApp. Te confirmaremos recepción en menos de 2 horas.
+            </p>
+        </div>
+
+        <!-- Card Principal - Datos Bancarios -->
+        <div data-reveal data-delay="200" class="bg-white/10 backdrop-blur-xl rounded-3xl p-10 md:p-12 border border-white/20 shadow-2xl card-lift">
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <!-- Resumen Solicitud -->
+                <div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="file-text" class="w-8 h-8 text-blue-400"></i>
+                        Tu Solicitud
+                    </h3>
+                    <div class="space-y-4 text-lg">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Cliente:</span>
+                            <span class="font-bold text-white">{{ solicitud.nombre }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Teléfono:</span>
+                            <span class="font-bold text-orange-400">{{ solicitud.telefono }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Email:</span>
+                            <span class="font-bold text-blue-400">{{ solicitud.email }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Tipo:</span>
+                            <span class="bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm font-bold">
+                                {{ solicitud.get_tipo_asesoria_display }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Datos Bancarios -->
+                <div>
+                    <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="banknote" class="w-8 h-8 text-green-400"></i>
+                        Transferir A
+                    </h3>
+                    <div class="bg-gradient-to-r from-emerald-900/50 to-green-900/50 rounded-2xl p-6 border border-green-500/30 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-200 font-semibold">Monto Exacto:</span>
+                            <span class="text-3xl font-display font-extrabold text-white">${{ monto|floatformat:0 }} CLP</span>
+                        </div>
+                        <hr class="border-green-500/30 my-4">
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between"><span class="text-gray-300">Titular:</span> <span class="font-mono font-bold text-white">DAVID RUBEN TORRES</span></div>
+                            <div class="flex justify-between"><span class="text-gray-300">RUT:</span> <span class="font-mono font-bold text-white">18.530.633-K</span></div>
+                            <div class="flex justify-between"><span class="text-gray-300">Banco:</span> <span class="font-mono font-bold text-white">Banco Bci</span></div>
+                            <div class="flex justify-between"><span class="text-gray-300">Tipo de Cuenta:</span> <span class="font-mono font-bold text-white">Cuenta Corriente</span></div>
+                            <div class="flex justify-between"><span class="text-gray-300">Nº Cuenta:</span> <span class="font-mono font-bold text-white">51331250</span></div>
+                            <div class="flex justify-between"><span class="text-gray-300">Email:</span> <span class="font-mono font-bold text-orange-400">Altogasspa@gmail.com</span></div>
+                        </div>
+                        <div class="pt-4 border-t border-green-500/30 text-xs text-green-200">
+                            📱 Usa mensaje RUT + Solicitud #{{ solicitud.pk }} en "Detalle"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA WhatsApp -->
+            <div class="text-center">
+                <a href="https://wa.me/56931187107?text={{ 'Hola, acabo de solicitar una asesoría online (Solicitud #'|add:solicitud.pk|stringformat:'s' }}). Adjunto mi comprobante de transferencia de ${{ monto|floatformat:0 }} CLP. Gracias!'|urlencode }}"
+                   target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 
+                          text-white font-extrabold py-5 px-12 rounded-2xl shadow-2xl shadow-green-600/40
+                          transition-all duration-300 transform hover:-translate-y-2 hover:shadow-3xl text-lg font-display">
+                    <i data-lucide="send" class="w-6 h-6"></i>
+                    Ya Transferí - Enviar Comprobante
+                </a>
+            </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div data-reveal data-delay="400" class="mt-20 grid md:grid-cols-3 gap-8 text-center text-sm">
+            <div class="flex flex-col items-center gap-2 p-6 bg-white/5 rounded-2xl border border-white/10">
+                <i data-lucide="shield-check" class="w-12 h-12 text-green-400 mb-3"></i>
+                <span class="font-bold text-white">Pago Seguro</span>
+                <span class="text-gray-400">Solo desde cuentas verificadas</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 p-6 bg-white/5 rounded-2xl border border-white/10">
+                <i data-lucide="clock" class="w-12 h-12 text-orange-400 mb-3"></i>
+                <span class="font-bold text-white">Confirmación</span>
+                <span class="text-gray-400">< 2 horas hábiles</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 p-6 bg-white/5 rounded-2xl border border-white/10">
+                <i data-lucide="calendar-check" class="w-12 h-12 text-blue-400 mb-3"></i>
+                <span class="font-bold text-white">Agendamiento</span>
+                <span class="text-gray-400">En 24h máximo</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .grid-bg {
+        background-image:
+            linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+    .card-lift {
+        transition: transform 0.3s cubic-bezier(.22,1,.36,1),
+                    box-shadow 0.3s ease;
+    }
+    .card-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 80px -12px rgba(30,58,138,.3);
+    }
+</style>
+{% endblock %}
+
+<script>
+    lucide.createIcons();
+</script>

@@ -27,6 +27,11 @@ class SolicitudAsesoria(models.Model):
         ('completa', 'Asesoría Completa — 60 min'),
         ('express',  'Consulta Express — 30 min'),
     ]
+    ESTADO_CHOICES = [
+        ('PENDIENTE', 'Pendiente de Pago'),
+        ('PAGADO', 'Pagado'),
+        ('CANCELADO', 'Cancelado'),
+    ]
 
     nombre       = models.CharField(max_length=100, verbose_name="Nombre del Cliente")
     email        = models.EmailField(verbose_name="Correo Electrónico")
@@ -37,6 +42,11 @@ class SolicitudAsesoria(models.Model):
         default='completa',
         verbose_name="Tipo de Asesoría"
     )
+    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='PENDIENTE')
+    monto = models.DecimalField(max_digits=10, decimal_places=0, default=60000)
+    gateway = models.CharField(max_length=20, blank=True)
+    token_transaccion = models.UUIDField(blank=True, null=True)
+    fecha_pago = models.DateTimeField(blank=True, null=True)
     mensaje      = models.TextField(verbose_name="Descripción del Proyecto / Consulta")
     fecha_creacion = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Solicitud")
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from core.views import (
-    home, asesoria_online,
+    home, pago_transferencia,
     servicio_sello_verde, servicio_tramites_sec, servicio_proyectos,
 )
 from django.http import HttpResponse
@@ -35,7 +35,7 @@ sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.altogasspa.cl/asesoria-online/</loc>
+        <loc>https://www.altogasspa.cl/#asesoria-online</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -46,10 +46,11 @@ sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('asesoria-online/', asesoria_online, name='asesoria_online'),
+
     path('servicios/sello-verde/',         servicio_sello_verde,  name='servicio_sello_verde'),
     path('servicios/tramites-sec/',        servicio_tramites_sec, name='servicio_tramites_sec'),
     path('servicios/proyectos-ingenieria/',servicio_proyectos,    name='servicio_proyectos'),
+    path('pago-transferencia/<int:pk>/', pago_transferencia, name='pago_transferencia'),
 
     path('robots.txt', lambda request: HttpResponse(robots_txt, content_type='text/plain')),
     path('sitemap.xml', lambda request: HttpResponse(sitemap_xml, content_type='application/xml')),
