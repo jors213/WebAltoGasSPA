@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'anymail',
     'core',
 ]
 
@@ -159,15 +160,20 @@ CACHES = {
 CACHE_MIDDLEWARE_SECONDS = 900
 CACHE_MIDDLEWARE_KEY_PREFIX = 'altogasspa'
 
-# Configuración de Email para Producción (Gmail)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True  # Encriptación para seguridad (TLS)
+# ── Configuración de Email ──────────────────────────────────────────────────
+# Railway bloquea los puertos SMTP (25/465/587) a nivel de SO.
+# Usamos Resend (HTTPS API) en producción y console backend en local.
 
-# Leemos las credenciales desde la caja fuerte (.env)
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
 
-# El remitente por defecto cuando from_email=None en send_mail()
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER', 'noreply@altogasspa.cl')
+if RESEND_API_KEY:
+    # Producción: Resend envía vía HTTPS, sin bloqueos de puerto
+    EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
+    ANYMAIL = {
+        'RESEND_API_KEY': RESEND_API_KEY,
+    }
+    DEFAULT_FROM_EMAIL = 'web@altogasspa.cl'
+else:
+    # Local: imprime el correo en la consola para no necesitar credenciales
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'web@altogasspa.cl'

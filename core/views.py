@@ -126,14 +126,17 @@ def home(request):
                 }
                 html_content = render_to_string('core/email_asesoria.html', email_context)
                 text_content = strip_tags(html_content)
-                send_mail(
-                    subject=f"Solicitud #{solicitud.pk} confirmada - Alto Gas SPA",
-                    message=text_content,
-                    from_email=None,  # Usa EMAIL_HOST_USER automáticamente
-                    recipient_list=[email],
-                    html_message=html_content,
-                    fail_silently=True,
-                )
+                try:
+                    send_mail(
+                        subject=f"Solicitud #{solicitud.pk} confirmada - Alto Gas SPA",
+                        message=text_content,
+                        from_email=None,
+                        recipient_list=[email],
+                        html_message=html_content,
+                        fail_silently=True,
+                    )
+                except BaseException:
+                    pass  # Railway bloquea SMTP; el correo no es crítico para continuar
 
                 # 4. Correo al admin
                 cuerpo_admin = (
@@ -145,13 +148,16 @@ def home(request):
                     f"Email: {email}\n\n"
                     f"Proyecto / Consulta:\n{mensaje_cliente}"
                 )
-                send_mail(
-                    subject=f"[Asesoría Online] #{solicitud.pk} TRANSFERENCIA: {nombre}",
-                    message=cuerpo_admin,
-                    from_email=None,  # Usa EMAIL_HOST_USER automáticamente
-                    recipient_list=['Altogasspa@gmail.com'],
-                    fail_silently=True,
-                )
+                try:
+                    send_mail(
+                        subject=f"[Asesoría Online] #{solicitud.pk} TRANSFERENCIA: {nombre}",
+                        message=cuerpo_admin,
+                        from_email=None,
+                        recipient_list=['Altogasspa@gmail.com'],
+                        fail_silently=True,
+                    )
+                except BaseException:
+                    pass  # Railway bloquea SMTP; el correo al admin no es crítico
 
                 # 5. Mostrar modal con datos bancarios en el home
                 # monto_fmt ya fue calculado arriba al preparar el email
@@ -186,13 +192,16 @@ def home(request):
                 )
 
                 cuerpo_correo = f"Nuevo contacto de: {nombre}\nTelefono: {telefono}\nEmail: {email}\n\nMensaje:\n{mensaje_cliente}"
-                send_mail(
-                    subject=f"Nuevo Lead Web: {nombre}",
-                    message=cuerpo_correo,
-                    from_email=None,  # Usa EMAIL_HOST_USER automáticamente
-                    recipient_list=['Altogasspa@gmail.com'],
-                    fail_silently=True,  # No crashear si SMTP falla
-                )
+                try:
+                    send_mail(
+                        subject=f"Nuevo Lead Web: {nombre}",
+                        message=cuerpo_correo,
+                        from_email=None,
+                        recipient_list=['Altogasspa@gmail.com'],
+                        fail_silently=True,
+                    )
+                except BaseException:
+                    pass  # Railway bloquea SMTP; el formulario igual se guarda en BD
 
                 messages.success(request, "¡Solicitud recibida! Te contactaremos a la brevedad para coordinar la inspección.")
                 return redirect('home')
