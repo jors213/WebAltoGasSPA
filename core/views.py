@@ -129,7 +129,7 @@ def home(request):
                 send_mail(
                     subject=f"Solicitud #{solicitud.pk} confirmada - Alto Gas SPA",
                     message=text_content,
-                    from_email='web@altogasspa.cl',
+                    from_email=None,  # Usa EMAIL_HOST_USER automáticamente
                     recipient_list=[email],
                     html_message=html_content,
                     fail_silently=True,
@@ -148,7 +148,7 @@ def home(request):
                 send_mail(
                     subject=f"[Asesoría Online] #{solicitud.pk} TRANSFERENCIA: {nombre}",
                     message=cuerpo_admin,
-                    from_email='web@altogasspa.cl',
+                    from_email=None,  # Usa EMAIL_HOST_USER automáticamente
                     recipient_list=['Altogasspa@gmail.com'],
                     fail_silently=True,
                 )
@@ -189,9 +189,9 @@ def home(request):
                 send_mail(
                     subject=f"Nuevo Lead Web: {nombre}",
                     message=cuerpo_correo,
-                    from_email='web@altogasspa.cl',
+                    from_email=None,  # Usa EMAIL_HOST_USER automáticamente
                     recipient_list=['Altogasspa@gmail.com'],
-                    fail_silently=False,
+                    fail_silently=True,  # No crashear si SMTP falla
                 )
 
                 messages.success(request, "¡Solicitud recibida! Te contactaremos a la brevedad para coordinar la inspección.")

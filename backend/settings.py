@@ -168,3 +168,6 @@ EMAIL_USE_TLS = True  # Encriptación para seguridad (TLS)
 # Leemos las credenciales desde la caja fuerte (.env)
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+# El remitente por defecto cuando from_email=None en send_mail()
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER', 'noreply@altogasspa.cl')
