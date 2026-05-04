@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trámites y Declaraciones SEC de Gas en Chile | Alto Gas SPA</title>
+    <meta name="description" content="Tramitamos TC2, TC5, TC6 y TC7 ante la SEC. Regularización de instalaciones de gas, memorias de cálculo y declaraciones con instaladores autorizados en Santiago.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.altogasspa.cl/servicios/tramites-sec/">
+    <link rel="icon" type="image/png" href="{% static 'core/img/flavicon.png' %}">
+
+    <meta property="og:title"       content="Trámites y Declaraciones SEC de Gas en Chile | Alto Gas SPA">
+    <meta property="og:description" content="Regularización TC2, TC5, TC6 y TC7 ante la SEC. Instaladores autorizados en Santiago y todo Chile.">
+    <meta property="og:image"       content="https://www.altogasspa.cl{% static 'core/img/LOGO.png' %}">
+    <meta property="og:url"         content="https://www.altogasspa.cl/servicios/tramites-sec/">
+    <meta property="og:type"        content="website">
+    <meta property="og:locale"      content="es_CL">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Declaraciones y Trámites SEC de Gas",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Alto Gas SPA",
+        "url": "https://www.altogasspa.cl/",
+        "telephone": "+56931187107"
+      },
+      "areaServed": { "@type": "Country", "name": "Chile" },
+      "description": "Tramitación de formularios TC2, TC5, TC6 y TC7 ante la SEC. Regularización de instalaciones de gas natural y GLP, memorias de cálculo y declaraciones de instalador.",
+      "url": "https://www.altogasspa.cl/servicios/tramites-sec/"
+    }
+    </script>
+
+    <link rel="stylesheet" href="{% static 'core/css/tailwind.css' %}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
+        .animate-slide-in { animation: slideIn 0.5s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-slate-800">
+
+    <nav class="bg-white shadow-md fixed w-full z-50 top-0">
+        <div class="container mx-auto px-6 py-2 md:py-4 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <a href="{% url 'home' %}" class="flex-shrink-0">
+                    <img src="{% static 'core/img/aglogo.png' %}" alt="Alto Gas SPA" class="h-24 w-auto object-contain hover:opacity-90 transition">
+                </a>
+                <div class="hidden lg:flex items-center gap-4">
+                    <div class="h-12 w-px bg-gray-200"></div>
+                    <span class="text-[11px] bg-green-50 text-green-700 px-3 py-1 rounded-full border border-green-200 font-bold uppercase tracking-wider flex items-center gap-1">
+                        <i data-lucide="check-circle" class="w-3 h-3"></i> Licencia SEC al día
+                    </span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-slate-600 font-medium text-sm uppercase tracking-wide">
+                <a href="{% url 'home' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Inicio</a>
+                <a href="{% url 'servicio_sello_verde' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Sello Verde</a>
+                <a href="{% url 'servicio_tramites_sec' %}" class="text-blue-600 border-b-2 border-blue-600 py-1">Trámites SEC</a>
+                <a href="{% url 'servicio_proyectos' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Proyectos</a>
+                <a href="{% url 'asesoria_online' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Asesoría Online</a>
+            </div>
+            <a href="https://wa.me/56931187107?text=Hola%2C%20necesito%20ayuda%20con%20tr%C3%A1mites%20SEC%20de%20gas"
+               class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold flex items-center shadow-lg hover:shadow-green-600/40 transition transform hover:-translate-y-1">
+                <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>WhatsApp
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative bg-slate-900 text-white pt-36 pb-20 overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-900 rounded-full blur-[120px] opacity-30"></div>
+        <div class="container mx-auto px-6 relative z-10 max-w-4xl">
+            <div class="inline-block bg-blue-700 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">REGULARIZACIÓN · TRÁMITES SEC</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+                DECLARACIONES Y <span class="text-blue-400">TRÁMITES SEC</span> DE GAS
+            </h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-xl leading-relaxed">
+                Tramitamos todos los formularios SEC (TC2, TC5, TC6 y TC7) y regularizamos instalaciones de gas natural y GLP. <strong class="text-white">Nos encargamos de toda la burocracia</strong> para que no tengas que preocuparte.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#tramites" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition transform hover:-translate-y-1 text-center">Ver Formularios</a>
+                <a href="#contacto" class="border-2 border-gray-500 hover:border-white text-gray-300 font-bold py-4 px-8 rounded-lg transition text-center">Consultar mi caso</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4 text-sm text-gray-500 flex items-center gap-2">
+            <a href="{% url 'home' %}" class="hover:text-blue-600 transition">Inicio</a>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            <span class="text-slate-800 font-medium">Declaraciones y Trámites SEC</span>
+        </div>
+    </div>
+
+    <!-- FORMULARIOS -->
+    <section id="tramites" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-14">
+                <span class="text-blue-700 font-bold tracking-widest text-sm uppercase">¿Qué tramitamos?</span>
+                <h2 class="text-3xl font-bold text-slate-900 mt-2">FORMULARIOS SEC QUE GESTIONAMOS</h2>
+                <p class="text-gray-500 mt-4 max-w-lg mx-auto">Cada tipo de instalación o modificación requiere un formulario distinto ante la SEC. Nosotros identificamos cuál corresponde y lo tramitamos completo.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                {% for form in sec_forms %}
+                <div class="bg-slate-50 p-7 rounded-xl border border-gray-200 hover:border-blue-300 hover:bg-blue-50 hover:shadow-md transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-blue-100 px-3 py-2 rounded-lg shrink-0">
+                            <span class="font-extrabold text-blue-700 text-lg">{{ form.code }}</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 mb-1">{{ form.title }}</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">{{ form.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ REGULARIZAR -->
+    <section class="py-20 bg-slate-50 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+                    <span class="text-blue-700 font-bold uppercase tracking-widest text-sm">¿Por qué regularizar?</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-2 mb-5">LAS CONSECUENCIAS DE NO ESTAR AL DÍA</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 p-4 bg-red-50 rounded-xl border border-red-200">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
+                            <div>
+                                <p class="font-bold text-slate-900 text-sm">Corte de suministro de gas</p>
+                                <p class="text-gray-600 text-xs mt-0.5">La distribuidora puede cortar el gas si tu instalación no está declarada y certificada.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-orange-50 rounded-xl border border-orange-200">
+                            <i data-lucide="banknote" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
+                            <div>
+                                <p class="font-bold text-slate-900 text-sm">Multas de la SEC</p>
+                                <p class="text-gray-600 text-xs mt-0.5">Las infracciones a la normativa SEC pueden resultar en multas para el propietario o administrador.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-yellow-50 rounded-xl border border-yellow-200">
+                            <i data-lucide="file-x" class="w-5 h-5 text-yellow-600 shrink-0 mt-0.5"></i>
+                            <div>
+                                <p class="font-bold text-slate-900 text-sm">Problemas con seguros y permisos</p>
+                                <p class="text-gray-600 text-xs mt-0.5">Una instalación no regularizada puede invalidar tu seguro de hogar o bloquear permisos de obra.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-slate-900 text-white rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-blue-600 rounded-full opacity-10 blur-2xl"></div>
+                    <h3 class="text-xl font-bold mb-5">Lo que incluye nuestro servicio</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i><span>Diagnóstico gratuito del tipo de formulario que necesitas</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i><span>Preparación completa de la documentación técnica</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i><span>Presentación ante la SEC con instalador autorizado</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"></i><span>Seguimiento hasta aprobación y entrega de copia</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contacto" class="py-20 bg-blue-900 text-white">
+        <div class="container mx-auto px-6 text-center max-w-2xl">
+            <h2 class="text-3xl font-extrabold mb-4">¿NO SABES QUÉ FORMULARIO NECESITAS?</h2>
+            <p class="text-blue-200 mb-8">Cuéntanos tu situación y te orientamos sin costo. Atendemos por WhatsApp, teléfono o correo.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/56931187107?text=Hola%2C%20necesito%20ayuda%20con%20tr%C3%A1mites%20SEC%20de%20gas"
+                   class="bg-white text-blue-900 hover:bg-blue-50 font-extrabold py-4 px-10 rounded-lg transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Escribir por WhatsApp
+                </a>
+                <a href="mailto:Altogasspa@gmail.com"
+                   class="border-2 border-white hover:bg-white hover:text-blue-900 font-bold py-4 px-8 rounded-lg transition flex items-center justify-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i> Enviar correo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white border-t border-slate-800">
+        <div class="container mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <div class="text-2xl font-bold mb-1">ALTO<span class="text-orange-500">GAS</span> SPA</div>
+                <p class="text-slate-400 text-sm">Ingeniería, Inspección y Certificación de Gas.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="{% url 'home' %}" class="text-slate-400 hover:text-white text-sm transition">Inicio</a>
+                <a href="{% url 'servicio_sello_verde' %}" class="text-slate-400 hover:text-white text-sm transition">Sello Verde</a>
+                <a href="{% url 'asesoria_online' %}" class="text-slate-400 hover:text-white text-sm transition">Asesoría Online</a>
+            </div>
+        </div>
+        <div class="bg-slate-950 py-4 text-center">
+            <p class="text-slate-600 text-xs">&copy; 2026 Alto Gas SPA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

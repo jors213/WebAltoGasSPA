@@ -46,6 +46,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # GZip primero: comprime las respuestas HTML dinámicas antes de enviarlas
+    # (WhiteNoise ya comprime los archivos estáticos por su cuenta)
+    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -139,6 +142,22 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ── Caché: LocMemCache (en proceso, sin Redis, sin costo extra) ──────────────
+# En producción Railway cada dyno tiene su propia caché en memoria.
+# Para un sitio de bajo tráfico es suficiente y reduce TTFB significativamente.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'altogasspa-cache',
+    }
+}
+
+# TTL de caché por defecto: 15 minutos (900s)
+# Las vistas usan @cache_page que lo respeta automáticamente.
+CACHE_MIDDLEWARE_SECONDS = 900
+CACHE_MIDDLEWARE_KEY_PREFIX = 'altogasspa'
 
 # Configuración de Email para Producción (Gmail)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

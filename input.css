@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Escanear todos los templates Django */
+@source "./core/templates/**/*.html";
+
+/* Clases generadas dinámicamente desde views.py — forzar inclusión */
+@source inline("border-green-600 border-blue-600 border-orange-500 text-green-600 text-blue-600 text-orange-600 text-purple-600 text-red-600 text-slate-600 bg-green-100 bg-blue-100 bg-orange-100 bg-purple-100 bg-red-100 bg-slate-100");

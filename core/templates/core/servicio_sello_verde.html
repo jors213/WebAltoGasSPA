@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspección y Sello Verde SEC en Santiago | Alto Gas SPA</title>
+    <meta name="description" content="Obtén tu Sello Verde SEC con instaladores autorizados en Santiago y Chile. Inspección periódica, pruebas de hermeticidad y gestión completa ante la SEC. ¡Evita multas!">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.altogasspa.cl/servicios/sello-verde/">
+    <link rel="icon" type="image/png" href="{% static 'core/img/flavicon.png' %}">
+
+    <meta property="og:title"       content="Inspección y Sello Verde SEC en Santiago | Alto Gas SPA">
+    <meta property="og:description" content="Certificación Sello Verde SEC para edificios, hogares y locales. Instaladores autorizados en Santiago y Regiones.">
+    <meta property="og:image"       content="https://www.altogasspa.cl{% static 'core/img/sello_verde.jpeg' %}">
+    <meta property="og:url"         content="https://www.altogasspa.cl/servicios/sello-verde/">
+    <meta property="og:type"        content="website">
+    <meta property="og:locale"      content="es_CL">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Inspección y Certificación Sello Verde SEC",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Alto Gas SPA",
+        "url": "https://www.altogasspa.cl/",
+        "telephone": "+56931187107"
+      },
+      "areaServed": { "@type": "Country", "name": "Chile" },
+      "description": "Inspección periódica de instalaciones de gas, pruebas de hermeticidad, reparación de fugas y gestión del Sello Verde SEC ante la Superintendencia de Electricidad y Combustibles.",
+      "url": "https://www.altogasspa.cl/servicios/sello-verde/"
+    }
+    </script>
+
+    <link rel="stylesheet" href="{% static 'core/css/tailwind.css' %}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .bg-brand-blue { background-color: #1e3a8a; }
+        .text-brand-orange { color: #ea580c; }
+        @keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
+        .animate-slide-in { animation: slideIn 0.5s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-slate-800">
+
+    <nav class="bg-white shadow-md fixed w-full z-50 top-0">
+        <div class="container mx-auto px-6 py-2 md:py-4 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <a href="{% url 'home' %}" class="flex-shrink-0">
+                    <img src="{% static 'core/img/aglogo.png' %}" alt="Alto Gas SPA" class="h-24 w-auto object-contain hover:opacity-90 transition">
+                </a>
+                <div class="hidden lg:flex items-center gap-4">
+                    <div class="h-12 w-px bg-gray-200"></div>
+                    <span class="text-[11px] bg-green-50 text-green-700 px-3 py-1 rounded-full border border-green-200 font-bold uppercase tracking-wider flex items-center gap-1">
+                        <i data-lucide="check-circle" class="w-3 h-3"></i> Licencia SEC al día
+                    </span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-slate-600 font-medium text-sm uppercase tracking-wide">
+                <a href="{% url 'home' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Inicio</a>
+                <a href="{% url 'home' %}#servicios" class="text-green-600 border-b-2 border-green-600 py-1">Sello Verde</a>
+                <a href="{% url 'servicio_tramites_sec' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Trámites SEC</a>
+                <a href="{% url 'servicio_proyectos' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Proyectos</a>
+                <a href="{% url 'asesoria_online' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Asesoría Online</a>
+            </div>
+            <a href="https://wa.me/56931187107?text=Hola%2C%20quiero%20consultar%20por%20el%20Sello%20Verde%20SEC"
+               class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold flex items-center shadow-lg hover:shadow-green-600/40 transition transform hover:-translate-y-1">
+                <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>WhatsApp
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative bg-slate-900 text-white pt-36 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900"></div>
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-green-900 rounded-full blur-[120px] opacity-30"></div>
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-3/5">
+                <div class="inline-block bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                    SERVICIO PRINCIPAL · CERTIFICACIÓN SEC
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+                    INSPECCIÓN Y <span class="text-green-400">SELLO VERDE SEC</span> EN SANTIAGO
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-xl leading-relaxed">
+                    Realizamos la inspección periódica de tu instalación de gas, gestionamos el <strong class="text-white">Sello Verde SEC</strong> y corregimos cualquier deficiencia en la misma visita. Atención en toda la Región Metropolitana y regiones.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contacto" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition transform hover:-translate-y-1 text-center">
+                        Solicitar Inspección
+                    </a>
+                    <a href="#proceso" class="border-2 border-gray-500 hover:border-white text-gray-300 font-bold py-4 px-8 rounded-lg transition text-center">
+                        Ver el proceso
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-2/5 flex justify-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-green-500 rounded-full filter blur-3xl opacity-20"></div>
+                    <img src="{% static 'core/img/sello_verde.jpeg' %}" alt="Sello Verde SEC aprobado en Santiago" class="relative z-10 w-64 md:w-72 drop-shadow-2xl hover:rotate-3 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB + TRUST -->
+    <div class="bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4 text-sm text-gray-500 flex items-center gap-2">
+            <a href="{% url 'home' %}" class="hover:text-green-600 transition">Inicio</a>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            <span class="text-slate-800 font-medium">Inspección y Sello Verde SEC</span>
+        </div>
+    </div>
+
+    <!-- QUÉ ES Y POR QUÉ LO NECESITAS -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-14">
+                <span class="text-green-700 font-bold tracking-widest text-sm uppercase">¿Qué es el Sello Verde?</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">LA CERTIFICACIÓN QUE GARANTIZA TU SEGURIDAD</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-red-50 p-6 rounded-xl border border-red-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                    <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2">Sello Rojo</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Instalación <strong>peligrosa</strong>. La empresa distribuidora corta el suministro de gas hasta que se reparen las deficiencias y se certifique.</p>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                    <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="alert-circle" class="w-6 h-6 text-yellow-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2">Sello Amarillo</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Instalación con <strong>observaciones</strong>. Tienes plazo para corregir las deficiencias antes de que te corten el gas.</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-xl border border-green-200 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                    <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2">Sello Verde</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Instalación <strong>aprobada y segura</strong>. Cumple con toda la normativa SEC vigente. Sin riesgo de corte ni multas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section id="proceso" class="py-20 bg-slate-50 border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-14">
+                <span class="text-green-700 font-bold tracking-widest text-sm uppercase">Nuestro Proceso</span>
+                <h2 class="text-3xl font-bold text-slate-900 mt-2">CÓMO OBTIENES TU SELLO VERDE</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                {% for step in steps %}
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-green-600 text-white font-bold rounded-full flex items-center justify-center text-sm shadow">{{ forloop.counter }}</div>
+                    <div class="bg-green-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 mt-3">
+                        <i data-lucide="{{ step.icon }}" class="w-7 h-7 text-green-700"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2 text-sm">{{ step.title }}</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">{{ step.desc }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <span class="text-green-700 font-bold uppercase tracking-widest text-sm">Nuestra Ventaja</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-2 mb-6">INSPECCIONAMOS Y REPARAMOS EN LA MISMA VISITA</h2>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Contamos con nuestro propio equipo técnico con materiales en terreno. Si detectamos una fuga o deficiencia durante la inspección, la reparamos al instante sin coordinar una segunda visita ni cobros adicionales no informados.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-slate-800"><i data-lucide="check" class="text-green-600 mr-3 shrink-0"></i> Pruebas de hermeticidad certificadas</li>
+                        <li class="flex items-center text-slate-800"><i data-lucide="check" class="text-green-600 mr-3 shrink-0"></i> Detección y reparación de fugas en el acto</li>
+                        <li class="flex items-center text-slate-800"><i data-lucide="check" class="text-green-600 mr-3 shrink-0"></i> Tramitación TC6 e inscripción SEC incluida</li>
+                        <li class="flex items-center text-slate-800"><i data-lucide="check" class="text-green-600 mr-3 shrink-0"></i> Cobertura: RM + regiones bajo coordinación</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 bg-slate-900 rounded-2xl p-8 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-green-500 opacity-10 blur-2xl"></div>
+                    <h3 class="text-xl font-bold mb-4">Datos reales de nuestro servicio</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-green-400">+13</p>
+                            <p class="text-gray-400 text-sm mt-1">Años de experiencia</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-orange-400">100%</p>
+                            <p class="text-gray-400 text-sm mt-1">Sellos aprobados</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-blue-400">1</p>
+                            <p class="text-gray-400 text-sm mt-1">Sola visita en la mayoría de casos</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-extrabold text-white">SEC</p>
+                            <p class="text-gray-400 text-sm mt-1">Licencia Clase 1 vigente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA CONTACTO -->
+    <section id="contacto" class="py-20 bg-green-700 text-white">
+        <div class="container mx-auto px-6 text-center max-w-2xl">
+            <h2 class="text-3xl font-extrabold mb-4">¿NECESITAS TU SELLO VERDE?</h2>
+            <p class="text-green-100 mb-8 leading-relaxed">
+                Coordinamos la visita de inspección en tu horario. Atendemos edificios residenciales, casas, locales comerciales e industrias.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/56931187107?text=Hola%2C%20necesito%20el%20Sello%20Verde%20SEC%20para%20mi%20instalaci%C3%B3n"
+                   class="bg-white text-green-700 hover:bg-green-50 font-extrabold py-4 px-10 rounded-lg transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Escribir por WhatsApp
+                </a>
+                <a href="mailto:Altogasspa@gmail.com"
+                   class="border-2 border-white text-white hover:bg-white hover:text-green-700 font-bold py-4 px-8 rounded-lg transition flex items-center justify-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i> Enviar correo
+                </a>
+            </div>
+            <p class="mt-6 text-green-200 text-sm">+56 9 3118 7107 · David Torres, Constructor Civil e Instalador SEC Clase 1</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white border-t border-slate-800">
+        <div class="container mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <div class="text-2xl font-bold mb-1">ALTO<span class="text-orange-500">GAS</span> SPA</div>
+                <p class="text-slate-400 text-sm">Ingeniería, Inspección y Certificación de Gas.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="{% url 'home' %}" class="text-slate-400 hover:text-white text-sm transition">Inicio</a>
+                <a href="{% url 'asesoria_online' %}" class="text-slate-400 hover:text-white text-sm transition">Asesoría Online</a>
+                <a href="{% url 'home' %}#contacto" class="text-slate-400 hover:text-white text-sm transition">Contacto</a>
+            </div>
+        </div>
+        <div class="bg-slate-950 py-4 text-center">
+            <p class="text-slate-600 text-xs">&copy; 2026 Alto Gas SPA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

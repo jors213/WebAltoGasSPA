@@ -12,3 +12,4 @@ env/
 
 # Archivos de sistema
 .DS_Store
+.claude/

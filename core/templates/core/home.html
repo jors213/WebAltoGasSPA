@@ -4,176 +4,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <meta name="description" content="Alto Gas SPA: Expertos en ingeniería, inspección y certificación de Sello Verde SEC en la Región Metropolitana y todo Chile. Regulariza tu instalación y evita multas.">
+    <title>Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile</title>
+
+    <meta name="description" content="Expertos en Sello Verde SEC, inspección e instalaciones de gas en Santiago y Chile. Instaladores autorizados. ¡Evita multas, contáctanos hoy!">
     <meta name="keywords" content="altogas, altogasspa, alto gas spa, sello verde, certificación de gas, instalador SEC, detección de fugas, Chile, Santiago">
     <meta name="author" content="Alto Gas SPA">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.altogasspa.cl/">
 
-    <meta property="og:title" content="Alto Gas SPA - Ingeniería y Certificación de Gas">
-    <meta property="og:description" content="Obtén tu Sello Verde SEC sin complicaciones. Inspección, pruebas de hermeticidad y regularización con instaladores autorizados.">
-    <meta property="og:image" content="https://www.altogasspa.cl{% static 'core/img/LOGO.png' %}">
-    <meta property="og:url" content="https://www.altogasspa.cl">
-    <meta property="og:type" content="website">
+    <meta property="og:title"       content="Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile">
+    <meta property="og:description" content="Expertos en Sello Verde SEC, inspección e instalaciones de gas en Santiago y Chile. Instaladores autorizados. ¡Evita multas!">
+    <meta property="og:image"       content="https://www.altogasspa.cl{% static 'core/img/LOGO.png' %}">
+    <meta property="og:url"         content="https://www.altogasspa.cl/">
+    <meta property="og:type"        content="website">
+    <meta property="og:locale"      content="es_CL">
+    <meta property="og:site_name"   content="Alto Gas SPA">
 
     <meta name="google-site-verification" content="cfQOB3J5n-PME3KaRF_MXqQT5dlJGXoo-tNIVZC2Egg" />
 
-    <link rel="icon" type="image/png" href="{% static 'core/img/flavicon.png' %}">
-<link rel="apple-touch-icon" href="{% static 'core/img/flavicon.png' %}">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Alto Gas SPA",
+      "url": "https://www.altogasspa.cl/",
+      "logo": "https://www.altogasspa.cl{% static 'core/img/LOGO.png' %}",
+      "image": "https://www.altogasspa.cl{% static 'core/img/tecnico_hero.jpeg' %}",
+      "description": "Expertos en ingeniería, inspección y certificación de Sello Verde SEC en Santiago y todo Chile. Instaladores autorizados SEC.",
+      "telephone": "+56931187107",
+      "email": "Altogasspa@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santiago",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL"
+      },
+      "geo": { "@type": "GeoCoordinates", "addressCountry": "CL" },
+      "areaServed": { "@type": "Country", "name": "Chile" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de Gas",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Inspección y Sello Verde SEC"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Declaración y Trámites SEC"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Proyectos de Ingeniería de Gas"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Asesoría Online de Proyectos de Gas"}}
+        ]
+      },
+      "sameAs": ["https://www.instagram.com/altogaspa"],
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="{% static 'core/img/flavicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'core/img/flavicon.png' %}">
+
+    <!-- Inter: tipografía premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'core/css/tailwind.css' %}">
     <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        .bg-brand-blue { background-color: #1e3a8a; }
-        .text-brand-orange { color: #ea580c; }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        body { font-family: 'Inter', sans-serif; }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal       { opacity: 0; transform: translateY(40px);  transition: opacity .7s ease, transform .7s ease; }
+        .reveal-left  { opacity: 0; transform: translateX(-50px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal-right { opacity: 0; transform: translateX(50px);  transition: opacity .7s ease, transform .7s ease; }
+        .reveal-scale { opacity: 0; transform: scale(.85);        transition: opacity .6s ease, transform .6s ease; }
+        .reveal.visible, .reveal-left.visible,
+        .reveal-right.visible, .reveal-scale.visible { opacity: 1; transform: none; }
+        .delay-1 { transition-delay: .1s; }
+        .delay-2 { transition-delay: .2s; }
+        .delay-3 { transition-delay: .3s; }
+        .delay-4 { transition-delay: .4s; }
+        .delay-5 { transition-delay: .5s; }
+
+        /* ─── KEYFRAMES ─── */
+        @keyframes float     { 0%,100%{transform:translateY(0) scale(1)}      50%{transform:translateY(-20px) scale(1.05)} }
+        @keyframes floatSlow { 0%,100%{transform:translateY(0)}               50%{transform:translateY(-8px)} }
+        @keyframes pulseWa   { 0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.5)} 50%{box-shadow:0 6px 40px rgba(37,211,102,.8)} }
+        @keyframes blink     { 0%,100%{opacity:1} 50%{opacity:.2} }
+        @keyframes slideIn   { from{transform:translateX(100%);opacity:0}     to{transform:translateX(0);opacity:1} }
+
+        .animate-float-slow { animation: floatSlow 4s ease-in-out infinite; }
+        .animate-slide-in   { animation: slideIn .5s ease-out forwards; }
+        .dot-blink          { animation: blink 1.6s ease-in-out infinite; }
+
+        /* ─── SECTION TAG ─── */
+        .section-tag {
+            display: inline-block;
+            background: rgba(75,184,232,.1);
+            color: #4BB8E8;
+            border: 1px solid rgba(75,184,232,.3);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
         }
-        .animate-slide-in {
-            animation: slideIn 0.5s ease-out forwards;
+        .section-tag.green  { background:rgba(30,143,78,.1);  color:#25a85e; border-color:rgba(30,143,78,.3);  }
+        .section-tag.orange { background:rgba(244,123,32,.1); color:#F47B20; border-color:rgba(244,123,32,.3); }
+
+        /* ─── ASESORÍA ONLINE ─── */
+        .grid-bg {
+            background-image: linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+                              linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+            background-size: 40px 40px;
         }
+        .card-lift { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
+        .card-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 50px -12px rgba(30,58,138,.2); }
+        .pricing-glow {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            box-shadow: 0 0 0 1px rgba(99,102,241,.2), 0 30px 80px -10px rgba(30,58,138,.45);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .pricing-glow:hover {
+            box-shadow: 0 0 0 1px rgba(234,88,12,.3), 0 40px 100px -10px rgba(30,58,138,.55);
+            transform: translateY(-4px);
+        }
+
+        /* ─── MOBILE NAV ─── */
+        #mobile-menu      { display: none; }
+        #mobile-menu.open { display: flex; }
+
+        /* ─── WA FLOAT ─── */
+        .wa-float {
+            position: fixed; bottom: 28px; right: 28px; z-index: 999;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: #25d366;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 24px rgba(37,211,102,.5);
+            text-decoration: none;
+            transition: transform .2s;
+            animation: pulseWa 3s infinite;
+        }
+        .wa-float:hover { transform: scale(1.1); }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-slate-800">
+<body class="bg-white font-sans text-slate-800 overflow-x-hidden">
 
-    <nav class="bg-white shadow-md fixed w-full z-50 top-0">
-        <div class="container mx-auto px-6 py-2 md:py-4 flex justify-between items-center">
-            
-            <div class="flex items-center gap-6">
-                <a href="#" class="flex-shrink-0">
-                    <img src="{% static 'core/img/aglogo.png' %}" alt="Alto Gas Ingeniería" class="h-24 md:h-24 w-auto object-contain transition hover:opacity-90">
-                </a>
-                
-                <div class="hidden lg:flex items-center gap-4">
-                    <div class="h-12 w-px bg-gray-200"></div> 
-                    <span class="text-[11px] bg-green-50 text-green-700 px-3 py-1 rounded-full border border-green-200 font-bold uppercase tracking-wider flex items-center gap-1">
-                        <i data-lucide="check-circle" class="w-3 h-3"></i> Licencia SEC al día
-                    </span>
-                </div>
-            </div>
+<!-- ─── NAV ─── -->
+<nav id="navbar" class="fixed top-0 w-full z-50 h-[72px] flex items-center justify-between px-[5%] bg-[#1a2744]/95 backdrop-blur-md border-b border-[#4BB8E8]/[0.15] transition-all duration-300">
 
-            <div class="hidden md:flex items-center gap-8 text-slate-600 font-medium text-sm uppercase tracking-wide">
-                <a href="#" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Inicio</a>
-                <a href="#servicios" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Servicios</a>
-                <a href="#contacto" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Contacto</a>
-            </div>
-
-            <div class="flex items-center gap-5">
-                <a href="https://wa.me/56931187107" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold flex items-center shadow-lg hover:shadow-green-600/40 transition transform hover:-translate-y-1">
-                    <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>
-                    WhatsApp
-                </a>
-            </div>
-
-        </div>
-    </nav>
-
-    <header class="relative bg-slate-900 text-white pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 bg-slate-900"></div>
-        
-        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/2">
-                <div class="inline-block bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    INSPECCIÓN Y CERTIFICACIÓN
-                </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-                    OBTÉN TU <span class="text-green-400">SELLO VERDE</span> SIN COMPLICACIONES
-                </h1>
-                <p class="text-lg text-gray-300 mb-8 max-w-lg">
-                    Inspección periódica, detección de fugas y regularización de <strong>Gas Natural y Gas Licuado</strong>. 
-                    Evita multas con instaladores autorizados SEC.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contacto" class="bg-orange-600 hover:bg-orange-700 text-white text-center font-bold py-4 px-8 rounded-lg shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-1">
-                        Solicitar Inspección
-                    </a>
-                    <a href="#servicios" class="border-2 border-gray-500 hover:border-white hover:text-white text-gray-300 text-center font-bold py-4 px-8 rounded-lg transition">
-                        Ver Servicios
-                    </a>
-                </div>
-            </div>
-            
-            <div class="md:w-1/2 relative">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-700 group">
-                    <div class="bg-slate-800 w-full h-80 flex items-center justify-center text-gray-500 absolute inset-0 -z-10">Cargando imagen...</div>
-                    
-                    <img src="{% static 'core/img/tecnico_hero.jpeg' %}" alt="Técnico SEC Certificado" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                    
-                    <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur text-slate-900 p-4 rounded-xl shadow-lg flex items-center gap-3">
-                        <div class="bg-green-100 p-2 rounded-full">
-                            <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-gray-500 uppercase">Licencia SEC</p>
-                            <p class="font-bold">Clase 1 Vigente</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="bg-white border-b border-gray-100">
-        <div class="container mx-auto px-6 py-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center grayscale hover:grayscale-0 transition duration-500 opacity-70 hover:opacity-100">
-                <div class="flex items-center justify-center gap-2">
-                    <i data-lucide="award" class="w-6 h-6 text-orange-600"></i> <span class="font-bold">+13 Años Exp.</span>
-                </div>
-                <div class="flex items-center justify-center gap-2">
-                    <i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i> <span class="font-bold">Todo Santiago y Regiones</span>
-                </div>
-                <div class="flex items-center justify-center gap-2">
-                    <i data-lucide="check-square" class="w-6 h-6 text-green-600"></i> <span class="font-bold">Norma Vigente</span>
-                </div>
-                <div class="flex items-center justify-center gap-2">
-                    <i data-lucide="phone-call" class="w-6 h-6 text-slate-600"></i> <span class="font-bold">Atención Rápida</span>
-                </div>
-            </div>
+    <!-- Logo + badge -->
+    <div class="flex items-center gap-5">
+        <a href="{% url 'home' %}" class="flex-shrink-0">
+            <img src="{% static 'core/img/aglogo.png' %}" alt="Alto Gas Ingeniería"
+                 class="h-11 w-auto object-contain">
+        </a>
+        <div class="hidden lg:flex items-center gap-3">
+            <div class="w-px h-8 bg-white/10"></div>
+            <span class="text-[11px] bg-green-500/20 text-green-400 px-3 py-1 rounded-full border border-green-500/40 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-3 h-3"></i> Licencia SEC al día
+            </span>
         </div>
     </div>
 
-    <section class="py-20 bg-green-50 overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/3 flex justify-center relative">
-                    <div class="absolute inset-0 bg-white rounded-full filter blur-3xl opacity-50"></div>
-                    <img src="{% static 'core/img/sello_verde.jpeg' %}" alt="Sello Verde SEC Aprobado" class="relative z-10 w-64 md:w-80 drop-shadow-2xl hover:rotate-3 transition duration-500">
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-7 list-none">
+        <li><a href="{% url 'home' %}"    class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Inicio</a></li>
+        <li><a href="#servicios"          class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Servicios</a></li>
+        <li>
+            <a href="#asesoria-online" class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200 flex items-center gap-1.5">
+                Asesoría Online
+                <span class="text-[9px] bg-[#F47B20] text-white px-1.5 py-0.5 rounded-full font-bold normal-case">Nuevo</span>
+            </a>
+        </li>
+        <li><a href="#contacto"           class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Contacto</a></li>
+    </ul>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-3">
+        <a href="https://wa.me/56931187107"
+           class="hidden sm:inline-flex items-center gap-2 bg-[#F47B20] hover:bg-[#d96a10] text-white px-5 py-2.5 rounded-md font-bold text-sm transition-all duration-200 hover:scale-[1.04]">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            WhatsApp
+        </a>
+        <button id="hamburger" onclick="toggleMenu()"
+                class="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer" aria-label="Menú">
+            <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+            <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+            <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile dropdown -->
+<div id="mobile-menu"
+     class="fixed top-[72px] left-0 right-0 z-40 bg-[#1a2744] border-b border-white/10 flex-col gap-4 px-6 py-6">
+    <a href="{% url 'home' %}"    class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Inicio</a>
+    <a href="#servicios"          class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Servicios</a>
+    <a href="#asesoria-online"    class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Asesoría Online</a>
+    <a href="#contacto"           class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Contacto</a>
+    <a href="https://wa.me/56931187107"
+       class="inline-flex items-center gap-2 bg-[#F47B20] text-white px-5 py-3 rounded-md font-bold text-sm w-fit">
+        <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+    </a>
+</div>
+
+<!-- ─── HERO ─── -->
+<header id="hero-section"
+        class="relative flex items-center min-h-screen pt-[72px] overflow-hidden"
+        style="background: linear-gradient(135deg, #0d1b35 0%, #1a2744 50%, #1e3a5f 100%);">
+
+    <!-- Partículas decorativas -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div class="absolute rounded-full"
+             style="width:300px;height:300px;top:-10%;right:-5%;
+                    background:radial-gradient(circle,rgba(75,184,232,.08),transparent);
+                    animation:float 8s ease-in-out infinite;"></div>
+        <div class="absolute rounded-full"
+             style="width:200px;height:200px;bottom:10%;left:5%;
+                    background:radial-gradient(circle,rgba(244,123,32,.06),transparent);
+                    animation:float 8s ease-in-out infinite;animation-delay:3s;"></div>
+        <div class="absolute rounded-full"
+             style="width:150px;height:150px;top:40%;right:30%;
+                    background:radial-gradient(circle,rgba(245,215,110,.07),transparent);
+                    animation:float 8s ease-in-out infinite;animation-delay:5s;"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center py-16">
+
+        <!-- Columna izquierda: texto -->
+        <div>
+            <div class="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/50 text-green-400 px-4 py-2 rounded-full text-sm font-semibold mb-7 reveal">
+                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                Certificados SEC — Trabajamos en todo Chile
+            </div>
+            <h1 class="font-black text-white leading-tight mb-6 reveal delay-1"
+                style="font-size: clamp(34px, 5vw, 60px); line-height: 1.1;">
+                OBTÉN TU <span style="color:#F47B20">SELLO VERDE</span><br>
+                <span style="color:#4BB8E8">SIN COMPLICACIONES</span>
+            </h1>
+            <p class="text-lg text-white/75 mb-10 max-w-lg leading-relaxed reveal delay-2">
+                Inspección periódica, detección de fugas y regularización de
+                <strong class="text-white">Gas Natural y Gas Licuado</strong>.
+                Evita multas con instaladores autorizados SEC.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 reveal delay-3">
+                <a href="#contacto"
+                   class="inline-flex items-center justify-center gap-2 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 hover:-translate-y-0.5"
+                   style="background:#F47B20; box-shadow:0 8px 30px rgba(244,123,32,.35);">
+                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    Solicitar Inspección
+                </a>
+                <a href="#servicios"
+                   class="inline-flex items-center justify-center gap-2 text-white font-semibold py-4 px-8 rounded-lg border-2 border-white/30 hover:border-[#4BB8E8] hover:bg-[#4BB8E8]/10 transition-all duration-200">
+                    Ver Servicios →
+                </a>
+            </div>
+        </div>
+
+        <!-- Columna derecha: imagen -->
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group h-[380px] md:h-[500px] reveal-right">
+            <img src="{% static 'core/img/tecnico_hero.jpeg' %}" alt="Técnico SEC Certificado"
+                 class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1b35]/80 to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur text-slate-900 p-4 rounded-xl shadow-lg flex items-center gap-3">
+                <div class="bg-green-100 p-2 rounded-full">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i>
                 </div>
-                
+                <div>
+                    <p class="text-xs font-bold text-gray-500 uppercase">Licencia SEC</p>
+                    <p class="font-bold">Clase 1 Vigente</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<!-- ─── STATS BAR ─── -->
+<div style="background:#1a2744;" class="border-b border-white/[0.08]">
+    <div class="container mx-auto px-6 py-8">
+        <div class="grid grid-cols-2 md:grid-cols-4">
+            <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-1">
+                <span class="text-3xl font-black" style="color:#F47B20;">+13</span>
+                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Años Exp.</span>
+            </div>
+            <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-2">
+                <span class="text-3xl font-black" style="color:#F47B20;">100%</span>
+                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Santiago y Regiones</span>
+            </div>
+            <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-3">
+                <span class="text-3xl font-black" style="color:#4BB8E8;">✓</span>
+                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Norma Vigente SEC</span>
+            </div>
+            <div class="flex flex-col items-center justify-center py-5 reveal delay-4">
+                <span class="text-3xl font-black" style="color:#4BB8E8;">24h</span>
+                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Respuesta Rápida</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <section class="py-24 overflow-hidden relative" style="background:linear-gradient(135deg,#0d2818 0%,#1a3d25 50%,#1e4a2c 100%);">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none"
+             style="background:radial-gradient(circle,rgba(37,168,94,.15),transparent)"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+
+                <!-- Imagen -->
+                <div class="md:w-1/3 flex justify-center reveal-scale">
+                    <div class="relative">
+                        <div class="absolute inset-0 rounded-full blur-3xl opacity-40"
+                             style="background:radial-gradient(circle,rgba(37,168,94,.5),transparent)"></div>
+                        <img src="{% static 'core/img/sello_verde.jpeg' %}" alt="Sello Verde SEC Aprobado"
+                             class="relative z-10 w-64 md:w-80 drop-shadow-2xl hover:rotate-3 transition duration-500 rounded-2xl">
+                    </div>
+                </div>
+
+                <!-- Texto -->
                 <div class="md:w-2/3">
-                    <span class="text-green-700 font-bold tracking-widest text-sm uppercase">Certificación Garantizada</span>
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mt-2 mb-6">EVITA EL SELLO ROJO Y ASEGURA TU TRANQUILIDAD</h2>
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                        ¿Tu edificio, casa o local tiene sello rojo o amarillo? No arriesgues la seguridad de tu familia ni te expongas a cortes de suministro. 
+                    <span class="section-tag green reveal">Certificación Garantizada</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-6 reveal delay-1">
+                        EVITA EL SELLO ROJO Y<br>ASEGURA TU <span style="color:#4ade80">TRANQUILIDAD</span>
+                    </h2>
+                    <p class="text-lg mb-6 leading-relaxed reveal delay-2" style="color:rgba(255,255,255,.75)">
+                        ¿Tu edificio, casa o local tiene sello rojo o amarillo? No arriesgues la seguridad de tu familia ni te expongas a cortes de suministro.
                         Realizamos el diagnóstico, las reparaciones necesarias y la tramitación final ante la SEC para que obtengas tu aprobación.
                     </p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center text-slate-800"><i data-lucide="check" class="text-green-600 mr-2"></i> Pruebas de Hermeticidad</li>
-                        <li class="flex items-center text-slate-800"><i data-lucide="check" class="text-green-600 mr-2"></i> Reparación de Fugas en el acto</li>
-                        <li class="flex items-center text-slate-800"><i data-lucide="check" class="text-green-600 mr-2"></i> Inscripción TC6 inmediata</li>
+                    <ul class="space-y-3 mb-8 reveal delay-3">
+                        <li class="flex items-center" style="color:rgba(255,255,255,.85)">
+                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Pruebas de Hermeticidad
+                        </li>
+                        <li class="flex items-center" style="color:rgba(255,255,255,.85)">
+                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Reparación de Fugas en el acto
+                        </li>
+                        <li class="flex items-center" style="color:rgba(255,255,255,.85)">
+                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Inscripción TC6 inmediata
+                        </li>
                     </ul>
+                    <div class="rounded-xl p-4 reveal delay-4" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.4)">
+                        <p class="text-sm leading-relaxed" style="color:#fca5a5">
+                            <strong style="color:#f87171">⚠️ ¿Sello rojo o amarillo?</strong> Una instalación sin Sello Verde puede derivar en multas, clausura del local o incluso poner en riesgo la seguridad de tu familia. No lo dejes para después.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="servicios" class="py-20 relative">
-        <div class="absolute inset-0 opacity-5 pointer-events-none">
-             <img src="{% static 'core/img/ingenieria.jpeg' %}" class="w-full h-full object-cover grayscale">
+    <section id="servicios" class="py-20 bg-[#f4f6f9] relative">
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+             <img src="{% static 'core/img/ingenieria.jpeg' %}" alt="" role="presentation" class="w-full h-full object-cover grayscale">
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
-                <span class="text-blue-600 font-bold uppercase tracking-widest text-sm">Nuestros Servicios</span>
-                <h2 class="text-4xl font-bold text-slate-900 mt-2">INGENIERÍA Y CERTIFICACIÓN</h2>
+                <span class="section-tag reveal">Nuestros Servicios</span>
+                <h2 class="text-4xl font-bold text-slate-900 mt-0 reveal delay-1">INGENIERÍA Y CERTIFICACIÓN</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 {% for service in services %}
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 {{ service.border_color }} hover:shadow-2xl transition hover:-translate-y-1">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 {{ service.border_color }} hover:shadow-2xl transition hover:-translate-y-1 reveal">
                     <div class="{{ service.bg_color }} w-16 h-16 rounded-full flex items-center justify-center mb-6">
                         <i data-lucide="{{ service.icon }}" class="{{ service.icon_color }} w-8 h-8"></i>
                     </div>
@@ -182,23 +379,318 @@
                 </div>
                 {% endfor %}
             </div>
+
+            <!-- Asesoría Online: banner destacado -->
+            <div class="mt-10 bg-slate-900 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+                <div class="flex items-start gap-5">
+                    <div class="bg-orange-600 w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+                        <i data-lucide="video" class="text-white w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-orange-400 font-bold uppercase tracking-widest text-xs">Nuevo servicio</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-1">Asesoría y Revisión de Proyectos Online</h3>
+                        <p class="text-gray-400 text-sm max-w-lg">Videollamada con un instalador certificado SEC. Revisamos tus planos, validamos el trazado y te entregamos correcciones técnicas — desde cualquier parte de Chile.</p>
+                    </div>
+                </div>
+                <a href="#asesoria-online" class="shrink-0 bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-1 flex items-center gap-2 whitespace-nowrap">
+                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    Ver Asesoría Online
+                </a>
+            </div>
         </div>
     </section>
+
+    <!-- ═══ ASESORÍA ONLINE ═══════════════════════════════════════ -->
+    <section id="asesoria-online" class="py-28 bg-slate-900 relative overflow-hidden">
+
+        <!-- Fondo: rejilla técnica -->
+        <div class="absolute inset-0 grid-bg pointer-events-none opacity-60"></div>
+
+        <!-- Blobs atmosféricos -->
+        <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-900 rounded-full blur-[140px] opacity-40 pointer-events-none"></div>
+        <div class="absolute -bottom-20 right-0 w-[400px] h-[400px] bg-orange-800 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+
+            <!-- ── Encabezado ── -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">
+                    <span class="w-2 h-2 bg-white rounded-full dot-blink"></span>
+                    NUEVO · ATENCIÓN 100% REMOTA
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+                    TU PROYECTO DE GAS <span class="text-orange-500">REVISADO</span><br>
+                    POR UN <span class="text-green-400">EXPERTO SEC</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                    ¿Tienes un proyecto de gas y no sabes si cumple la normativa? Con nuestra
+                    <strong class="text-white">asesoría técnica por videollamada</strong>, un instalador
+                    certificado revisa tus planos y te entrega correcciones con fundamento legal.
+                </p>
+            </div>
+
+            <!-- ── Fila 1: Mockup videollamada + Pasos ── -->
+            <div class="flex flex-col lg:flex-row items-center gap-14 mb-16">
+
+                <!-- Mockup videollamada (izquierda) -->
+                <div class="lg:w-1/2 w-full flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Pantalla principal -->
+                        <div class="bg-slate-800 rounded-2xl p-5 shadow-2xl border border-slate-700 card-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex gap-1.5">
+                                    <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                                    <span class="w-3 h-3 bg-yellow-400 rounded-full"></span>
+                                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-green-900/60 border border-green-700 text-green-400 text-xs font-bold px-3 py-1 rounded-full">
+                                    <span class="w-2 h-2 bg-green-400 rounded-full dot-blink"></span>EN SESIÓN
+                                </div>
+                                <span class="text-xs text-gray-500 font-mono">44:12</span>
+                            </div>
+                            <div class="bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl aspect-video flex items-center justify-center relative overflow-hidden mb-4">
+                                <div class="absolute inset-0 grid-bg opacity-30"></div>
+                                <div class="relative z-10 text-center">
+                                    <div class="w-20 h-20 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-3 ring-4 ring-blue-600/30">
+                                        <i data-lucide="hard-hat" class="w-10 h-10 text-blue-300"></i>
+                                    </div>
+                                    <p class="text-white font-bold text-sm">David Torres</p>
+                                    <p class="text-blue-400 text-xs">Instalador SEC · Clase 1</p>
+                                </div>
+                                <div class="absolute bottom-3 right-3 bg-slate-900/90 border border-slate-600 rounded-lg p-2 w-20 h-14 flex items-center justify-center">
+                                    <i data-lucide="map" class="w-7 h-7 text-orange-400 opacity-80"></i>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-700/50 rounded-xl p-3">
+                                <div class="flex gap-2">
+                                    <button class="w-9 h-9 bg-slate-600 rounded-full flex items-center justify-center"><i data-lucide="mic"     class="w-4 h-4 text-white"></i></button>
+                                    <button class="w-9 h-9 bg-slate-600 rounded-full flex items-center justify-center"><i data-lucide="video"   class="w-4 h-4 text-white"></i></button>
+                                    <button class="w-9 h-9 bg-blue-600  rounded-full flex items-center justify-center"><i data-lucide="share-2" class="w-4 h-4 text-white"></i></button>
+                                </div>
+                                <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i> 2</span>
+                                <button class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"><i data-lucide="phone-off" class="w-4 h-4 text-white"></i></button>
+                            </div>
+                        </div>
+                        <!-- Tarjeta flotante izquierda -->
+                        <div class="absolute -bottom-5 -left-5 bg-white text-slate-900 p-3 rounded-xl shadow-xl flex items-center gap-3 border border-gray-100 animate-float-slow">
+                            <div class="bg-orange-100 p-2 rounded-lg"><i data-lucide="file-search" class="w-5 h-5 text-orange-600"></i></div>
+                            <div>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Analizando</p>
+                                <p class="font-bold text-sm">Plano Red Interior</p>
+                            </div>
+                        </div>
+                        <!-- Tarjeta flotante derecha -->
+                        <div class="absolute -top-4 -right-4 bg-blue-900 text-white p-3 rounded-xl shadow-xl flex items-center gap-2 border border-blue-700">
+                            <i data-lucide="book-open" class="w-4 h-4 text-blue-300"></i>
+                            <span class="text-xs font-bold">NCh 2.h · Art. 5.3.2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pasos (derecha) -->
+                <div class="lg:w-1/2 grid gap-5 mt-4 md:mt-0">
+
+                    <!-- Tarjeta 1 -->
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 card-lift relative group">
+                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold text-blue-900/50 select-none leading-none pointer-events-none">1</div>
+                        <div class="absolute -top-4 -left-4 w-10 h-10 bg-blue-600 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-blue-600/40 z-10 text-base">1</div>
+                        <div class="bg-blue-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-5 mt-2">
+                            <i data-lucide="file-search" class="w-7 h-7 text-blue-600"></i>
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2">Envío y Análisis Previo</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Nos envías tus planos antes de la videollamada. Los analizamos según <strong class="text-gray-300">NCh 2.h</strong> y preparamos observaciones.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="bg-blue-900/50 text-blue-300 text-xs px-2.5 py-1 rounded-lg">Planos PDF</span>
+                            <span class="bg-blue-900/50 text-blue-300 text-xs px-2.5 py-1 rounded-lg">Esquemas DWG</span>
+                            <span class="bg-blue-900/50 text-blue-300 text-xs px-2.5 py-1 rounded-lg">Fotos</span>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 card-lift relative group">
+                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold text-orange-900/40 select-none leading-none pointer-events-none">2</div>
+                        <div class="absolute -top-4 -left-4 w-10 h-10 bg-orange-500 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-orange-500/40 z-10 text-base">2</div>
+                        <div class="bg-orange-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-5 mt-2">
+                            <i data-lucide="video" class="w-7 h-7 text-orange-600"></i>
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2">Sesión en Vivo — 60 min</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Videollamada con experto. Revisión en tiempo real del trazado, dimensionamiento, ventilaciones y materiales.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="bg-orange-900/40 text-orange-300 text-xs px-2.5 py-1 rounded-lg">Zoom</span>
+                            <span class="bg-orange-900/40 text-orange-300 text-xs px-2.5 py-1 rounded-lg">Google Meet</span>
+                            <span class="bg-orange-900/40 text-orange-300 text-xs px-2.5 py-1 rounded-lg">Teams</span>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 card-lift relative group">
+                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold text-green-900/40 select-none leading-none pointer-events-none">3</div>
+                        <div class="absolute -top-4 -left-4 w-10 h-10 bg-green-600 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-green-600/40 z-10 text-base">3</div>
+                        <div class="bg-green-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-5 mt-2">
+                            <i data-lucide="file-check-2" class="w-7 h-7 text-green-600"></i>
+                        </div>
+                        <h4 class="text-white font-bold text-lg mb-2">Informe Técnico PDF</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Informe formal con observaciones, correcciones y normativa citada. Válido para presentar a contratistas o revisores SEC.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="bg-green-900/40 text-green-300 text-xs px-2.5 py-1 rounded-lg">PDF Firmado</span>
+                            <span class="bg-green-900/40 text-green-300 text-xs px-2.5 py-1 rounded-lg">48h hábiles</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Fila 2: Pricing + Formulario ── -->
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+                <!-- Pricing -->
+                <div class="lg:w-5/12 flex flex-col gap-5">
+
+                    <!-- Card principal con glow -->
+                    <div class="pricing-glow rounded-2xl p-8 text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 opacity-[.06] -mr-6 -mt-6 pointer-events-none">
+                            <i data-lucide="hexagon" class="w-48 h-48 text-white"></i>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 bg-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">
+                            <i data-lucide="star" class="w-3 h-3"></i> RECOMENDADO
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-white mb-1">Asesoría Online Completa</h3>
+                        <p class="text-blue-300 text-sm mb-6">Videollamada + Revisión + Informe Técnico</p>
+                        <div class="flex items-end gap-2 mb-7">
+                            <span class="text-5xl font-extrabold">$60.000</span>
+                            <div class="text-blue-300 pb-1">
+                                <span class="text-lg font-bold">CLP</span>
+                                <p class="text-xs">por sesión</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 mb-7">
+                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">Sesión de <strong class="text-white">60 min</strong> en vivo con experto</span></li>
+                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">Revisión previa de planos (hasta 10 láminas)</span></li>
+                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">Informe técnico PDF con normativa citada</span></li>
+                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">1 ronda de consultas por email post-sesión</span></li>
+                        </ul>
+                        <a href="#form-asesoria" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-600/30 transition-all duration-300 transform hover:-translate-y-1">
+                            <i data-lucide="calendar-check" class="w-5 h-5"></i> Agendar Ahora
+                        </a>
+                        <p class="text-center text-blue-400 text-xs mt-4">Transferencia o Webpay · Coordinación 100% online</p>
+                    </div>
+
+                    <!-- Card Express -->
+                    <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 card-lift">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Opción rápida</span>
+                                <h4 class="text-white text-xl font-bold mt-1">Consulta Express</h4>
+                            </div>
+                            <div class="bg-orange-100 p-2 rounded-xl shrink-0"><i data-lucide="zap" class="w-6 h-6 text-orange-600"></i></div>
+                        </div>
+                        <div class="flex items-end gap-1 mb-4">
+                            <span class="text-4xl font-extrabold text-white">$30.000</span>
+                            <span class="text-gray-400 pb-1 text-sm">CLP / 30 min</span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-400 mb-5">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500 shrink-0"></i> 30 minutos de consulta puntual</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500 shrink-0"></i> Dudas normativas específicas</li>
+                            <li class="flex items-center gap-2"><i data-lucide="x"     class="w-4 h-4 text-slate-600 shrink-0"></i> Sin revisión previa de planos</li>
+                            <li class="flex items-center gap-2"><i data-lucide="x"     class="w-4 h-4 text-slate-600 shrink-0"></i> Sin informe técnico</li>
+                        </ul>
+                        <a href="#form-asesoria" class="w-full border-2 border-slate-600 hover:border-white hover:text-white text-gray-300 font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 text-sm">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Consultar disponibilidad
+                        </a>
+                    </div>
+
+                    <!-- Garantía -->
+                    <div class="bg-green-900/30 rounded-xl p-5 border border-green-800/40 flex items-start gap-4">
+                        <div class="bg-green-600 p-2.5 rounded-xl shrink-0"><i data-lucide="shield-check" class="w-5 h-5 text-white"></i></div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1 text-sm">Garantía de Satisfacción</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Si el resultado no cubre tus expectativas técnicas, coordinamos una sesión de seguimiento <strong class="text-gray-300">sin costo adicional</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <div id="form-asesoria" class="lg:w-7/12 w-full bg-white rounded-2xl shadow-2xl p-8 md:p-10">
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="mb-6 bg-green-50 border border-green-200 text-green-800 rounded-xl px-5 py-4 text-sm font-medium flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-600 shrink-0"></i>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <h3 class="text-slate-900 text-xl font-extrabold mb-1">Solicitar Asesoría Online</h3>
+                    <p class="text-gray-500 text-sm mb-7">Te contactamos en menos de <strong class="text-slate-700">24h hábiles</strong> para confirmar fecha, hora y enlace de pago.</p>
+
+                    <form method="POST" action="{% url 'asesoria_online' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="source" value="home">
+                        <div class="grid md:grid-cols-2 gap-5 mb-5">
+                            <div>
+                                <label class="block text-slate-700 font-bold mb-2 text-sm">Nombre completo *</label>
+                                <input type="text" name="nombre" required placeholder="Ej: Juan Pérez"
+                                       class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-bold mb-2 text-sm">Teléfono / WhatsApp *</label>
+                                <input type="tel" name="telefono" required placeholder="+56 9 XXXX XXXX"
+                                       class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <label class="block text-slate-700 font-bold mb-2 text-sm">Correo electrónico *</label>
+                            <input type="email" name="email" required placeholder="tucorreo@email.com"
+                                   class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
+                        </div>
+                        <div class="mb-5">
+                            <label class="block text-slate-700 font-bold mb-2 text-sm">Tipo de asesoría</label>
+                            <select name="tipo_asesoria"
+                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 text-sm transition">
+                                <option value="completa">Asesoría Completa — 60 min · $60.000 CLP</option>
+                                <option value="express">Consulta Express — 30 min · $30.000 CLP</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-slate-700 font-bold mb-2 text-sm">Descripción del proyecto o consulta *</label>
+                            <textarea name="mensaje" rows="4" required
+                                      placeholder="Tipo de inmueble, tipo de gas (natural o GLP), y tu duda principal..."
+                                      class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition resize-none"></textarea>
+                        </div>
+                        <button type="submit"
+                                class="w-full bg-slate-900 hover:bg-blue-900 text-white font-extrabold py-4 rounded-xl transition-all duration-300 shadow-lg transform hover:-translate-y-1 hover:shadow-xl flex items-center justify-center gap-2 text-base">
+                            <i data-lucide="send" class="w-5 h-5"></i> Enviar Solicitud de Asesoría
+                        </button>
+                        <p class="text-center text-xs text-gray-400 mt-4">Tus datos están seguros y no serán compartidos con terceros.</p>
+                    </form>
+
+                    <div class="mt-6 pt-6 border-t border-gray-100 flex items-center gap-4">
+                        <div class="bg-green-100 p-2.5 rounded-xl shrink-0"><i data-lucide="message-circle" class="w-5 h-5 text-green-600"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500">¿Prefieres contacto directo?</p>
+                            <a href="https://wa.me/56931187107?text=Hola%2C%20quiero%20agendar%20una%20asesor%C3%ADa%20online" target="_blank" class="text-green-700 font-bold text-sm hover:underline">+56 9 3118 7107 — Escribir por WhatsApp →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ═════════════════════════════════════════════════════════ -->
 
     <section class="py-20 bg-white relative overflow-hidden border-t border-gray-100">
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row items-center gap-16">
-                <div class="md:w-1/2">
-                    <span class="text-orange-600 font-bold uppercase tracking-widest text-sm flex items-center gap-2">
-                        <i data-lucide="users" class="w-4 h-4"></i> Equipo en Terreno
-                    </span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">
+                <div class="md:w-1/2 reveal-left">
+                    <span class="section-tag orange">Equipo en Terreno</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-0 mb-6">
                         EJECUCIÓN DIRECTA SIN INTERMEDIARIOS
                     </h2>
                     <p class="text-lg text-gray-700 mb-6 leading-relaxed">
                         No solo inspeccionamos y certificamos. Contamos con nuestro propio equipo técnico, compuesto por un <strong>Maestro Instalador Autorizado</strong> y personal de apoyo altamente capacitado para ejecutar cualquier modificación o reparación al instante.
                     </p>
-                    
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
                         <div class="bg-slate-50 p-5 rounded-xl border border-gray-200">
                             <div class="bg-blue-100 w-10 h-10 rounded-lg flex items-center justify-center mb-3">
@@ -217,10 +709,10 @@
                     </div>
                 </div>
 
-                <div class="md:w-1/2 w-full">
+                <div class="md:w-1/2 w-full reveal-right">
                     <div class="bg-slate-900 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
                         <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-orange-500 opacity-20 blur-2xl"></div>
-                        
+
                         <h3 class="text-2xl font-bold text-white mb-4">¿Por qué elegir un equipo integral?</h3>
                         <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
@@ -245,11 +737,11 @@
     <section id="contacto" class="py-20 bg-slate-50 border-t border-gray-200">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row gap-12 max-w-6xl mx-auto">
-                <div class="md:w-5/12">
-                    <span class="text-orange-600 font-bold uppercase tracking-widest text-sm">Hablemos</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mt-2 mb-6">Contacto Directo</h2>
+                <div class="md:w-5/12 reveal-left">
+                    <span class="section-tag orange">Hablemos</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-0 mb-6">Contacto Directo</h2>
                     <p class="text-gray-600 mb-8">
-                        David Torres, Constructor Civil e Instalador SEC. 
+                        David Torres, Constructor Civil e Instalador SEC.
                         Resolvemos dudas técnicas sobre Gas Natural y Gas Licuado.
                     </p>
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-6">
@@ -294,7 +786,7 @@
                 </div>
                 <p class="text-slate-400 text-sm">Ingeniería, Inspección y Certificación de Gas.</p>
             </div>
-            
+
             <div class="flex gap-6">
                 <a href="https://www.instagram.com/altogaspa?utm_source=qr&igsh=MWl6bnZpdzJ3MmQ5MQ==" target="_blank" class="bg-slate-800 hover:bg-pink-600 p-3 rounded-full transition flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
@@ -335,8 +827,41 @@
         </div>
     {% endif %}
 
+    <!-- ─── WA FLOAT ─── -->
+    <a href="https://wa.me/56931187107?text=Hola%20Alto%20Gas%20SPA%2C%20necesito%20información" class="wa-float" target="_blank" title="Escribir por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
     <script>
         lucide.createIcons();
+
+        // ─── MOBILE NAV ───
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        }
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.remove('open');
+            });
+        });
+
+        // ─── SCROLL REVEAL ───
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+            .forEach(el => revealObserver.observe(el));
+
+        // ─── NAVBAR SCROLL ───
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.style.background = window.scrollY > 60
+                ? 'rgba(26,39,68,0.98)'
+                : 'rgba(26,39,68,0.95)';
+        });
     </script>
 </body>
 </html>
