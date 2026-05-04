@@ -930,7 +930,22 @@
             </div>
 
             <!-- Datos bancarios -->
-            <p style="color:#94a3b8;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin:0 0 .6rem;">Datos Bancarios</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;">
+                <p style="color:#94a3b8;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin:0;">Datos Bancarios</p>
+                <!-- Botón copiar -->
+                <button id="btn-copiar"
+                        onclick="copiarDatosBancarios()"
+                        style="display:inline-flex;align-items:center;gap:.35rem;
+                               background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.4);
+                               color:#93c5fd;font-size:.7rem;font-weight:700;letter-spacing:.04em;
+                               padding:.3rem .75rem;border-radius:.5rem;cursor:pointer;
+                               transition:all .2s;text-transform:uppercase;"
+                        onmouseover="if(!this.dataset.copied){this.style.background='rgba(37,99,235,.3)';this.style.borderColor='rgba(37,99,235,.7)';}"
+                        onmouseout="if(!this.dataset.copied){this.style.background='rgba(37,99,235,.15)';this.style.borderColor='rgba(37,99,235,.4)';}">
+                    <i data-lucide="copy" style="width:.85rem;height:.85rem;"></i>
+                    <span id="btn-copiar-texto">Copiar datos</span>
+                </button>
+            </div>
             <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;">
                 <div style="display:flex;justify-content:space-between;align-items:center;
                             background:rgba(30,41,59,.6);border-radius:.5rem;padding:.6rem 1rem;">
@@ -956,10 +971,25 @@
 
             <!-- Instrucción -->
             <div style="background:rgba(234,88,12,.1);border:1px solid rgba(234,88,12,.3);
-                        border-radius:.75rem;padding:1rem;margin-bottom:1.25rem;">
+                        border-radius:.75rem;padding:1rem;margin-bottom:1rem;">
                 <p style="color:#fdba74;font-size:.875rem;line-height:1.5;margin:0;">
                     <strong style="color:#fb923c;">Próximo paso:</strong> Transfiere y envíanos el comprobante
                     por WhatsApp. Te confirmaremos la sesión con invitación de Google Calendar.
+                </p>
+            </div>
+
+            <!-- Aviso correo de confirmación -->
+            <div style="background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.8);
+                        border-radius:.75rem;padding:.875rem 1rem;margin-bottom:1.25rem;
+                        display:flex;align-items:flex-start;gap:.75rem;">
+                <div style="background:rgba(99,102,241,.15);padding:.4rem;border-radius:.5rem;flex-shrink:0;margin-top:.1rem;">
+                    <i data-lucide="mail" style="width:1rem;height:1rem;color:#a5b4fc;"></i>
+                </div>
+                <p style="color:#94a3b8;font-size:.78rem;line-height:1.55;margin:0;">
+                    Recibirá una copia de esta solicitud a su correo.
+                    Si no aparece en bandeja de entrada,
+                    <strong style="color:#c7d2fe;">revise la carpeta de spam</strong> o contáctenos
+                    directamente por WhatsApp — lo atendemos de inmediato.
                 </p>
             </div>
 
@@ -994,6 +1024,52 @@
     document.getElementById('modal-transferencia').addEventListener('click', function(e) {
         if (e.target === this) closeModal();
     });
+
+    /* Copiar datos bancarios al portapapeles */
+    function copiarDatosBancarios() {
+        const texto =
+            'Banco BCI\n' +
+            'N° Cuenta: 51331250\n' +
+            'Titular: David Ruben Torres\n' +
+            'RUT: 18.530.633-K\n' +
+            'Monto: {{ monto_fmt }} CLP';
+
+        navigator.clipboard.writeText(texto).then(function() {
+            const btn  = document.getElementById('btn-copiar');
+            const span = document.getElementById('btn-copiar-texto');
+            const icon = btn.querySelector('i[data-lucide]');
+
+            // Estado “Copiado”
+            btn.dataset.copied = 'true';
+            btn.style.background    = 'rgba(34,197,94,.2)';
+            btn.style.borderColor   = 'rgba(34,197,94,.6)';
+            btn.style.color         = '#4ade80';
+            icon.setAttribute('data-lucide', 'check');
+            span.textContent = '¡Copiado!';
+            lucide.createIcons();
+
+            // Restaurar después de 2.5 s
+            setTimeout(function() {
+                delete btn.dataset.copied;
+                btn.style.background  = 'rgba(37,99,235,.15)';
+                btn.style.borderColor = 'rgba(37,99,235,.4)';
+                btn.style.color       = '#93c5fd';
+                icon.setAttribute('data-lucide', 'copy');
+                span.textContent = 'Copiar datos';
+                lucide.createIcons();
+            }, 2500);
+        }).catch(function() {
+            // Fallback para navegadores sin Clipboard API
+            const ta = document.createElement('textarea');
+            ta.value = texto;
+            ta.style.position = 'fixed';
+            ta.style.opacity  = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        });
+    }
 </script>
 {% endif %}
 </body>
