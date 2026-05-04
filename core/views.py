@@ -132,7 +132,7 @@ def home(request):
                     from_email='web@altogasspa.cl',
                     recipient_list=[email],
                     html_message=html_content,
-                    fail_silently=False,
+                    fail_silently=True,
                 )
 
                 # 4. Correo al admin
@@ -150,7 +150,7 @@ def home(request):
                     message=cuerpo_admin,
                     from_email='web@altogasspa.cl',
                     recipient_list=['Altogasspa@gmail.com'],
-                    fail_silently=False,
+                    fail_silently=True,
                 )
 
                 # 5. Mostrar modal con datos bancarios en el home
