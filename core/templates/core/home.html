@@ -1,24 +1,28 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile</title>
 
-    <meta name="description" content="Expertos en Sello Verde SEC, inspección e instalaciones de gas en Santiago y Chile. Instaladores autorizados. ¡Evita multas, contáctanos hoy!">
-    <meta name="keywords" content="altogas, altogasspa, alto gas spa, sello verde, certificación de gas, instalador SEC, detección de fugas, Chile, Santiago">
+    <meta name="description"
+        content="Expertos en Sello Verde SEC, inspección e instalaciones de gas en Santiago y Chile. Instaladores autorizados. ¡Evita multas, contáctanos hoy!">
+    <meta name="keywords"
+        content="altogas, altogasspa, alto gas spa, sello verde, certificación de gas, instalador SEC, detección de fugas, Chile, Santiago">
     <meta name="author" content="Alto Gas SPA">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.altogasspa.cl/">
 
-    <meta property="og:title"       content="Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile">
-    <meta property="og:description" content="Expertos en Sello Verde SEC, inspección e instalaciones de gas en Santiago y Chile. Instaladores autorizados. ¡Evita multas!">
-    <meta property="og:image"       content="https://www.altogasspa.cl{% static 'core/img/LOGO.png' %}">
-    <meta property="og:url"         content="https://www.altogasspa.cl/">
-    <meta property="og:type"        content="website">
-    <meta property="og:locale"      content="es_CL">
-    <meta property="og:site_name"   content="Alto Gas SPA">
+    <meta property="og:title" content="Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile">
+    <meta property="og:description"
+        content="Expertos en Sello Verde SEC, inspección e instalaciones de gas en Santiago y Chile. Instaladores autorizados. ¡Evita multas!">
+    <meta property="og:image" content="https://www.altogasspa.cl{% static 'core/img/LOGO.png' %}">
+    <meta property="og:url" content="https://www.altogasspa.cl/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_CL">
+    <meta property="og:site_name" content="Alto Gas SPA">
 
     <meta name="google-site-verification" content="cfQOB3J5n-PME3KaRF_MXqQT5dlJGXoo-tNIVZC2Egg" />
 
@@ -68,50 +72,167 @@
     <!-- Inter: tipografía premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'core/css/tailwind.css' %}">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
 
         /* ─── SCROLL REVEAL ─── */
-        .reveal       { opacity: 0; transform: translateY(40px);  transition: opacity .7s ease, transform .7s ease; }
-        .reveal-left  { opacity: 0; transform: translateX(-50px); transition: opacity .7s ease, transform .7s ease; }
-        .reveal-right { opacity: 0; transform: translateX(50px);  transition: opacity .7s ease, transform .7s ease; }
-        .reveal-scale { opacity: 0; transform: scale(.85);        transition: opacity .6s ease, transform .6s ease; }
-        .reveal.visible, .reveal-left.visible,
-        .reveal-right.visible, .reveal-scale.visible { opacity: 1; transform: none; }
-        .delay-1 { transition-delay: .1s; }
-        .delay-2 { transition-delay: .2s; }
-        .delay-3 { transition-delay: .3s; }
-        .delay-4 { transition-delay: .4s; }
-        .delay-5 { transition-delay: .5s; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(.85);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible,
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .delay-1 {
+            transition-delay: .1s;
+        }
+
+        .delay-2 {
+            transition-delay: .2s;
+        }
+
+        .delay-3 {
+            transition-delay: .3s;
+        }
+
+        .delay-4 {
+            transition-delay: .4s;
+        }
+
+        .delay-5 {
+            transition-delay: .5s;
+        }
 
         /* ─── KEYFRAMES ─── */
-        @keyframes float     { 0%,100%{transform:translateY(0) scale(1)}      50%{transform:translateY(-20px) scale(1.05)} }
-        @keyframes floatSlow { 0%,100%{transform:translateY(0)}               50%{transform:translateY(-8px)} }
-        @keyframes pulseWa   { 0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.5)} 50%{box-shadow:0 6px 40px rgba(37,211,102,.8)} }
-        @keyframes blink     { 0%,100%{opacity:1} 50%{opacity:.2} }
-        @keyframes slideIn   { from{transform:translateX(100%);opacity:0}     to{transform:translateX(0);opacity:1} }
+        @keyframes float {
 
-        .animate-float-slow { animation: floatSlow 4s ease-in-out infinite; }
-        .animate-slide-in   { animation: slideIn .5s ease-out forwards; }
-        .dot-blink          { animation: blink 1.6s ease-in-out infinite; }
+            0%,
+            100% {
+                transform: translateY(0) scale(1)
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.05)
+            }
+        }
+
+        @keyframes floatSlow {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-8px)
+            }
+        }
+
+        @keyframes pulseWa {
+
+            0%,
+            100% {
+                box-shadow: 0 6px 24px rgba(37, 211, 102, .5)
+            }
+
+            50% {
+                box-shadow: 0 6px 40px rgba(37, 211, 102, .8)
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .2
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1
+            }
+        }
+
+        .animate-float-slow {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        .animate-slide-in {
+            animation: slideIn .5s ease-out forwards;
+        }
+
+        .dot-blink {
+            animation: blink 1.6s ease-in-out infinite;
+        }
 
         /* ─── CUSTOM SCROLLBAR (naranja) ─── */
-        ::-webkit-scrollbar       { width: 10px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #c2410c; }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ea580c;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c2410c;
+        }
 
         /* ─── SECTION TAG ─── */
         .section-tag {
             display: inline-block;
-            background: rgba(75,184,232,.1);
+            background: rgba(75, 184, 232, .1);
             color: #4BB8E8;
-            border: 1px solid rgba(75,184,232,.3);
+            border: 1px solid rgba(75, 184, 232, .3);
             padding: 5px 14px;
             border-radius: 100px;
             font-size: 12px;
@@ -120,212 +241,265 @@
             text-transform: uppercase;
             margin-bottom: 16px;
         }
-        .section-tag.green  { background:rgba(30,143,78,.1);  color:#25a85e; border-color:rgba(30,143,78,.3);  }
-        .section-tag.orange { background:rgba(244,123,32,.1); color:#F47B20; border-color:rgba(244,123,32,.3); }
+
+        .section-tag.green {
+            background: rgba(30, 143, 78, .1);
+            color: #25a85e;
+            border-color: rgba(30, 143, 78, .3);
+        }
+
+        .section-tag.orange {
+            background: rgba(244, 123, 32, .1);
+            color: #F47B20;
+            border-color: rgba(244, 123, 32, .3);
+        }
 
         /* ─── ASESORÍA ONLINE ─── */
         .grid-bg {
-            background-image: linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
-                              linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+            background-image: linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px);
             background-size: 40px 40px;
         }
-        .card-lift { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
-        .card-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 50px -12px rgba(30,58,138,.2); }
+
+        .card-lift {
+            transition: transform .3s cubic-bezier(.22, 1, .36, 1), box-shadow .3s ease;
+        }
+
+        .card-lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px -12px rgba(30, 58, 138, .2);
+        }
+
         .pricing-glow {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-            box-shadow: 0 0 0 1px rgba(99,102,241,.2), 0 30px 80px -10px rgba(30,58,138,.45);
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, .2), 0 30px 80px -10px rgba(30, 58, 138, .45);
             transition: transform .3s ease, box-shadow .3s ease;
         }
+
         .pricing-glow:hover {
-            box-shadow: 0 0 0 1px rgba(234,88,12,.3), 0 40px 100px -10px rgba(30,58,138,.55);
+            box-shadow: 0 0 0 1px rgba(234, 88, 12, .3), 0 40px 100px -10px rgba(30, 58, 138, .55);
             transform: translateY(-4px);
         }
 
         /* ─── INPUT FOCUS ─── */
-        input:focus, textarea:focus, select:focus {
+        input:focus,
+        textarea:focus,
+        select:focus {
             outline: none;
             border-color: #1e3a8a !important;
-            box-shadow: 0 0 0 3px rgba(30,58,138,.12);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, .12);
         }
 
         /* ─── MOBILE NAV ─── */
-        #mobile-menu      { display: none; }
-        #mobile-menu.open { display: flex; }
+        #mobile-menu {
+            display: none;
+        }
+
+        #mobile-menu.open {
+            display: flex;
+        }
 
         /* ─── WA FLOAT ─── */
         .wa-float {
-            position: fixed; bottom: 28px; right: 28px; z-index: 999;
-            width: 60px; height: 60px; border-radius: 50%;
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             background: #25d366;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 6px 24px rgba(37,211,102,.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, .5);
             text-decoration: none;
             transition: transform .2s;
             animation: pulseWa 3s infinite;
         }
-        .wa-float:hover { transform: scale(1.1); }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
+
 <body class="bg-white font-sans text-slate-800 overflow-x-hidden">
 
-<!-- ─── NAV ─── -->
-<nav id="navbar" class="fixed top-0 w-full z-50 h-[72px] flex items-center justify-between px-[5%] bg-[#1a2744]/95 backdrop-blur-md border-b border-[#4BB8E8]/[0.15] transition-all duration-300">
+    <!-- ─── NAV ─── -->
+    <nav id="navbar"
+        class="fixed top-0 w-full z-50 h-[72px] flex items-center justify-between px-[5%] bg-[#1a2744]/95 backdrop-blur-md border-b border-[#4BB8E8]/[0.15] transition-all duration-300">
 
-    <!-- Logo + badge -->
-    <div class="flex items-center gap-5">
-        <a href="{% url 'home' %}" class="flex-shrink-0">
-            <img src="{% static 'core/img/aglogo.png' %}" alt="Alto Gas Ingeniería"
-                 class="h-11 w-auto object-contain">
-        </a>
-        <div class="hidden lg:flex items-center gap-3">
-            <div class="w-px h-8 bg-white/10"></div>
-            <span class="text-[11px] bg-green-500/20 text-green-400 px-3 py-1 rounded-full border border-green-500/40 font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="check-circle" class="w-3 h-3"></i> Licencia SEC al día
-            </span>
-        </div>
-    </div>
-
-    <!-- Desktop links -->
-    <ul class="hidden md:flex items-center gap-7 list-none">
-        <li><a href="{% url 'home' %}"    class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Inicio</a></li>
-        <li><a href="#servicios"          class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Servicios</a></li>
-        <li>
-            <a href="#asesoria-online" class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200 flex items-center gap-1.5">
-                Asesoría Online
-                <span class="text-[9px] bg-[#F47B20] text-white px-1.5 py-0.5 rounded-full font-bold normal-case">Nuevo</span>
+        <!-- Logo + badge -->
+        <div
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 flex items-center gap-5">
+            <a href="{% url 'home' %}" class="flex-shrink-0">
+                <img src="{% static 'core/img/IconoAG.png' %}" alt="Alto Gas SPA"
+                    class="h-20 md:h-30 w-auto object-contain">
             </a>
-        </li>
-        <li><a href="#contacto"           class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Contacto</a></li>
-    </ul>
+            <div class="hidden lg:flex items-center gap-3">
+                <div class="w-px h-8 bg-white/10"></div>
+                <span
+                    class="text-[11px] bg-green-500/20 text-green-400 px-3 py-1 rounded-full border border-green-500/40 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <i data-lucide="check-circle" class="w-3 h-3"></i> Licencia SEC al día
+                </span>
+            </div>
+        </div>
 
-    <!-- CTA + hamburger -->
-    <div class="flex items-center gap-3">
+        <!-- Desktop links -->
+        <ul class="hidden md:flex items-center gap-7 list-none">
+            <li><a href="{% url 'home' %}"
+                    class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Inicio</a>
+            </li>
+            <li><a href="#servicios"
+                    class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Servicios</a>
+            </li>
+            <li>
+                <a href="#asesoria-online"
+                    class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200 flex items-center gap-1.5">
+                    Asesoría Online
+                    <span
+                        class="text-[9px] bg-[#F47B20] text-white px-1.5 py-0.5 rounded-full font-bold normal-case">Nuevo</span>
+                </a>
+            </li>
+            <li><a href="#contacto"
+                    class="text-white/70 text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Contacto</a>
+            </li>
+        </ul>
+
+        <!-- CTA + hamburger -->
+        <div class="flex items-center gap-3 ml-auto">
+            <a href="https://wa.me/56931187107"
+                class="hidden sm:inline-flex items-center gap-2 bg-[#F47B20] hover:bg-[#d96a10] text-white px-5 py-2.5 rounded-md font-bold text-sm transition-all duration-200 hover:scale-[1.04]">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                WhatsApp
+            </a>
+            <button id="hamburger" onclick="toggleMenu()" class="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer"
+                aria-label="Menú">
+                <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+                <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu"
+        class="fixed top-[72px] left-0 right-0 z-40 bg-[#1a2744] border-b border-white/10 flex-col gap-4 px-6 py-6">
+        <a href="{% url 'home' %}" class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Inicio</a>
+        <a href="#servicios" class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Servicios</a>
+        <a href="#asesoria-online" class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Asesoría
+            Online</a>
+        <a href="#contacto" class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Contacto</a>
         <a href="https://wa.me/56931187107"
-           class="hidden sm:inline-flex items-center gap-2 bg-[#F47B20] hover:bg-[#d96a10] text-white px-5 py-2.5 rounded-md font-bold text-sm transition-all duration-200 hover:scale-[1.04]">
-            <i data-lucide="message-circle" class="w-4 h-4"></i>
-            WhatsApp
+            class="inline-flex items-center gap-2 bg-[#F47B20] text-white px-5 py-3 rounded-md font-bold text-sm w-fit">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
         </a>
-        <button id="hamburger" onclick="toggleMenu()"
-                class="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer" aria-label="Menú">
-            <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
-            <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
-            <span class="w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
-        </button>
     </div>
-</nav>
 
-<!-- Mobile dropdown -->
-<div id="mobile-menu"
-     class="fixed top-[72px] left-0 right-0 z-40 bg-[#1a2744] border-b border-white/10 flex-col gap-4 px-6 py-6">
-    <a href="{% url 'home' %}"    class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Inicio</a>
-    <a href="#servicios"          class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Servicios</a>
-    <a href="#asesoria-online"    class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Asesoría Online</a>
-    <a href="#contacto"           class="text-white/80 font-medium hover:text-[#4BB8E8] transition-colors">Contacto</a>
-    <a href="https://wa.me/56931187107"
-       class="inline-flex items-center gap-2 bg-[#F47B20] text-white px-5 py-3 rounded-md font-bold text-sm w-fit">
-        <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
-    </a>
-</div>
-
-<!-- ─── HERO ─── -->
-<header id="hero-section"
-        class="relative flex items-center min-h-screen pt-[72px] overflow-hidden"
+    <!-- ─── HERO ─── -->
+    <header id="hero-section" class="relative flex items-center min-h-screen pt-[72px] overflow-hidden"
         style="background: linear-gradient(135deg, #0d1b35 0%, #1a2744 50%, #1e3a5f 100%);">
 
-    <!-- Partículas decorativas -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div class="absolute rounded-full"
-             style="width:300px;height:300px;top:-10%;right:-5%;
+        <!-- Partículas decorativas -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+            <div class="absolute rounded-full" style="width:300px;height:300px;top:-10%;right:-5%;
                     background:radial-gradient(circle,rgba(75,184,232,.08),transparent);
                     animation:float 8s ease-in-out infinite;"></div>
-        <div class="absolute rounded-full"
-             style="width:200px;height:200px;bottom:10%;left:5%;
+            <div class="absolute rounded-full" style="width:200px;height:200px;bottom:10%;left:5%;
                     background:radial-gradient(circle,rgba(244,123,32,.06),transparent);
                     animation:float 8s ease-in-out infinite;animation-delay:3s;"></div>
-        <div class="absolute rounded-full"
-             style="width:150px;height:150px;top:40%;right:30%;
+            <div class="absolute rounded-full" style="width:150px;height:150px;top:40%;right:30%;
                     background:radial-gradient(circle,rgba(245,215,110,.07),transparent);
                     animation:float 8s ease-in-out infinite;animation-delay:5s;"></div>
-    </div>
-
-    <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center py-16">
-
-        <!-- Columna izquierda: texto -->
-        <div>
-            <div class="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/50 text-green-400 px-4 py-2 rounded-full text-sm font-semibold mb-7 reveal">
-                <i data-lucide="check-circle" class="w-4 h-4"></i>
-                Certificados SEC — Trabajamos en todo Chile
-            </div>
-            <h1 class="font-black text-white leading-tight mb-6 reveal delay-1"
-                style="font-size: clamp(34px, 5vw, 60px); line-height: 1.1;">
-                OBTÉN TU <span style="color:#F47B20">SELLO VERDE</span><br>
-                <span style="color:#4BB8E8">SIN COMPLICACIONES</span>
-            </h1>
-            <p class="text-lg text-white/75 mb-10 max-w-lg leading-relaxed reveal delay-2">
-                Inspección periódica, detección de fugas y regularización de
-                <strong class="text-white">Gas Natural y Gas Licuado</strong>.
-                Evita multas con instaladores autorizados SEC.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 reveal delay-3">
-                <a href="#contacto"
-                   class="inline-flex items-center justify-center gap-2 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 hover:-translate-y-0.5"
-                   style="background:#F47B20; box-shadow:0 8px 30px rgba(244,123,32,.35);">
-                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
-                    Solicitar Inspección
-                </a>
-                <a href="#servicios"
-                   class="inline-flex items-center justify-center gap-2 text-white font-semibold py-4 px-8 rounded-lg border-2 border-white/30 hover:border-[#4BB8E8] hover:bg-[#4BB8E8]/10 transition-all duration-200">
-                    Ver Servicios →
-                </a>
-            </div>
         </div>
 
-        <!-- Columna derecha: imagen -->
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group h-[380px] md:h-[500px] reveal-right">
-            <img src="{% static 'core/img/tecnico_hero.jpeg' %}" alt="Técnico SEC Certificado"
-                 class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1b35]/80 to-transparent pointer-events-none"></div>
-            <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur text-slate-900 p-4 rounded-xl shadow-lg flex items-center gap-3">
-                <div class="bg-green-100 p-2 rounded-full">
-                    <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i>
+        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center py-16">
+
+            <!-- Columna izquierda: texto -->
+            <div>
+                <div
+                    class="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/50 text-green-400 px-4 py-2 rounded-full text-sm font-semibold mb-7 reveal">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    Certificados SEC — Trabajamos en todo Chile
                 </div>
-                <div>
-                    <p class="text-xs font-bold text-gray-500 uppercase">Licencia SEC</p>
-                    <p class="font-bold">Clase 1 Vigente</p>
+                <h1 class="font-black text-white leading-tight mb-6 reveal delay-1"
+                    style="font-size: clamp(34px, 5vw, 60px); line-height: 1.1;">
+                    OBTÉN TU <span style="color:#F47B20">SELLO VERDE</span><br>
+                    <span style="color:#4BB8E8">SIN COMPLICACIONES</span>
+                </h1>
+                <p class="text-lg text-white/75 mb-10 max-w-lg leading-relaxed reveal delay-2">
+                    Inspección periódica, detección de fugas y regularización de
+                    <strong class="text-white">Gas Natural y Gas Licuado</strong>.
+                    Evita multas con instaladores autorizados SEC.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 reveal delay-3">
+                    <a href="#contacto"
+                        class="inline-flex items-center justify-center gap-2 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 hover:-translate-y-0.5"
+                        style="background:#F47B20; box-shadow:0 8px 30px rgba(244,123,32,.35);">
+                        <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                        Solicitar Inspección
+                    </a>
+                    <a href="#servicios"
+                        class="inline-flex items-center justify-center gap-2 text-white font-semibold py-4 px-8 rounded-lg border-2 border-white/30 hover:border-[#4BB8E8] hover:bg-[#4BB8E8]/10 transition-all duration-200">
+                        Ver Servicios →
+                    </a>
                 </div>
             </div>
+
+            <!-- Columna derecha: imagen -->
+            <div
+                class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group h-[380px] md:h-[500px] reveal-right">
+                <img src="{% static 'core/img/tecnico_hero.jpeg' %}" alt="Técnico SEC Certificado"
+                    class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0d1b35]/80 to-transparent pointer-events-none">
+                </div>
+                <div
+                    class="absolute bottom-6 left-6 bg-white/95 backdrop-blur text-slate-900 p-4 rounded-xl shadow-lg flex items-center gap-3">
+                    <div class="bg-green-100 p-2 rounded-full">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-500 uppercase">Licencia SEC</p>
+                        <p class="font-bold">Clase 1 Vigente</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </header>
 
-    </div>
-</header>
-
-<!-- ─── STATS BAR ─── -->
-<div style="background:#1a2744;" class="border-b border-white/[0.08]">
-    <div class="container mx-auto px-6 py-8">
-        <div class="grid grid-cols-2 md:grid-cols-4">
-            <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-1">
-                <span class="text-3xl font-black" style="color:#F47B20;">+13</span>
-                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Años Exp.</span>
-            </div>
-            <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-2">
-                <span class="text-3xl font-black" style="color:#F47B20;">100%</span>
-                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Santiago y Regiones</span>
-            </div>
-            <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-3">
-                <span class="text-3xl font-black" style="color:#4BB8E8;">✓</span>
-                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Norma Vigente SEC</span>
-            </div>
-            <div class="flex flex-col items-center justify-center py-5 reveal delay-4">
-                <span class="text-3xl font-black" style="color:#4BB8E8;">24h</span>
-                <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Respuesta Rápida</span>
+    <!-- ─── STATS BAR ─── -->
+    <div style="background:#1a2744;" class="border-b border-white/[0.08]">
+        <div class="container mx-auto px-6 py-8">
+            <div class="grid grid-cols-2 md:grid-cols-4">
+                <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-1">
+                    <span class="text-3xl font-black" style="color:#F47B20;">+13</span>
+                    <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Años Exp.</span>
+                </div>
+                <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-2">
+                    <span class="text-3xl font-black" style="color:#F47B20;">100%</span>
+                    <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Santiago y
+                        Regiones</span>
+                </div>
+                <div class="flex flex-col items-center justify-center py-5 border-r border-white/10 reveal delay-3">
+                    <span class="text-3xl font-black" style="color:#4BB8E8;">✓</span>
+                    <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Norma Vigente
+                        SEC</span>
+                </div>
+                <div class="flex flex-col items-center justify-center py-5 reveal delay-4">
+                    <span class="text-3xl font-black" style="color:#4BB8E8;">24h</span>
+                    <span class="text-xs font-medium text-white/60 uppercase tracking-wider mt-1">Respuesta
+                        Rápida</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    <section class="py-24 overflow-hidden relative" style="background:linear-gradient(135deg,#0d2818 0%,#1a3d25 50%,#1e4a2c 100%);">
+    <section class="py-24 overflow-hidden relative"
+        style="background:linear-gradient(135deg,#0d2818 0%,#1a3d25 50%,#1e4a2c 100%);">
         <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none"
-             style="background:radial-gradient(circle,rgba(37,168,94,.15),transparent)"></div>
+            style="background:radial-gradient(circle,rgba(37,168,94,.15),transparent)"></div>
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row items-center gap-16">
@@ -334,9 +508,9 @@
                 <div class="md:w-1/3 flex justify-center reveal-scale">
                     <div class="relative">
                         <div class="absolute inset-0 rounded-full blur-3xl opacity-40"
-                             style="background:radial-gradient(circle,rgba(37,168,94,.5),transparent)"></div>
+                            style="background:radial-gradient(circle,rgba(37,168,94,.5),transparent)"></div>
                         <img src="{% static 'core/img/sello_verde.jpeg' %}" alt="Sello Verde SEC Aprobado"
-                             class="relative z-10 w-64 md:w-80 drop-shadow-2xl hover:rotate-3 transition duration-500 rounded-2xl">
+                            class="relative z-10 w-64 md:w-80 drop-shadow-2xl hover:rotate-3 transition duration-500 rounded-2xl">
                     </div>
                 </div>
 
@@ -347,23 +521,31 @@
                         EVITA EL SELLO ROJO Y<br>ASEGURA TU <span style="color:#4ade80">TRANQUILIDAD</span>
                     </h2>
                     <p class="text-lg mb-6 leading-relaxed reveal delay-2" style="color:rgba(255,255,255,.75)">
-                        ¿Tu edificio, casa o local tiene sello rojo o amarillo? No arriesgues la seguridad de tu familia ni te expongas a cortes de suministro.
-                        Realizamos el diagnóstico, las reparaciones necesarias y la tramitación final ante la SEC para que obtengas tu aprobación.
+                        ¿Tu edificio, casa o local tiene sello rojo o amarillo? No arriesgues la seguridad de tu familia
+                        ni te expongas a cortes de suministro.
+                        Realizamos el diagnóstico, las reparaciones necesarias y la tramitación final ante la SEC para
+                        que obtengas tu aprobación.
                     </p>
                     <ul class="space-y-3 mb-8 reveal delay-3">
                         <li class="flex items-center" style="color:rgba(255,255,255,.85)">
-                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Pruebas de Hermeticidad
+                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Pruebas de
+                            Hermeticidad
                         </li>
                         <li class="flex items-center" style="color:rgba(255,255,255,.85)">
-                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Reparación de Fugas en el acto
+                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Reparación de
+                            Fugas en el acto
                         </li>
                         <li class="flex items-center" style="color:rgba(255,255,255,.85)">
-                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Inscripción TC6 inmediata
+                            <i data-lucide="check" class="text-green-400 mr-3 flex-shrink-0 w-5 h-5"></i> Inscripción
+                            TC6 inmediata
                         </li>
                     </ul>
-                    <div class="rounded-xl p-4 reveal delay-4" style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.4)">
+                    <div class="rounded-xl p-4 reveal delay-4"
+                        style="background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.4)">
                         <p class="text-sm leading-relaxed" style="color:#fca5a5">
-                            <strong style="color:#f87171">⚠️ ¿Sello rojo o amarillo?</strong> Una instalación sin Sello Verde puede derivar en multas, clausura del local o incluso poner en riesgo la seguridad de tu familia. No lo dejes para después.
+                            <strong style="color:#f87171">⚠️ ¿Sello rojo o amarillo?</strong> Una instalación sin Sello
+                            Verde puede derivar en multas, clausura del local o incluso poner en riesgo la seguridad de
+                            tu familia. No lo dejes para después.
                         </p>
                     </div>
                 </div>
@@ -373,7 +555,8 @@
 
     <section id="servicios" class="py-20 bg-[#f4f6f9] relative">
         <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
-             <img src="{% static 'core/img/ingenieria.jpeg' %}" alt="" role="presentation" class="w-full h-full object-cover grayscale">
+            <img src="{% static 'core/img/ingenieria.jpeg' %}" alt="" role="presentation"
+                class="w-full h-full object-cover grayscale">
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
@@ -383,7 +566,8 @@
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 {% for service in services %}
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 {{ service.border_color }} hover:shadow-2xl transition hover:-translate-y-1 reveal">
+                <div
+                    class="bg-white p-8 rounded-xl shadow-lg border-t-4 {{ service.border_color }} hover:shadow-2xl transition hover:-translate-y-1 reveal">
                     <div class="{{ service.bg_color }} w-16 h-16 rounded-full flex items-center justify-center mb-6">
                         <i data-lucide="{{ service.icon }}" class="{{ service.icon_color }} w-8 h-8"></i>
                     </div>
@@ -394,20 +578,25 @@
             </div>
 
             <!-- Asesoría Online: banner destacado -->
-            <div class="mt-10 bg-slate-900 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+            <div
+                class="mt-10 bg-slate-900 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
                 <div class="flex items-start gap-5">
                     <div class="bg-orange-600 w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
                         <i data-lucide="video" class="text-white w-7 h-7"></i>
                     </div>
                     <div>
                         <div class="flex items-center gap-2 mb-1">
-                            <span class="text-orange-400 font-bold uppercase tracking-widest text-xs">Nuevo servicio</span>
+                            <span class="text-orange-400 font-bold uppercase tracking-widest text-xs">Nuevo
+                                servicio</span>
                         </div>
                         <h3 class="text-white text-xl font-bold mb-1">Asesoría y Revisión de Proyectos Online</h3>
-                        <p class="text-gray-400 text-sm max-w-lg">Videollamada con un instalador certificado SEC. Revisamos tus planos, validamos el trazado y te entregamos correcciones técnicas — desde cualquier parte de Chile.</p>
+                        <p class="text-gray-400 text-sm max-w-lg">Videollamada con un instalador certificado SEC.
+                            Revisamos tus planos, validamos el trazado y te entregamos correcciones técnicas — desde
+                            cualquier parte de Chile.</p>
                     </div>
                 </div>
-                <a href="#asesoria-online" class="shrink-0 bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-1 flex items-center gap-2 whitespace-nowrap">
+                <a href="#asesoria-online"
+                    class="shrink-0 bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-orange-600/30 transition transform hover:-translate-y-1 flex items-center gap-2 whitespace-nowrap">
                     <i data-lucide="calendar-check" class="w-5 h-5"></i>
                     Ver Asesoría Online
                 </a>
@@ -422,14 +611,19 @@
         <div class="absolute inset-0 grid-bg pointer-events-none opacity-60"></div>
 
         <!-- Blobs atmosféricos -->
-        <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-900 rounded-full blur-[140px] opacity-40 pointer-events-none"></div>
-        <div class="absolute -bottom-20 right-0 w-[400px] h-[400px] bg-orange-800 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
+        <div
+            class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-900 rounded-full blur-[140px] opacity-40 pointer-events-none">
+        </div>
+        <div
+            class="absolute -bottom-20 right-0 w-[400px] h-[400px] bg-orange-800 rounded-full blur-[120px] opacity-20 pointer-events-none">
+        </div>
 
         <div class="container mx-auto px-6 max-w-7xl relative z-10">
 
             <!-- ── Encabezado ── -->
             <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-2 bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">
+                <div
+                    class="inline-flex items-center gap-2 bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">
                     <span class="w-2 h-2 bg-white rounded-full dot-blink"></span>
                     NUEVO · ATENCIÓN 100% REMOTA
                 </div>
@@ -458,44 +652,59 @@
                                     <span class="w-3 h-3 bg-yellow-400 rounded-full"></span>
                                     <span class="w-3 h-3 bg-green-500 rounded-full"></span>
                                 </div>
-                                <div class="flex items-center gap-2 bg-green-900/60 border border-green-700 text-green-400 text-xs font-bold px-3 py-1 rounded-full">
+                                <div
+                                    class="flex items-center gap-2 bg-green-900/60 border border-green-700 text-green-400 text-xs font-bold px-3 py-1 rounded-full">
                                     <span class="w-2 h-2 bg-green-400 rounded-full dot-blink"></span>EN SESIÓN
                                 </div>
                                 <span class="text-xs text-gray-500 font-mono">44:12</span>
                             </div>
-                            <div class="bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl aspect-video flex items-center justify-center relative overflow-hidden mb-4">
+                            <div
+                                class="bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl aspect-video flex items-center justify-center relative overflow-hidden mb-4">
                                 <div class="absolute inset-0 grid-bg opacity-30"></div>
                                 <div class="relative z-10 text-center">
-                                    <div class="w-20 h-20 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-3 ring-4 ring-blue-600/30">
+                                    <div
+                                        class="w-20 h-20 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-3 ring-4 ring-blue-600/30">
                                         <i data-lucide="hard-hat" class="w-10 h-10 text-blue-300"></i>
                                     </div>
                                     <p class="text-white font-bold text-sm">David Torres</p>
                                     <p class="text-blue-400 text-xs">Instalador SEC · Clase 1</p>
                                 </div>
-                                <div class="absolute bottom-3 right-3 bg-slate-900/90 border border-slate-600 rounded-lg p-2 w-20 h-14 flex items-center justify-center">
+                                <div
+                                    class="absolute bottom-3 right-3 bg-slate-900/90 border border-slate-600 rounded-lg p-2 w-20 h-14 flex items-center justify-center">
                                     <i data-lucide="map" class="w-7 h-7 text-orange-400 opacity-80"></i>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between bg-slate-700/50 rounded-xl p-3">
                                 <div class="flex gap-2">
-                                    <button class="w-9 h-9 bg-slate-600 rounded-full flex items-center justify-center"><i data-lucide="mic"     class="w-4 h-4 text-white"></i></button>
-                                    <button class="w-9 h-9 bg-slate-600 rounded-full flex items-center justify-center"><i data-lucide="video"   class="w-4 h-4 text-white"></i></button>
-                                    <button class="w-9 h-9 bg-blue-600  rounded-full flex items-center justify-center"><i data-lucide="share-2" class="w-4 h-4 text-white"></i></button>
+                                    <button
+                                        class="w-9 h-9 bg-slate-600 rounded-full flex items-center justify-center"><i
+                                            data-lucide="mic" class="w-4 h-4 text-white"></i></button>
+                                    <button
+                                        class="w-9 h-9 bg-slate-600 rounded-full flex items-center justify-center"><i
+                                            data-lucide="video" class="w-4 h-4 text-white"></i></button>
+                                    <button
+                                        class="w-9 h-9 bg-blue-600  rounded-full flex items-center justify-center"><i
+                                            data-lucide="share-2" class="w-4 h-4 text-white"></i></button>
                                 </div>
-                                <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i> 2</span>
-                                <button class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"><i data-lucide="phone-off" class="w-4 h-4 text-white"></i></button>
+                                <span class="text-xs text-gray-400 flex items-center gap-1"><i data-lucide="users"
+                                        class="w-3 h-3"></i> 2</span>
+                                <button class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"><i
+                                        data-lucide="phone-off" class="w-4 h-4 text-white"></i></button>
                             </div>
                         </div>
                         <!-- Tarjeta flotante izquierda -->
-                        <div class="absolute -bottom-5 -left-5 bg-white text-slate-900 p-3 rounded-xl shadow-xl flex items-center gap-3 border border-gray-100 animate-float-slow">
-                            <div class="bg-orange-100 p-2 rounded-lg"><i data-lucide="file-search" class="w-5 h-5 text-orange-600"></i></div>
+                        <div
+                            class="absolute -bottom-5 -left-5 bg-white text-slate-900 p-3 rounded-xl shadow-xl flex items-center gap-3 border border-gray-100 animate-float-slow">
+                            <div class="bg-orange-100 p-2 rounded-lg"><i data-lucide="file-search"
+                                    class="w-5 h-5 text-orange-600"></i></div>
                             <div>
                                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Analizando</p>
                                 <p class="font-bold text-sm">Plano Red Interior</p>
                             </div>
                         </div>
                         <!-- Tarjeta flotante derecha -->
-                        <div class="absolute -top-4 -right-4 bg-blue-900 text-white p-3 rounded-xl shadow-xl flex items-center gap-2 border border-blue-700">
+                        <div
+                            class="absolute -top-4 -right-4 bg-blue-900 text-white p-3 rounded-xl shadow-xl flex items-center gap-2 border border-blue-700">
                             <i data-lucide="book-open" class="w-4 h-4 text-blue-300"></i>
                             <span class="text-xs font-bold">NCh 2.h · Art. 5.3.2</span>
                         </div>
@@ -506,49 +715,69 @@
                 <div class="lg:w-1/2 grid gap-8 mt-10 lg:mt-0 w-full">
 
                     <!-- Tarjeta 1 -->
-                    <div class="bg-slate-800 p-6 pt-10 rounded-2xl border border-slate-700 card-lift relative group" style="overflow: visible;">
-                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold select-none leading-none pointer-events-none" style="color: rgba(96,165,250,0.12);">1</div>
-                        <div class="absolute -top-4 -left-4 w-10 h-10 bg-blue-600 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-blue-600/40 z-10 text-base">1</div>
+                    <div class="bg-slate-800 p-6 pt-10 rounded-2xl border border-slate-700 card-lift relative group"
+                        style="overflow: visible;">
+                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold select-none leading-none pointer-events-none"
+                            style="color: rgba(96,165,250,0.12);">1</div>
+                        <div
+                            class="absolute -top-4 -left-4 w-10 h-10 bg-blue-600 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-blue-600/40 z-10 text-base">
+                            1</div>
                         <div class="bg-blue-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-5 mt-2">
                             <i data-lucide="file-search" class="w-7 h-7 text-blue-600"></i>
                         </div>
                         <h4 class="text-white font-bold text-lg mb-2">Envío y Análisis Previo</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">Nos envías tus planos antes de la videollamada. Los analizamos según <strong class="text-gray-300">NCh 2.h</strong> y preparamos observaciones.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">Nos envías tus planos antes de la videollamada.
+                            Los analizamos según <strong class="text-gray-300">NCh 2.h</strong> y preparamos
+                            observaciones.</p>
                         <div class="flex gap-2 mt-3 flex-wrap">
                             <span class="bg-blue-900/50 text-blue-300 text-xs px-2.5 py-1 rounded-lg">Planos PDF</span>
-                            <span class="bg-blue-900/50 text-blue-300 text-xs px-2.5 py-1 rounded-lg">Esquemas DWG</span>
+                            <span class="bg-blue-900/50 text-blue-300 text-xs px-2.5 py-1 rounded-lg">Esquemas
+                                DWG</span>
                             <span class="bg-blue-900/50 text-blue-300 text-xs px-2.5 py-1 rounded-lg">Fotos</span>
                         </div>
                     </div>
 
                     <!-- Tarjeta 2 -->
-                    <div class="bg-slate-800 p-6 pt-10 rounded-2xl border border-slate-700 card-lift relative group" style="overflow: visible;">
-                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold select-none leading-none pointer-events-none" style="color: rgba(251,146,60,0.12);">2</div>
-                        <div class="absolute -top-4 -left-4 w-10 h-10 bg-orange-500 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-orange-500/40 z-10 text-base">2</div>
+                    <div class="bg-slate-800 p-6 pt-10 rounded-2xl border border-slate-700 card-lift relative group"
+                        style="overflow: visible;">
+                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold select-none leading-none pointer-events-none"
+                            style="color: rgba(251,146,60,0.12);">2</div>
+                        <div
+                            class="absolute -top-4 -left-4 w-10 h-10 bg-orange-500 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-orange-500/40 z-10 text-base">
+                            2</div>
                         <div class="bg-orange-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-5 mt-2">
                             <i data-lucide="video" class="w-7 h-7 text-orange-600"></i>
                         </div>
                         <h4 class="text-white font-bold text-lg mb-2">Sesión en Vivo — 60 min</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">Videollamada con experto. Revisión en tiempo real del trazado, dimensionamiento, ventilaciones y materiales.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">Videollamada con experto. Revisión en tiempo
+                            real del trazado, dimensionamiento, ventilaciones y materiales.</p>
                         <div class="flex gap-2 mt-3 flex-wrap">
                             <span class="bg-orange-900/40 text-orange-300 text-xs px-2.5 py-1 rounded-lg">Zoom</span>
-                            <span class="bg-orange-900/40 text-orange-300 text-xs px-2.5 py-1 rounded-lg">Google Meet</span>
+                            <span class="bg-orange-900/40 text-orange-300 text-xs px-2.5 py-1 rounded-lg">Google
+                                Meet</span>
                             <span class="bg-orange-900/40 text-orange-300 text-xs px-2.5 py-1 rounded-lg">Teams</span>
                         </div>
                     </div>
 
                     <!-- Tarjeta 3 -->
-                    <div class="bg-slate-800 p-6 pt-10 rounded-2xl border border-slate-700 card-lift relative group" style="overflow: visible;">
-                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold select-none leading-none pointer-events-none" style="color: rgba(74,222,128,0.12);">3</div>
-                        <div class="absolute -top-4 -left-4 w-10 h-10 bg-green-600 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-green-600/40 z-10 text-base">3</div>
+                    <div class="bg-slate-800 p-6 pt-10 rounded-2xl border border-slate-700 card-lift relative group"
+                        style="overflow: visible;">
+                        <div class="absolute bottom-3 right-4 text-8xl font-extrabold select-none leading-none pointer-events-none"
+                            style="color: rgba(74,222,128,0.12);">3</div>
+                        <div
+                            class="absolute -top-4 -left-4 w-10 h-10 bg-green-600 text-white font-extrabold rounded-full flex items-center justify-center shadow-lg shadow-green-600/40 z-10 text-base">
+                            3</div>
                         <div class="bg-green-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-5 mt-2">
                             <i data-lucide="file-check-2" class="w-7 h-7 text-green-600"></i>
                         </div>
                         <h4 class="text-white font-bold text-lg mb-2">Informe Técnico PDF</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">Informe formal con observaciones, correcciones y normativa citada. Válido para presentar a contratistas o revisores SEC.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">Informe formal con observaciones, correcciones
+                            y normativa citada. Válido para presentar a contratistas o revisores SEC.</p>
                         <div class="flex gap-2 mt-3 flex-wrap">
-                            <span class="bg-green-900/40 text-green-300 text-xs px-2.5 py-1 rounded-lg">PDF Firmado</span>
-                            <span class="bg-green-900/40 text-green-300 text-xs px-2.5 py-1 rounded-lg">48h hábiles</span>
+                            <span class="bg-green-900/40 text-green-300 text-xs px-2.5 py-1 rounded-lg">PDF
+                                Firmado</span>
+                            <span class="bg-green-900/40 text-green-300 text-xs px-2.5 py-1 rounded-lg">48h
+                                hábiles</span>
                         </div>
                     </div>
                 </div>
@@ -565,7 +794,8 @@
                         <div class="absolute top-0 right-0 opacity-[.06] -mr-6 -mt-6 pointer-events-none">
                             <i data-lucide="hexagon" class="w-48 h-48 text-white"></i>
                         </div>
-                        <div class="inline-flex items-center gap-1.5 bg-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">
+                        <div
+                            class="inline-flex items-center gap-1.5 bg-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5">
                             <i data-lucide="star" class="w-3 h-3"></i> RECOMENDADO
                         </div>
                         <h3 class="text-2xl font-extrabold text-white mb-1">Asesoría Online Completa</h3>
@@ -578,47 +808,76 @@
                             </div>
                         </div>
                         <ul class="space-y-3 mb-7">
-                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">Sesión de <strong class="text-white">60 min</strong> en vivo con experto</span></li>
-                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">Revisión previa de planos (hasta 10 láminas)</span></li>
-                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">Informe técnico PDF con normativa citada</span></li>
-                            <li class="flex items-center gap-3"><div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check" class="w-3.5 h-3.5 text-green-400"></i></div><span class="text-gray-200 text-sm">1 ronda de consultas por email post-sesión</span></li>
+                            <li class="flex items-center gap-3">
+                                <div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check"
+                                        class="w-3.5 h-3.5 text-green-400"></i></div><span
+                                    class="text-gray-200 text-sm">Sesión de <strong class="text-white">60 min</strong>
+                                    en vivo con experto</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check"
+                                        class="w-3.5 h-3.5 text-green-400"></i></div><span
+                                    class="text-gray-200 text-sm">Revisión previa de planos (hasta 10 láminas)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check"
+                                        class="w-3.5 h-3.5 text-green-400"></i></div><span
+                                    class="text-gray-200 text-sm">Informe técnico PDF con normativa citada</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="bg-green-500/20 p-1 rounded-full shrink-0"><i data-lucide="check"
+                                        class="w-3.5 h-3.5 text-green-400"></i></div><span
+                                    class="text-gray-200 text-sm">1 ronda de consultas por email post-sesión</span>
+                            </li>
                         </ul>
-                        <a href="#form-asesoria" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-600/30 transition-all duration-300 transform hover:-translate-y-1">
+                        <a href="#form-asesoria"
+                            class="w-full bg-orange-600 hover:bg-orange-500 text-white font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-600/30 transition-all duration-300 transform hover:-translate-y-1">
                             <i data-lucide="calendar-check" class="w-5 h-5"></i> Agendar Ahora
                         </a>
-                        <p class="text-center text-blue-400 text-xs mt-4">Transferencia o Webpay · Coordinación 100% online</p>
+                        <p class="text-center text-blue-400 text-xs mt-4">Transferencia o Webpay · Coordinación 100%
+                            online</p>
                     </div>
 
                     <!-- Card Express -->
                     <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 card-lift">
                         <div class="flex items-start justify-between mb-4">
                             <div>
-                                <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Opción rápida</span>
+                                <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Opción
+                                    rápida</span>
                                 <h4 class="text-white text-xl font-bold mt-1">Consulta Express</h4>
                             </div>
-                            <div class="bg-orange-100 p-2 rounded-xl shrink-0"><i data-lucide="zap" class="w-6 h-6 text-orange-600"></i></div>
+                            <div class="bg-orange-100 p-2 rounded-xl shrink-0"><i data-lucide="zap"
+                                    class="w-6 h-6 text-orange-600"></i></div>
                         </div>
                         <div class="flex items-end gap-1 mb-4">
                             <span class="text-4xl font-extrabold text-white">$20.000</span>
                             <span class="text-gray-400 pb-1 text-sm">CLP / 30 min</span>
                         </div>
                         <ul class="space-y-2 text-sm text-gray-400 mb-5">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500 shrink-0"></i> 30 minutos de consulta puntual</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500 shrink-0"></i> Dudas normativas específicas</li>
-                            <li class="flex items-center gap-2"><i data-lucide="x"     class="w-4 h-4 text-slate-600 shrink-0"></i> Sin revisión previa de planos</li>
-                            <li class="flex items-center gap-2"><i data-lucide="x"     class="w-4 h-4 text-slate-600 shrink-0"></i> Sin informe técnico</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check"
+                                    class="w-4 h-4 text-green-500 shrink-0"></i> 30 minutos de consulta puntual</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check"
+                                    class="w-4 h-4 text-green-500 shrink-0"></i> Dudas normativas específicas</li>
+                            <li class="flex items-center gap-2"><i data-lucide="x"
+                                    class="w-4 h-4 text-slate-600 shrink-0"></i> Sin revisión previa de planos</li>
+                            <li class="flex items-center gap-2"><i data-lucide="x"
+                                    class="w-4 h-4 text-slate-600 shrink-0"></i> Sin informe técnico</li>
                         </ul>
-                        <a href="#form-asesoria" class="w-full border-2 border-slate-600 hover:border-white hover:text-white text-gray-300 font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 text-sm">
+                        <a href="#form-asesoria"
+                            class="w-full border-2 border-slate-600 hover:border-white hover:text-white text-gray-300 font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 text-sm">
                             <i data-lucide="message-circle" class="w-4 h-4"></i> Consultar disponibilidad
                         </a>
                     </div>
 
                     <!-- Garantía -->
                     <div class="bg-green-900/30 rounded-xl p-5 border border-green-800/40 flex items-start gap-4">
-                        <div class="bg-green-600 p-2.5 rounded-xl shrink-0"><i data-lucide="shield-check" class="w-5 h-5 text-white"></i></div>
+                        <div class="bg-green-600 p-2.5 rounded-xl shrink-0"><i data-lucide="shield-check"
+                                class="w-5 h-5 text-white"></i></div>
                         <div>
                             <h4 class="text-white font-bold mb-1 text-sm">Garantía de Satisfacción</h4>
-                            <p class="text-sm text-gray-400 leading-relaxed">Si el resultado no cubre tus expectativas técnicas, coordinamos una sesión de seguimiento <strong class="text-gray-300">sin costo adicional</strong>.</p>
+                            <p class="text-sm text-gray-400 leading-relaxed">Si el resultado no cubre tus expectativas
+                                técnicas, coordinamos una sesión de seguimiento <strong class="text-gray-300">sin costo
+                                    adicional</strong>.</p>
                         </div>
                     </div>
                 </div>
@@ -628,7 +887,8 @@
 
                     {% if messages %}
                     {% for message in messages %}
-                    <div class="mb-6 bg-green-50 border border-green-200 text-green-800 rounded-xl px-5 py-4 text-sm font-medium flex items-center gap-2">
+                    <div
+                        class="mb-6 bg-green-50 border border-green-200 text-green-800 rounded-xl px-5 py-4 text-sm font-medium flex items-center gap-2">
                         <i data-lucide="check-circle" class="w-5 h-5 text-green-600 shrink-0"></i>
                         {{ message }}
                     </div>
@@ -636,7 +896,8 @@
                     {% endif %}
 
                     <h3 class="text-slate-900 text-xl font-extrabold mb-1">Solicitar Asesoría Online</h3>
-                    <p class="text-gray-500 text-sm mb-7">Te contactamos en menos de <strong class="text-slate-700">24h hábiles</strong> para confirmar fecha, hora y enlace de pago.</p>
+                    <p class="text-gray-500 text-sm mb-7">Te contactamos en menos de <strong class="text-slate-700">24h
+                            hábiles</strong> para confirmar fecha, hora y enlace de pago.</p>
 
                     <form method="POST" action="{% url 'home' %}">
                         {% csrf_token %}
@@ -645,46 +906,51 @@
                             <div>
                                 <label class="block text-slate-700 font-bold mb-2 text-sm">Nombre completo *</label>
                                 <input type="text" name="nombre" required placeholder="Ej: Juan Pérez"
-                                       class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
+                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
                             </div>
                             <div>
                                 <label class="block text-slate-700 font-bold mb-2 text-sm">Teléfono / WhatsApp *</label>
                                 <input type="tel" name="telefono" required placeholder="+56 9 XXXX XXXX"
-                                       class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
+                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
                             </div>
                         </div>
                         <div class="mb-5">
                             <label class="block text-slate-700 font-bold mb-2 text-sm">Correo electrónico *</label>
                             <input type="email" name="email" required placeholder="tucorreo@email.com"
-                                   class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
+                                class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition">
                         </div>
                         <div class="mb-5">
                             <label class="block text-slate-700 font-bold mb-2 text-sm">Tipo de asesoría</label>
                             <select name="tipo_asesoria"
-                                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 text-sm transition">
+                                class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 text-sm transition">
                                 <option value="completa">Asesoría Completa — 60 min · $40.000 CLP</option>
                                 <option value="express">Consulta Express — 30 min · $20.000 CLP</option>
                             </select>
                         </div>
 
                         <div class="mb-6">
-                            <label class="block text-slate-700 font-bold mb-2 text-sm">Descripción del proyecto o consulta *</label>
+                            <label class="block text-slate-700 font-bold mb-2 text-sm">Descripción del proyecto o
+                                consulta *</label>
                             <textarea name="mensaje" rows="4" required
-                                      placeholder="Tipo de inmueble, tipo de gas (natural o GLP), y tu duda principal..."
-                                      class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition resize-none"></textarea>
+                                placeholder="Tipo de inmueble, tipo de gas (natural o GLP), y tu duda principal..."
+                                class="w-full border border-gray-300 rounded-xl px-4 py-3 text-slate-800 bg-gray-50 placeholder-gray-400 text-sm transition resize-none"></textarea>
                         </div>
                         <button type="submit"
-                                class="w-full bg-orange-600 hover:bg-orange-700 text-white font-extrabold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-orange-600/30 transform hover:-translate-y-1 hover:shadow-xl flex items-center justify-center gap-2 text-base">
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-extrabold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-orange-600/30 transform hover:-translate-y-1 hover:shadow-xl flex items-center justify-center gap-2 text-base">
                             <i data-lucide="credit-card" class="w-5 h-5"></i> Pagar por Transferencia
                         </button>
-                        <p class="text-center text-xs text-gray-400 mt-4">Tus datos están seguros y no serán compartidos con terceros.</p>
+                        <p class="text-center text-xs text-gray-400 mt-4">Tus datos están seguros y no serán compartidos
+                            con terceros.</p>
                     </form>
 
                     <div class="mt-6 pt-6 border-t border-gray-100 flex items-center gap-4">
-                        <div class="bg-green-100 p-2.5 rounded-xl shrink-0"><i data-lucide="message-circle" class="w-5 h-5 text-green-600"></i></div>
+                        <div class="bg-green-100 p-2.5 rounded-xl shrink-0"><i data-lucide="message-circle"
+                                class="w-5 h-5 text-green-600"></i></div>
                         <div>
                             <p class="text-xs text-gray-500">¿Prefieres contacto directo?</p>
-                            <a href="https://wa.me/56931187107?text=Hola%2C%20quiero%20agendar%20una%20asesor%C3%ADa%20online" target="_blank" class="text-green-700 font-bold text-sm hover:underline">+56 9 3118 7107 — Escribir por WhatsApp →</a>
+                            <a href="https://wa.me/56931187107?text=Hola%2C%20quiero%20agendar%20una%20asesor%C3%ADa%20online"
+                                target="_blank" class="text-green-700 font-bold text-sm hover:underline">+56 9 3118 7107
+                                — Escribir por WhatsApp →</a>
                         </div>
                     </div>
                 </div>
@@ -702,7 +968,9 @@
                         EJECUCIÓN DIRECTA SIN INTERMEDIARIOS
                     </h2>
                     <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                        No solo inspeccionamos y certificamos. Contamos con nuestro propio equipo técnico, compuesto por un <strong>Maestro Instalador Autorizado</strong> y personal de apoyo altamente capacitado para ejecutar cualquier modificación o reparación al instante.
+                        No solo inspeccionamos y certificamos. Contamos con nuestro propio equipo técnico, compuesto por
+                        un <strong>Maestro Instalador Autorizado</strong> y personal de apoyo altamente capacitado para
+                        ejecutar cualquier modificación o reparación al instante.
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
@@ -725,21 +993,26 @@
 
                 <div class="md:w-1/2 w-full reveal-right">
                     <div class="bg-slate-900 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-orange-500 opacity-20 blur-2xl"></div>
+                        <div
+                            class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-orange-500 opacity-20 blur-2xl">
+                        </div>
 
                         <h3 class="text-2xl font-bold text-white mb-4">¿Por qué elegir un equipo integral?</h3>
                         <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
                                 <i data-lucide="timer" class="w-5 h-5 text-orange-500 mr-3 mt-0.5 shrink-0"></i>
-                                <span><strong>Ahorro de tiempo:</strong> Reparamos las fugas en la misma visita de inspección si es necesario.</span>
+                                <span><strong>Ahorro de tiempo:</strong> Reparamos las fugas en la misma visita de
+                                    inspección si es necesario.</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="wallet" class="w-5 h-5 text-orange-500 mr-3 mt-0.5 shrink-0"></i>
-                                <span><strong>Presupuesto unificado:</strong> Sin sorpresas ni cobros extra de terceros. Todo en una sola cotización.</span>
+                                <span><strong>Presupuesto unificado:</strong> Sin sorpresas ni cobros extra de terceros.
+                                    Todo en una sola cotización.</span>
                             </li>
                             <li class="flex items-start">
                                 <i data-lucide="shield-check" class="w-5 h-5 text-orange-500 mr-3 mt-0.5 shrink-0"></i>
-                                <span><strong>Garantía total:</strong> Al hacer el trabajo nosotros, aseguramos que la certificación posterior pasará sin problemas.</span>
+                                <span><strong>Garantía total:</strong> Al hacer el trabajo nosotros, aseguramos que la
+                                    certificación posterior pasará sin problemas.</span>
                             </li>
                         </ul>
                     </div>
@@ -760,14 +1033,24 @@
                     </p>
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-6">
                         <div class="flex items-start">
-                            <div class="bg-blue-50 p-3 rounded-lg text-blue-900 mr-4"><i data-lucide="phone" class="w-6 h-6"></i></div>
-                            <div><h4 class="font-bold text-slate-900">Teléfono / WhatsApp</h4><p class="text-gray-600">+56 9 3118 7107</p></div>
+                            <div class="bg-blue-50 p-3 rounded-lg text-blue-900 mr-4"><i data-lucide="phone"
+                                    class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Teléfono / WhatsApp</h4>
+                                <p class="text-gray-600">+56 9 3118 7107</p>
+                            </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="bg-blue-50 p-3 rounded-lg text-blue-900 mr-4"><i data-lucide="mail" class="w-6 h-6"></i></div>
-                            <div><h4 class="font-bold text-slate-900">Correo</h4><p class="text-gray-600">Altogasspa@gmail.com</p></div>
+                            <div class="bg-blue-50 p-3 rounded-lg text-blue-900 mr-4"><i data-lucide="mail"
+                                    class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Correo</h4>
+                                <p class="text-gray-600">Altogasspa@gmail.com</p>
+                            </div>
                         </div>
-                        <a href="https://www.instagram.com/altogaspa?utm_source=qr&igsh=MWl6bnZpdzJ3MmQ5MQ==" target="_blank" class="flex items-center justify-center w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 rounded-lg hover:shadow-lg transition gap-2">
+                        <a href="https://www.instagram.com/altogaspa?utm_source=qr&igsh=MWl6bnZpdzJ3MmQ5MQ=="
+                            target="_blank"
+                            class="flex items-center justify-center w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 rounded-lg hover:shadow-lg transition gap-2">
                             <i data-lucide="instagram" class="w-5 h-5"></i> Síguenos en Instagram
                         </a>
                     </div>
@@ -778,12 +1061,17 @@
                     <form method="POST">
                         {% csrf_token %}
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.nombre.label }}</label>{{ form.nombre }}</div>
-                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.telefono.label }}</label>{{ form.telefono }}</div>
+                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.nombre.label
+                                    }}</label>{{ form.nombre }}</div>
+                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.telefono.label
+                                    }}</label>{{ form.telefono }}</div>
                         </div>
-                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.email.label }}</label>{{ form.email }}</div>
-                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.mensaje.label }}</label>{{ form.mensaje }}</div>
-                        <button type="submit" class="w-full bg-slate-900 hover:bg-blue-900 text-white font-bold py-4 rounded-lg transition shadow-lg transform hover:-translate-y-1">
+                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.email.label
+                                }}</label>{{ form.email }}</div>
+                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{
+                                form.mensaje.label }}</label>{{ form.mensaje }}</div>
+                        <button type="submit"
+                            class="w-full bg-slate-900 hover:bg-blue-900 text-white font-bold py-4 rounded-lg transition shadow-lg transform hover:-translate-y-1">
                             Enviar Solicitud
                         </button>
                     </form>
@@ -802,14 +1090,18 @@
             </div>
 
             <div class="flex gap-6">
-                <a href="https://www.instagram.com/altogaspa?utm_source=qr&igsh=MWl6bnZpdzJ3MmQ5MQ==" target="_blank" class="bg-slate-800 hover:bg-pink-600 p-3 rounded-full transition flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+                <a href="https://www.instagram.com/altogaspa?utm_source=qr&igsh=MWl6bnZpdzJ3MmQ5MQ==" target="_blank"
+                    class="bg-slate-800 hover:bg-pink-600 p-3 rounded-full transition flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 text-white">
                         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
                     </svg>
                 </a>
-                <a href="mailto:Altogasspa@gmail.com" class="bg-slate-800 hover:bg-blue-600 p-3 rounded-full transition">
+                <a href="mailto:Altogasspa@gmail.com"
+                    class="bg-slate-800 hover:bg-blue-600 p-3 rounded-full transition">
                     <i data-lucide="mail" class="w-5 h-5 text-white"></i>
                 </a>
                 <a href="https://wa.me/56931187107" class="bg-slate-800 hover:bg-green-600 p-3 rounded-full transition">
@@ -818,34 +1110,40 @@
             </div>
         </div>
         <div class="bg-slate-950 py-4 text-center">
-             <p class="text-slate-600 text-xs">&copy; 2026 Alto Gas SPA. Todos los derechos reservados.</p>
+            <p class="text-slate-600 text-xs">&copy; 2026 Alto Gas SPA. Todos los derechos reservados.</p>
         </div>
     </footer>
 
 
 
     {% if messages %}
-        <div class="fixed top-24 right-5 z-[100] max-w-md w-full animate-slide-in">
-            {% for message in messages %}
-                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 shadow-2xl rounded mb-4 flex items-center relative" role="alert">
-                    <div class="bg-green-200 rounded-full p-1 mr-3">
-                        <i data-lucide="check-circle" class="w-6 h-6 text-green-700"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold">¡Enviado!</p>
-                        <p>{{ message }}</p>
-                    </div>
-                    <button onclick="this.closest('div[role=\'alert\']').remove()" class="absolute top-2 right-2 text-green-700 hover:text-green-900 p-1">
-                        <i data-lucide="x" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            {% endfor %}
+    <div class="fixed top-24 right-5 z-[100] max-w-md w-full animate-slide-in">
+        {% for message in messages %}
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 shadow-2xl rounded mb-4 flex items-center relative"
+            role="alert">
+            <div class="bg-green-200 rounded-full p-1 mr-3">
+                <i data-lucide="check-circle" class="w-6 h-6 text-green-700"></i>
+            </div>
+            <div>
+                <p class="font-bold">¡Enviado!</p>
+                <p>{{ message }}</p>
+            </div>
+            <button onclick="this.closest('div[role=\'alert\']').remove()"
+                class="absolute top-2 right-2 text-green-700 hover:text-green-900 p-1">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
         </div>
+        {% endfor %}
+    </div>
     {% endif %}
 
     <!-- ─── WA FLOAT ─── -->
-    <a href="https://wa.me/56931187107?text=Hola%20Alto%20Gas%20SPA%2C%20necesito%20información" class="wa-float" target="_blank" title="Escribir por WhatsApp">
-        <svg viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <a href="https://wa.me/56931187107?text=Hola%20Alto%20Gas%20SPA%2C%20necesito%20información" class="wa-float"
+        target="_blank" title="Escribir por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="white" width="30" height="30">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
     </a>
 
     <script>
@@ -880,197 +1178,203 @@
         });
     </script>
 
-{% if mostrar_modal %}
-<!-- ═══ MODAL CONFIRMACIÓN TRANSFERENCIA ═══ -->
-<div id="modal-transferencia"
-     style="position:fixed !important; top:0 !important; left:0 !important;
+    {% if mostrar_modal %}
+    <!-- ═══ MODAL CONFIRMACIÓN TRANSFERENCIA ═══ -->
+    <div id="modal-transferencia" style="position:fixed !important; top:0 !important; left:0 !important;
             width:100vw !important; height:100vh !important; z-index:9999 !important;
             background:rgba(10,17,40,0.90) !important;
             display:flex; align-items:center; justify-content:center;
             padding:1rem; box-sizing:border-box; overflow-y:auto;">
 
-    <div style="position:relative; background:#0f172a; border:1px solid #334155;
+        <div style="position:relative; background:#0f172a; border:1px solid #334155;
                 border-radius:1rem; box-shadow:0 25px 60px rgba(0,0,0,.6);
                 width:100%; max-width:480px; overflow:hidden; flex-shrink:0;">
 
-        <!-- Blobs decorativos -->
-        <div style="position:absolute;top:-2rem;right:-2rem;width:10rem;height:10rem;
+            <!-- Blobs decorativos -->
+            <div style="position:absolute;top:-2rem;right:-2rem;width:10rem;height:10rem;
                     background:#ea580c;opacity:.1;border-radius:50%;filter:blur(40px);pointer-events:none;"></div>
-        <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;width:8rem;height:8rem;
+            <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;width:8rem;height:8rem;
                     background:#2563eb;opacity:.1;border-radius:50%;filter:blur(40px);pointer-events:none;"></div>
 
-        <div style="position:relative;z-index:1;padding:2rem;">
+            <div style="position:relative;z-index:1;padding:2rem;">
 
-            <!-- Header -->
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
-                <div style="display:flex;align-items:center;gap:.75rem;">
-                    <div style="background:rgba(34,197,94,.15);padding:.5rem;border-radius:.75rem;">
-                        <i data-lucide="check-circle-2" style="width:1.5rem;height:1.5rem;color:#4ade80;"></i>
+                <!-- Header -->
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+                    <div style="display:flex;align-items:center;gap:.75rem;">
+                        <div style="background:rgba(34,197,94,.15);padding:.5rem;border-radius:.75rem;">
+                            <i data-lucide="check-circle-2" style="width:1.5rem;height:1.5rem;color:#4ade80;"></i>
+                        </div>
+                        <div>
+                            <h3 style="color:#fff;font-weight:800;font-size:1.125rem;margin:0;line-height:1.3;">
+                                ¡Solicitud Recibida!</h3>
+                            <p style="color:#4ade80;font-size:.75rem;font-weight:600;margin:.2rem 0 0;">Solicitud #{{
+                                solicitud.pk }}</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 style="color:#fff;font-weight:800;font-size:1.125rem;margin:0;line-height:1.3;">¡Solicitud Recibida!</h3>
-                        <p style="color:#4ade80;font-size:.75rem;font-weight:600;margin:.2rem 0 0;">Solicitud #{{ solicitud.pk }}</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()"
-                        style="background:none;border:none;color:#64748b;cursor:pointer;padding:.25rem;
+                    <button onclick="closeModal()" style="background:none;border:none;color:#64748b;cursor:pointer;padding:.25rem;
                                border-radius:.5rem;line-height:0;transition:color .2s;"
                         onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#64748b'">
-                    <i data-lucide="x" style="width:1.25rem;height:1.25rem;"></i>
-                </button>
-            </div>
+                        <i data-lucide="x" style="width:1.25rem;height:1.25rem;"></i>
+                    </button>
+                </div>
 
-            <!-- Monto -->
-            <div style="background:rgba(30,41,59,.7);border:1px solid #334155;border-radius:.75rem;
+                <!-- Monto -->
+                <div style="background:rgba(30,41,59,.7);border:1px solid #334155;border-radius:.75rem;
                         padding:1rem;margin-bottom:1.25rem;text-align:center;">
-                <p style="color:#94a3b8;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin:0 0 .25rem;">Monto a transferir</p>
-                <p style="color:#fff;font-size:2.25rem;font-weight:800;margin:0;line-height:1.1;">
-                    {{ monto_fmt }} <span style="font-size:1rem;color:#93c5fd;font-weight:700;">CLP</span>
-                </p>
-            </div>
+                    <p
+                        style="color:#94a3b8;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin:0 0 .25rem;">
+                        Monto a transferir</p>
+                    <p style="color:#fff;font-size:2.25rem;font-weight:800;margin:0;line-height:1.1;">
+                        {{ monto_fmt }} <span style="font-size:1rem;color:#93c5fd;font-weight:700;">CLP</span>
+                    </p>
+                </div>
 
-            <!-- Datos bancarios -->
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;">
-                <p style="color:#94a3b8;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin:0;">Datos Bancarios</p>
-                <!-- Botón copiar -->
-                <button id="btn-copiar"
-                        onclick="copiarDatosBancarios()"
-                        style="display:inline-flex;align-items:center;gap:.35rem;
+                <!-- Datos bancarios -->
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;">
+                    <p
+                        style="color:#94a3b8;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin:0;">
+                        Datos Bancarios</p>
+                    <!-- Botón copiar -->
+                    <button id="btn-copiar" onclick="copiarDatosBancarios()" style="display:inline-flex;align-items:center;gap:.35rem;
                                background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.4);
                                color:#93c5fd;font-size:.7rem;font-weight:700;letter-spacing:.04em;
                                padding:.3rem .75rem;border-radius:.5rem;cursor:pointer;
                                transition:all .2s;text-transform:uppercase;"
                         onmouseover="if(!this.dataset.copied){this.style.background='rgba(37,99,235,.3)';this.style.borderColor='rgba(37,99,235,.7)';}"
                         onmouseout="if(!this.dataset.copied){this.style.background='rgba(37,99,235,.15)';this.style.borderColor='rgba(37,99,235,.4)';}">
-                    <i data-lucide="copy" style="width:.85rem;height:.85rem;"></i>
-                    <span id="btn-copiar-texto">Copiar datos</span>
-                </button>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;">
-                <div style="display:flex;justify-content:space-between;align-items:center;
-                            background:rgba(30,41,59,.6);border-radius:.5rem;padding:.6rem 1rem;">
-                    <span style="color:#94a3b8;font-size:.875rem;">Banco</span>
-                    <span style="color:#fff;font-weight:600;font-size:.875rem;">Banco BCI</span>
+                        <i data-lucide="copy" style="width:.85rem;height:.85rem;"></i>
+                        <span id="btn-copiar-texto">Copiar datos</span>
+                    </button>
                 </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;
+                <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;
                             background:rgba(30,41,59,.6);border-radius:.5rem;padding:.6rem 1rem;">
-                    <span style="color:#94a3b8;font-size:.875rem;">N° Cuenta</span>
-                    <span style="color:#fff;font-weight:600;font-size:.875rem;font-family:monospace;">51331250</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;
+                        <span style="color:#94a3b8;font-size:.875rem;">Banco</span>
+                        <span style="color:#fff;font-weight:600;font-size:.875rem;">Banco BCI</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;
                             background:rgba(30,41,59,.6);border-radius:.5rem;padding:.6rem 1rem;">
-                    <span style="color:#94a3b8;font-size:.875rem;">Titular</span>
-                    <span style="color:#fff;font-weight:600;font-size:.875rem;">David Ruben Torres</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;
+                        <span style="color:#94a3b8;font-size:.875rem;">N° Cuenta</span>
+                        <span
+                            style="color:#fff;font-weight:600;font-size:.875rem;font-family:monospace;">51331250</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;
                             background:rgba(30,41,59,.6);border-radius:.5rem;padding:.6rem 1rem;">
-                    <span style="color:#94a3b8;font-size:.875rem;">RUT</span>
-                    <span style="color:#fff;font-weight:600;font-size:.875rem;font-family:monospace;">18.530.633-K</span>
+                        <span style="color:#94a3b8;font-size:.875rem;">Titular</span>
+                        <span style="color:#fff;font-weight:600;font-size:.875rem;">David Ruben Torres</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;
+                            background:rgba(30,41,59,.6);border-radius:.5rem;padding:.6rem 1rem;">
+                        <span style="color:#94a3b8;font-size:.875rem;">RUT</span>
+                        <span
+                            style="color:#fff;font-weight:600;font-size:.875rem;font-family:monospace;">18.530.633-K</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Instrucción -->
-            <div style="background:rgba(234,88,12,.1);border:1px solid rgba(234,88,12,.3);
+                <!-- Instrucción -->
+                <div style="background:rgba(234,88,12,.1);border:1px solid rgba(234,88,12,.3);
                         border-radius:.75rem;padding:1rem;margin-bottom:1rem;">
-                <p style="color:#fdba74;font-size:.875rem;line-height:1.5;margin:0;">
-                    <strong style="color:#fb923c;">Próximo paso:</strong> Transfiere y envíanos el comprobante
-                    por WhatsApp. Te confirmaremos la sesión con invitación de Google Calendar.
-                </p>
-            </div>
+                    <p style="color:#fdba74;font-size:.875rem;line-height:1.5;margin:0;">
+                        <strong style="color:#fb923c;">Próximo paso:</strong> Transfiere y envíanos el comprobante
+                        por WhatsApp. Te confirmaremos la sesión con invitación de Google Calendar.
+                    </p>
+                </div>
 
-            <!-- Aviso correo de confirmación -->
-            <div style="background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.8);
+                <!-- Aviso correo de confirmación -->
+                <div style="background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.8);
                         border-radius:.75rem;padding:.875rem 1rem;margin-bottom:1.25rem;
                         display:flex;align-items:flex-start;gap:.75rem;">
-                <div style="background:rgba(99,102,241,.15);padding:.4rem;border-radius:.5rem;flex-shrink:0;margin-top:.1rem;">
-                    <i data-lucide="mail" style="width:1rem;height:1rem;color:#a5b4fc;"></i>
+                    <div
+                        style="background:rgba(99,102,241,.15);padding:.4rem;border-radius:.5rem;flex-shrink:0;margin-top:.1rem;">
+                        <i data-lucide="mail" style="width:1rem;height:1rem;color:#a5b4fc;"></i>
+                    </div>
+                    <p style="color:#94a3b8;font-size:.78rem;line-height:1.55;margin:0;">
+                        Recibirá una copia de esta solicitud a su correo.
+                        Si no aparece en bandeja de entrada,
+                        <strong style="color:#c7d2fe;">revise la carpeta de spam</strong> o contáctenos
+                        directamente por WhatsApp — lo atendemos de inmediato.
+                    </p>
                 </div>
-                <p style="color:#94a3b8;font-size:.78rem;line-height:1.55;margin:0;">
-                    Recibirá una copia de esta solicitud a su correo.
-                    Si no aparece en bandeja de entrada,
-                    <strong style="color:#c7d2fe;">revise la carpeta de spam</strong> o contáctenos
-                    directamente por WhatsApp — lo atendemos de inmediato.
-                </p>
-            </div>
 
-            <!-- CTA WhatsApp -->
-            <a href="https://wa.me/56931187107?text=Hola%2C%20acabo%20de%20realizar%20la%20solicitud%20%23{{ solicitud.pk }}%20y%20quiero%20enviar%20el%20comprobante"
-               target="_blank"
-               style="display:flex;align-items:center;justify-content:center;gap:.5rem;
+                <!-- CTA WhatsApp -->
+                <a href="https://wa.me/56931187107?text=Hola%2C%20acabo%20de%20realizar%20la%20solicitud%20%23{{ solicitud.pk }}%20y%20quiero%20enviar%20el%20comprobante"
+                    target="_blank" style="display:flex;align-items:center;justify-content:center;gap:.5rem;
                       width:100%;background:#16a34a;color:#fff;font-weight:800;
                       padding:.875rem 1.5rem;border-radius:.75rem;text-decoration:none;
                       font-size:.9375rem;box-sizing:border-box;transition:background .2s;"
-               onmouseover="this.style.background='#15803d'" onmouseout="this.style.background='#16a34a'">
-                <i data-lucide="message-circle" style="width:1.25rem;height:1.25rem;flex-shrink:0;"></i>
-                Enviar comprobante por WhatsApp
-            </a>
-            <p style="text-align:center;color:#475569;font-size:.75rem;margin:.75rem 0 0;">+56 9 3118 7107 · David Torres</p>
+                    onmouseover="this.style.background='#15803d'" onmouseout="this.style.background='#16a34a'">
+                    <i data-lucide="message-circle" style="width:1.25rem;height:1.25rem;flex-shrink:0;"></i>
+                    Enviar comprobante por WhatsApp
+                </a>
+                <p style="text-align:center;color:#475569;font-size:.75rem;margin:.75rem 0 0;">+56 9 3118 7107 · David
+                    Torres</p>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    /* Bloquear scroll mientras el modal está abierto */
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
+    <script>
+        /* Bloquear scroll mientras el modal está abierto */
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
 
-    function closeModal() {
-        document.getElementById('modal-transferencia').remove();
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-    }
+        function closeModal() {
+            document.getElementById('modal-transferencia').remove();
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+        }
 
-    /* Cerrar al hacer click en el fondo oscuro */
-    document.getElementById('modal-transferencia').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
-    /* Copiar datos bancarios al portapapeles */
-    function copiarDatosBancarios() {
-        const texto =
-            'Banco BCI\n' +
-            'N° Cuenta: 51331250\n' +
-            'Titular: David Ruben Torres\n' +
-            'RUT: 18.530.633-K\n' +
-            'Monto: {{ monto_fmt }} CLP';
-
-        navigator.clipboard.writeText(texto).then(function() {
-            const btn  = document.getElementById('btn-copiar');
-            const span = document.getElementById('btn-copiar-texto');
-            const icon = btn.querySelector('i[data-lucide]');
-
-            // Estado “Copiado”
-            btn.dataset.copied = 'true';
-            btn.style.background    = 'rgba(34,197,94,.2)';
-            btn.style.borderColor   = 'rgba(34,197,94,.6)';
-            btn.style.color         = '#4ade80';
-            icon.setAttribute('data-lucide', 'check');
-            span.textContent = '¡Copiado!';
-            lucide.createIcons();
-
-            // Restaurar después de 2.5 s
-            setTimeout(function() {
-                delete btn.dataset.copied;
-                btn.style.background  = 'rgba(37,99,235,.15)';
-                btn.style.borderColor = 'rgba(37,99,235,.4)';
-                btn.style.color       = '#93c5fd';
-                icon.setAttribute('data-lucide', 'copy');
-                span.textContent = 'Copiar datos';
-                lucide.createIcons();
-            }, 2500);
-        }).catch(function() {
-            // Fallback para navegadores sin Clipboard API
-            const ta = document.createElement('textarea');
-            ta.value = texto;
-            ta.style.position = 'fixed';
-            ta.style.opacity  = '0';
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
+        /* Cerrar al hacer click en el fondo oscuro */
+        document.getElementById('modal-transferencia').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
         });
-    }
-</script>
-{% endif %}
+
+        /* Copiar datos bancarios al portapapeles */
+        function copiarDatosBancarios() {
+            const texto =
+                'Banco BCI\n' +
+                'N° Cuenta: 51331250\n' +
+                'Titular: David Ruben Torres\n' +
+                'RUT: 18.530.633-K\n' +
+                'Monto: {{ monto_fmt }} CLP';
+
+            navigator.clipboard.writeText(texto).then(function () {
+                const btn = document.getElementById('btn-copiar');
+                const span = document.getElementById('btn-copiar-texto');
+                const icon = btn.querySelector('i[data-lucide]');
+
+                // Estado “Copiado”
+                btn.dataset.copied = 'true';
+                btn.style.background = 'rgba(34,197,94,.2)';
+                btn.style.borderColor = 'rgba(34,197,94,.6)';
+                btn.style.color = '#4ade80';
+                icon.setAttribute('data-lucide', 'check');
+                span.textContent = '¡Copiado!';
+                lucide.createIcons();
+
+                // Restaurar después de 2.5 s
+                setTimeout(function () {
+                    delete btn.dataset.copied;
+                    btn.style.background = 'rgba(37,99,235,.15)';
+                    btn.style.borderColor = 'rgba(37,99,235,.4)';
+                    btn.style.color = '#93c5fd';
+                    icon.setAttribute('data-lucide', 'copy');
+                    span.textContent = 'Copiar datos';
+                    lucide.createIcons();
+                }, 2500);
+            }).catch(function () {
+                // Fallback para navegadores sin Clipboard API
+                const ta = document.createElement('textarea');
+                ta.value = texto;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+            });
+        }
+    </script>
+    {% endif %}
 </body>
+
 </html>
