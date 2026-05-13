@@ -1076,15 +1076,11 @@
                     <form method="POST">
                         {% csrf_token %}
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.nombre.label
-                                    }}</label>{{ form.nombre }}</div>
-                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.telefono.label
-                                    }}</label>{{ form.telefono }}</div>
+                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.nombre.label }}</label>{{ form.nombre }}</div>
+                            <div><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.telefono.label }}</label>{{ form.telefono }}</div>
                         </div>
-                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.email.label
-                                }}</label>{{ form.email }}</div>
-                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{
-                                form.mensaje.label }}</label>{{ form.mensaje }}</div>
+                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.email.label }}</label>{{ form.email }}</div>
+                        <div class="mb-6"><label class="block text-slate-700 font-bold mb-2 text-sm">{{ form.mensaje.label }}</label>{{ form.mensaje }}</div>
                         <button type="submit"
                             class="w-full bg-slate-900 hover:bg-blue-900 text-white font-bold py-4 rounded-lg transition shadow-lg transform hover:-translate-y-1">
                             Enviar Solicitud
