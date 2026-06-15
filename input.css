@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* ── Google Sans Flex (fuente local variable) ──────────────────────────────
+   Ruta relativa al CSS compilado: core/static/core/css/tailwind.css
+   → ../fonts/ apunta a core/static/core/fonts/
+   El eje wght cubre 100–900 con un solo archivo (variable font).
+*/
+@font-face {
+  font-family: 'Google Sans Flex';
+  src: url('../fonts/GoogleSansFlex-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Escanear todos los templates Django */
 @source "./core/templates/**/*.html";
 

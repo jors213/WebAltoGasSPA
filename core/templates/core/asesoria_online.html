@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth scroll-pt-24">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +10,14 @@
     <link rel="icon" type="image/png" href="{% static 'core/img/flavicon.png' %}">
     <link rel="apple-touch-icon" href="{% static 'core/img/flavicon.png' %}">
 
-    <!-- Google Fonts: Space Grotesk (headings técnicos) + Inter (cuerpo) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <!-- CSS compilado por Tailwind CLI (reemplaza el CDN de ~3MB) -->
     <link rel="stylesheet" href="{% static 'core/css/tailwind.css' %}">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* ─── Fuentes de marca ───────────────────────────────── */
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+        /* ─── Fuente de marca local (Google Sans Flex variable) ── */
+        body { font-family: 'Google Sans Flex', sans-serif; }
+        h1, h2, h3, h4, .font-display { font-family: 'Google Sans Flex', sans-serif; }
 
         /* ─── Custom scrollbar ───────────────────────────────── */
         :root {
@@ -185,7 +180,7 @@
             </div>
         </div>
 
-        <div class="hidden md:flex items-center gap-7 text-slate-600 font-medium text-sm uppercase tracking-wide" style="font-family:'Space Grotesk',sans-serif;">
+        <div class="hidden md:flex items-center gap-7 text-slate-600 font-medium text-sm uppercase tracking-wide" style="font-family:'Google Sans Flex',sans-serif;">
             <a href="{% url 'home' %}" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Inicio</a>
             <a href="{% url 'home' %}#servicios" class="hover:text-orange-600 transition border-b-2 border-transparent hover:border-orange-500 py-1">Servicios</a>
             <a href="{% url 'asesoria_online' %}" class="nav-active py-1">Asesoría Online</a>

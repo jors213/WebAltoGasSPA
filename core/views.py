@@ -9,10 +9,6 @@ from django.urls import reverse
 from .forms import ContactForm
 from .models import Contacto, SolicitudAsesoria
 
-
-# ──────────────────────────────────────────────────────────
-# Vista principal: Home + Asesoría Online (Single Page)
-# ──────────────────────────────────────────────────────────
 def home(request):
     services = [
         {
@@ -85,11 +81,8 @@ def home(request):
             'bg':    'bg-red-100',
         },
     ]
-
-    # ── POST del formulario de contacto (sección #contacto) ──
     if request.method == 'POST':
 
-        # ── Formulario de Asesoría Online ──
         if request.POST.get('form_type') == 'asesoria':
             nombre          = request.POST.get('nombre', '').strip()
             email           = request.POST.get('email', '').strip()
@@ -98,7 +91,6 @@ def home(request):
             mensaje_cliente = request.POST.get('mensaje', '').strip()
 
             if nombre and email and telefono and mensaje_cliente:
-                # 1. Guardar en base de datos como PENDIENTE
                 solicitud = SolicitudAsesoria.objects.create(
                     nombre=nombre,
                     email=email,
@@ -109,11 +101,9 @@ def home(request):
                     estado='PENDIENTE'
                 )
 
-                # 2. Calcular monto
                 monto = 40000 if tipo_asesoria == 'completa' else 20000
                 tipo_label = dict(SolicitudAsesoria.TIPO_CHOICES).get(tipo_asesoria, tipo_asesoria)
 
-                # 3. Correo HTML al cliente
                 monto_fmt = f"${monto:,}".replace(",", ".")
                 email_context = {
                     'solicitud': solicitud,
@@ -136,9 +126,7 @@ def home(request):
                         fail_silently=True,
                     )
                 except BaseException:
-                    pass  # Railway bloquea SMTP; el correo no es crítico para continuar
-
-                # 4. Correo al admin
+                    pass 
                 cuerpo_admin = (
                     f"Nueva solicitud de ASESORÍA ONLINE #{solicitud.pk}\n\n"
                     f"Gateway: TRANSFERENCIA\n"
@@ -157,10 +145,7 @@ def home(request):
                         fail_silently=True,
                     )
                 except BaseException:
-                    pass  # Railway bloquea SMTP; el correo al admin no es crítico
-
-                # 5. Mostrar modal con datos bancarios en el home
-                # monto_fmt ya fue calculado arriba al preparar el email
+                    pass
                 context = {
                     'title': 'Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile',
                     'services': services,
@@ -174,8 +159,6 @@ def home(request):
 
             messages.error(request, "Por favor completa todos los campos correctamente.")
             return redirect('home')
-
-        # ── Formulario de Contacto general ──
         else:
             form = ContactForm(request.POST)
             if form.is_valid():
@@ -201,7 +184,7 @@ def home(request):
                         fail_silently=True,
                     )
                 except BaseException:
-                    pass  # Railway bloquea SMTP; el formulario igual se guarda en BD
+                    pass 
 
                 messages.success(request, "¡Solicitud recibida! Te contactaremos a la brevedad para coordinar la inspección.")
                 return redirect('home')
@@ -217,10 +200,84 @@ def home(request):
     return render(request, 'core/home.html', context)
 
 
-# ──────────────────────────────────────────────────────────
-# Páginas de servicio individuales (indexables por Google)
-# Cacheadas 1 hora: contenido estático que cambia poco.
-# ──────────────────────────────────────────────────────────
+def asesoria_online(request):
+    if request.method == 'POST':
+        nombre          = request.POST.get('nombre', '').strip()
+        email           = request.POST.get('email', '').strip()
+        telefono        = request.POST.get('telefono', '').strip()
+        tipo_asesoria   = request.POST.get('tipo_asesoria', 'completa')
+        mensaje_cliente = request.POST.get('mensaje', '').strip()
+
+        if nombre and email and telefono and mensaje_cliente:
+            solicitud = SolicitudAsesoria.objects.create(
+                nombre=nombre,
+                email=email,
+                telefono=telefono,
+                gateway='transferencia',
+                tipo_asesoria=tipo_asesoria,
+                mensaje=mensaje_cliente,
+                estado='PENDIENTE'
+            )
+
+            monto = 60000 if tipo_asesoria == 'completa' else 30000
+            tipo_label = dict(SolicitudAsesoria.TIPO_CHOICES).get(tipo_asesoria, tipo_asesoria)
+            monto_fmt = f"${monto:,}".replace(",", ".")
+
+            email_context = {
+                'solicitud': solicitud,
+                'nombre': nombre,
+                'monto': monto,
+                'monto_fmt': monto_fmt,
+                'tipo_label': tipo_label,
+                'telefono': telefono,
+                'email': email,
+            }
+            html_content = render_to_string('core/email_asesoria.html', email_context)
+            text_content = strip_tags(html_content)
+            try:
+                send_mail(
+                    subject=f"Solicitud #{solicitud.pk} confirmada - Alto Gas SPA",
+                    message=text_content,
+                    from_email=None,
+                    recipient_list=[email],
+                    html_message=html_content,
+                    fail_silently=True,
+                )
+            except BaseException:
+                pass
+
+            cuerpo_admin = (
+                f"Nueva solicitud de ASESORÍA ONLINE #{solicitud.pk}\n\n"
+                f"Gateway: TRANSFERENCIA\n"
+                f"Tipo: {tipo_label}\n"
+                f"Nombre: {nombre}\n"
+                f"Teléfono: {telefono}\n"
+                f"Email: {email}\n\n"
+                f"Proyecto / Consulta:\n{mensaje_cliente}"
+            )
+            try:
+                send_mail(
+                    subject=f"[Asesoría Online] #{solicitud.pk} TRANSFERENCIA: {nombre}",
+                    message=cuerpo_admin,
+                    from_email=None,
+                    recipient_list=['Altogasspa@gmail.com'],
+                    fail_silently=True,
+                )
+            except BaseException:
+                pass
+
+            return render(request, 'core/asesoria_online.html', {
+                'mostrar_modal': True,
+                'solicitud': solicitud,
+                'monto': monto,
+                'monto_fmt': monto_fmt,
+            })
+
+        messages.error(request, "Por favor completa todos los campos correctamente.")
+        return redirect('asesoria_online')
+
+    return render(request, 'core/asesoria_online.html')
+
 
 @cache_page(60 * 60)
 def servicio_sello_verde(request):
