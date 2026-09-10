@@ -15,3 +15,6 @@ env/
 .claude/
 # Respaldos de base de datos (contienen datos de clientes)
 backups/
+
+# Salida de collectstatic (se regenera en cada arranque, ver Procfile)
+staticfiles/
