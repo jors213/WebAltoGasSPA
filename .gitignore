@@ -13,3 +13,5 @@ env/
 # Archivos de sistema
 .DS_Store
 .claude/
+# Respaldos de base de datos (contienen datos de clientes)
+backups/
