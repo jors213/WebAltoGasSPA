@@ -1,1 +1,0 @@
-sonda de despliegue: si esta URL responde 200, collectstatic corrio en el arranque
