@@ -58,10 +58,11 @@ def home(request):
     # botón "Ver las opiniones en Google" (si queda vacío, el botón no se muestra).
     google_reviews_url = ""
 
+    # Las mejores primero: el carrusel de la home las muestra en este orden.
     testimonials = [
         {
             'name': "Camilo Venegas Gotelli",
-            'meta': "Kinesiólogo · Sello Verde y TC6",
+            'meta': "Sello Verde y TC6",
             'text': "Muy agradecidos, me costó mucho confiar porque anteriormente me habían estafado, "
                     "lo recomiendo totalmente. Tramitó sello verde y TC6.",
         },
@@ -78,6 +79,53 @@ def home(request):
             'text': "Excelente servicio, 100% recomendado. Se puede ver la experiencia en el servicio "
                     "otorgado. Adicionalmente quiero agregar que tiene la paciencia de explicar con "
                     "detalle el trabajo ejecutado.",
+        },
+        {
+            'name': "Eyleen Andrea Canchig",
+            'meta': "Instalación",
+            'text': "100% recomendado. El trabajo de David un 7, muy simpático, me ayudó con la "
+                    "instalación, me explicó todo. Así que lo recomiendo a ojos cerrados.",
+        },
+        {
+            'name': "Nicol Andrea Londoño",
+            'meta': "Asesoría de proyectos",
+            'text': "Me contacté con David para ver unos proyectos y quedé muy conforme con la atención "
+                    "y la asesoría. Recomendadísimo.",
+        },
+        {
+            'name': "Rebeca Badilla",
+            'meta': "Cliente",
+            'text': "Buen servicio, siempre atento a las consultas y para agilizar proceso. Recomendable.",
+        },
+        {
+            'name': "Mauro Robles",
+            'meta': "Ejecución de trabajos",
+            'text': "Profesionalismo en la ejecución de los trabajos, totalmente recomendable.",
+        },
+        {
+            'name': "Fernando Armijo",
+            'meta': "Cliente",
+            'text': "Excelente servicio, profesional y comprometido.",
+        },
+        {
+            'name': "Brallan Cea",
+            'meta': "Cliente",
+            'text': "Excelente servicio, muy profesional.",
+        },
+        {
+            'name': "Braulio Miranda",
+            'meta': "Cliente",
+            'text': "Perfecto el servicio, buena atención. ¡Recomendado!",
+        },
+        {
+            'name': "Yordan Sáez",
+            'meta': "Cliente",
+            'text': "Buen trabajo, buen profesional. Recomendado.",
+        },
+        {
+            'name': "Cecilia Canchig",
+            'meta': "Cliente",
+            'text': "Excelente servicio, recomendado 100%.",
         },
     ]
 

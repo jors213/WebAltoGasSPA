@@ -110,6 +110,20 @@
    cerrado) que es como se compone tipografía geométrica en display.
    ─────────────────────────────────────────────────────────────────────────── */
 @layer base {
+  /* Sin arrastre lateral en móvil.
+     Tener overflow-x:hidden sólo en <body> no basta: <html> se queda en
+     `visible`, el gesto tactil sigue desplazando el documento y los elementos
+     `fixed` (la barra inferior) se despegan del contenido al arrastrar.
+     `clip` es mejor que `hidden` porque no crea un contenedor de scroll, así
+     que no rompe position:sticky ni encadena scrolls; `hidden` queda de
+     respaldo para navegadores antiguos. */
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

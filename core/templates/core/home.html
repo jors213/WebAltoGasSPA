@@ -292,7 +292,7 @@
     </style>
 </head>
 
-<body class="bg-white text-slate-800 overflow-x-hidden">
+<body class="bg-white text-slate-800">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZFV7BXS" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
@@ -682,27 +682,51 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 border-t border-b border-slate-200">
-                {% for t in testimonials %}
-                <div
-                    class="flex flex-col gap-5 py-8 md:py-9 {% if not forloop.last %}border-b md:border-b-0 md:border-r border-slate-200 md:pr-8{% endif %}{% if not forloop.first %} md:pl-8{% endif %} reveal delay-{{ forloop.counter }}">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="#e2e8f0" aria-hidden="true">
-                        <path
-                            d="M9.5 4C6 4 3 7 3 10.5V20h8v-9H6.5c0-2 1.4-3.5 3-3.5zM21 4c-3.5 0-6.5 3-6.5 6.5V20h8v-9H18c0-2 1.4-3.5 3-3.5z" />
-                    </svg>
-                    <p class="text-[17px] leading-relaxed text-slate-800">{{ t.text }}</p>
-                    <div class="flex items-center gap-3 mt-auto">
-                        <div
-                            class="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
-                            <span class="text-sm font-bold text-slate-500">{{ t.name|first }}</span>
+            {% comment %}
+            Carrusel: scroll-snap nativo. Se arrastra con el dedo en móvil y
+            con las flechas o el teclado en escritorio. Sin librerías.
+            {% endcomment %}
+            <div id="testimonios" class="relative border-t border-b border-slate-200">
+                <div id="testimonios-pista"
+                    class="flex gap-0 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&amp;::-webkit-scrollbar]:hidden"
+                    tabindex="0" role="group" aria-label="Opiniones de clientes en Google">
+                    {% for t in testimonials %}
+                    <article
+                        class="snap-start shrink-0 basis-full md:basis-1/2 lg:basis-1/3 flex flex-col gap-5 py-8 md:py-9 px-1 md:px-8 border-r border-slate-200">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="#e2e8f0" aria-hidden="true">
+                            <path
+                                d="M9.5 4C6 4 3 7 3 10.5V20h8v-9H6.5c0-2 1.4-3.5 3-3.5zM21 4c-3.5 0-6.5 3-6.5 6.5V20h8v-9H18c0-2 1.4-3.5 3-3.5z" />
+                        </svg>
+                        <p class="text-[17px] leading-relaxed text-slate-800">{{ t.text }}</p>
+                        <div class="flex items-center gap-3 mt-auto">
+                            <div
+                                class="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                                <span class="text-sm font-bold text-slate-500">{{ t.name|first }}</span>
+                            </div>
+                            <div class="flex flex-col gap-0.5">
+                                <span class="text-sm font-bold text-slate-900">{{ t.name }}</span>
+                                <span class="mono text-[8px] text-slate-400">{{ t.meta }}</span>
+                            </div>
                         </div>
-                        <div class="flex flex-col gap-0.5">
-                            <span class="text-sm font-bold text-slate-900">{{ t.name }}</span>
-                            <span class="mono text-[8px] text-slate-400">{{ t.meta }}</span>
-                        </div>
-                    </div>
+                    </article>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            </div>
+
+            <div class="flex items-center justify-between gap-4 pt-6">
+                <span class="mono text-[9px] text-slate-400">
+                    <span id="testimonios-indice">1</span> / {{ testimonials|length }} · desliza para ver más
+                </span>
+                <div class="flex gap-2.5">
+                    <button type="button" id="testimonios-prev" aria-label="Opinión anterior"
+                        class="w-11 h-11 rounded-md border border-slate-200 flex items-center justify-center text-slate-500 hover:border-slate-300 hover:text-[#F47B20] transition-colors disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-500">
+                        <i data-lucide="arrow-left" class="w-[18px] h-[18px]"></i>
+                    </button>
+                    <button type="button" id="testimonios-next" aria-label="Opinión siguiente"
+                        class="w-11 h-11 rounded-md border border-slate-200 flex items-center justify-center text-slate-500 hover:border-slate-300 hover:text-[#F47B20] transition-colors disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-500">
+                        <i data-lucide="arrow-right" class="w-[18px] h-[18px]"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -959,6 +983,60 @@
 
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
             .forEach(el => revealObserver.observe(el));
+
+        // ── Carrusel de opiniones ───────────────────────────────────────────
+        // La pista es un contenedor con scroll-snap: el arrastre táctil ya
+        // funciona solo. Esto añade flechas, teclado y el contador.
+        (function () {
+            const pista = document.getElementById('testimonios-pista');
+            if (!pista) return;
+            const prev = document.getElementById('testimonios-prev');
+            const next = document.getElementById('testimonios-next');
+            const indice = document.getElementById('testimonios-indice');
+            const tarjetas = [...pista.children];
+            if (!tarjetas.length) return;
+
+            const paso = () => tarjetas[0].getBoundingClientRect().width;
+
+            const actualizar = () => {
+                const actual = Math.round(pista.scrollLeft / paso());
+                indice.textContent = Math.min(actual + 1, tarjetas.length);
+                // 1px de tolerancia: el scroll fraccionario nunca cae exacto
+                prev.disabled = pista.scrollLeft <= 1;
+                next.disabled = pista.scrollLeft >= pista.scrollWidth - pista.clientWidth - 1;
+            };
+
+            const mover = dir => {
+                pista.scrollBy({ left: dir * paso(), behavior: 'smooth' });
+                // El evento `scroll` no llega en todos los navegadores cuando el
+                // desplazamiento es programático y suave, así que refrescamos a
+                // mano una vez terminada la animación.
+                setTimeout(actualizar, 450);
+            };
+
+            prev.addEventListener('click', () => mover(-1));
+            next.addEventListener('click', () => mover(1));
+
+            pista.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight') { e.preventDefault(); mover(1); }
+                if (e.key === 'ArrowLeft') { e.preventDefault(); mover(-1); }
+            });
+
+            // Fuente de verdad para el arrastre con el dedo: qué tarjeta se ve.
+            if ('IntersectionObserver' in window) {
+                const observador = new IntersectionObserver(actualizar,
+                    { root: pista, threshold: 0.6 });
+                tarjetas.forEach(t => observador.observe(t));
+            }
+
+            let esperando;
+            pista.addEventListener('scroll', () => {
+                clearTimeout(esperando);
+                esperando = setTimeout(actualizar, 80);
+            });
+            window.addEventListener('resize', actualizar);
+            actualizar();
+        })();
     </script>
 
 </body>

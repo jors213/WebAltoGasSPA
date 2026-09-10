@@ -137,12 +137,20 @@
         .counter-val { display: inline-block; }
 
         /* ─── Diagonal section divider ───────────────────────── */
+        /* El corte diagonal se comía la fila de cifras (+13, +200, 100%, 60 min),
+           que vive al final de este mismo header.
+
+           La profundidad va en PÍXELES, no en porcentaje: con `85%` la diagonal
+           crecía con el alto de la sección, y en móvil —donde el header mide el
+           doble— se tragaba entera la fila. Con un valor fijo, el padding
+           inferior reserva siempre el mismo hueco y las cifras quedan a salvo
+           en cualquier pantalla. */
         .skew-divider {
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-            padding-bottom: 5rem;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 90px), 0 100%);
+            padding-bottom: 11rem;
         }
         .skew-divider-bottom {
-            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 60px, 100% 0, 100% 100%, 0 100%);
             margin-top: -3rem;
             padding-top: 5rem;
         }

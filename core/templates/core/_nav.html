@@ -12,9 +12,14 @@ nunca con llave-almohadilla, que sólo comenta UNA línea.
 <nav id="navbar"
     class="fixed top-0 w-full z-50 h-[68px] md:h-20 flex items-center px-4 md:px-10 bg-[#0d1b35]/95 backdrop-blur-md border-b border-[#4BB8E8]/[0.16] transition-all duration-300">
 
-    <div class="flex items-center gap-3 md:gap-4">
+    {% comment %}
+    Mientras se ve la hamburguesa (por debajo de lg) el logo va centrado en la
+    barra; en lg+ vuelve al flujo, a la izquierda. Mismo tamaño en ambos.
+    {% endcomment %}
+    <div
+        class="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 flex items-center gap-3 lg:gap-4">
         <a href="{% url 'home' %}" class="flex-shrink-0">
-            <img src="{% static 'core/img/IconoAG.png' %}" alt="Alto Gas SPA" class="h-10 md:h-12 w-auto object-contain">
+            <img src="{% static 'core/img/logo_ag.png' %}" alt="Alto Gas SPA" class="h-12 w-auto object-contain">
         </a>
         <div class="hidden lg:flex items-center gap-4">
             <div class="w-px h-7 bg-white/[0.14]"></div>
@@ -25,33 +30,33 @@ nunca con llave-almohadilla, que sólo comenta UNA línea.
         </div>
     </div>
 
-    <ul class="hidden md:flex flex-1 items-center justify-center gap-6 lg:gap-7 list-none">
+    <ul class="hidden lg:flex flex-1 items-center justify-center gap-6 xl:gap-7 list-none">
         <li class="flex flex-col items-center gap-1.5">
             <a href="{% url 'home' %}"
-                class="text-sm {% if activo == 'home' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Inicio</a>
+                class="text-sm whitespace-nowrap {% if activo == 'home' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Inicio</a>
             {% if activo == 'home' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
         </li>
         <li class="flex flex-col items-center gap-1.5">
             <a href="{% url 'servicio_sello_verde' %}"
-                class="text-sm {% if activo == 'sello_verde' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Sello
+                class="text-sm whitespace-nowrap {% if activo == 'sello_verde' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Sello
                 Verde</a>
             {% if activo == 'sello_verde' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
         </li>
         <li class="flex flex-col items-center gap-1.5">
             <a href="{% url 'servicio_tramites_sec' %}"
-                class="text-sm {% if activo == 'tramites_sec' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Trámites
+                class="text-sm whitespace-nowrap {% if activo == 'tramites_sec' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Trámites
                 SEC</a>
             {% if activo == 'tramites_sec' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
         </li>
         <li class="flex flex-col items-center gap-1.5">
             <a href="{% url 'servicio_proyectos' %}"
-                class="text-sm {% if activo == 'proyectos' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Proyectos</a>
+                class="text-sm whitespace-nowrap {% if activo == 'proyectos' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Proyectos</a>
             {% if activo == 'proyectos' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
         </li>
         <li class="flex flex-col items-center gap-1.5">
             <span class="flex items-center gap-1.5">
                 <a href="{% url 'asesoria_online' %}"
-                    class="text-sm {% if activo == 'asesoria' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Asesoría
+                    class="text-sm whitespace-nowrap {% if activo == 'asesoria' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Asesoría
                     Online</a>
                 <span
                     class="mono text-[8px] bg-[#F47B20]/[0.16] border border-[#F47B20]/50 text-[#ffb173] px-1.5 py-0.5 rounded">Nuevo</span>
@@ -63,7 +68,7 @@ nunca con llave-almohadilla, que sólo comenta UNA línea.
         </li>
     </ul>
 
-    <div class="flex items-center gap-3 md:gap-5 ml-auto md:ml-0">
+    <div class="flex items-center gap-3 lg:gap-5 ml-auto lg:ml-0">
         <a href="tel:+56931187107" class="hidden lg:flex flex-col items-end gap-0.5 group">
             <span class="mono text-[8px] text-white/40">Llámanos</span>
             <span
@@ -77,7 +82,7 @@ nunca con llave-almohadilla, que sólo comenta UNA línea.
             WhatsApp
         </a>
         <button id="hamburger" onclick="toggleMenu()"
-            class="md:hidden flex flex-col gap-[5px] items-center justify-center w-11 h-11 cursor-pointer"
+            class="lg:hidden flex flex-col gap-[5px] items-center justify-center w-11 h-11 cursor-pointer"
             aria-label="Menú" aria-expanded="false" aria-controls="mobile-menu">
             <span class="w-[22px] h-0.5 bg-white rounded"></span>
             <span class="w-[22px] h-0.5 bg-white rounded"></span>
@@ -86,8 +91,9 @@ nunca con llave-almohadilla, que sólo comenta UNA línea.
     </div>
 </nav>
 
+{# El desplegable arranca justo bajo la barra, que mide 68px y 80px desde md #}
 <div id="mobile-menu"
-    class="fixed top-[68px] left-0 right-0 z-40 bg-[#0d1b35] border-b border-white/10 flex-col px-5 py-3">
+    class="fixed top-[68px] md:top-20 left-0 right-0 z-40 bg-[#0d1b35] border-b border-white/10 flex-col px-5 py-3">
     <a href="{% url 'home' %}" class="text-white/70 font-medium py-3.5 border-b border-white/5">Inicio</a>
     <a href="{% url 'servicio_sello_verde' %}" class="text-white/70 font-medium py-3.5 border-b border-white/5">Sello
         Verde</a>
