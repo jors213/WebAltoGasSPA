@@ -34,6 +34,10 @@
     }
     </script>
 
+    <!-- Fuentes de marca autoalojadas (Sora + Manrope). Precarga: el navegador
+         las pide en paralelo con el CSS, no despues, => sin parpadeo de texto. -->
+    <link rel="preload" href="{% static 'core/fonts/manrope-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'core/fonts/sora-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{% static 'core/css/tailwind.css' %}">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>

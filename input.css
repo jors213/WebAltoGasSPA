@@ -1,16 +1,137 @@
 @import "tailwindcss";
 
-/* ── Google Sans Flex (fuente local variable) ──────────────────────────────
-   Ruta relativa al CSS compilado: core/static/core/css/tailwind.css
-   → ../fonts/ apunta a core/static/core/fonts/
-   El eje wght cubre 100–900 con un solo archivo (variable font).
-*/
+/* ═══════════════════════════════════════════════════════════════════════════
+   SISTEMA TIPOGRÁFICO DE MARCA — Alto Gas SPA
+   ───────────────────────────────────────────────────────────────────────────
+   Sora    → títulos / display  (geométrica, corte técnico → ingeniería)
+   Manrope → cuerpo / UI        (alta legibilidad en párrafos y tablas)
+
+   Ambas bajo licencia SIL Open Font License 1.1 (uso comercial y
+   autoalojamiento permitidos). Copia de las licencias en:
+     core/static/core/fonts/OFL-Sora.txt
+     core/static/core/fonts/OFL-Manrope.txt
+
+   Autoalojadas en WOFF2 variable: ~89 KB las dos familias completas
+   (100–800), sin requests a terceros y sin enviar la IP del visitante
+   a Google (RGPD).
+
+   Las rutas son relativas al CSS COMPILADO, que vive en
+   core/static/core/css/tailwind.css → por eso ../fonts/
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Sora — display / títulos ─────────────────────────────────────────────── */
 @font-face {
-  font-family: 'Google Sans Flex';
-  src: url('../fonts/GoogleSansFlex-Variable.ttf') format('truetype');
-  font-weight: 100 900;
+  font-family: 'Sora';
+  src: url('../fonts/sora-latin.woff2') format('woff2');
+  font-weight: 100 800;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sora';
+  src: url('../fonts/sora-latin-ext.woff2') format('woff2');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ── Manrope — cuerpo / UI ────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Manrope';
+  src: url('../fonts/manrope-latin.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../fonts/manrope-latin-ext.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ── Fallbacks con métricas calibradas ────────────────────────────────────────
+   Con font-display:swap el texto se pinta primero con la fuente del sistema y
+   luego cambia a la de marca. Si las métricas no coinciden, el texto "salta"
+   → eso es CLS y Google lo penaliza en Core Web Vitals.
+
+   Estos dos @font-face reescalan Arial para que ocupe EXACTAMENTE el mismo
+   espacio que Sora/Manrope, así el swap es invisible.
+
+   Valores derivados de las métricas reales de los TTF variables
+   (unitsPerEm, x-height y hhea asc/desc) comparados contra Arial:
+     Sora    upem 1000 · xHeight 534  · hhea 970/-290/0
+     Manrope upem 2000 · xHeight 1080 · hhea 2132/-600/0
+     Arial   upem 2048 · xHeight 1062 · hhea 1854/-434/67
+   ─────────────────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Sora Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Liberation Sans');
+  size-adjust: 102.98%;
+  ascent-override: 94.19%;
+  descent-override: 28.16%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Manrope Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Liberation Sans');
+  size-adjust: 104.14%;
+  ascent-override: 102.37%;
+  descent-override: 28.81%;
+  line-gap-override: 0%;
+}
+
+/* ── Tokens de tema (Tailwind v4) ─────────────────────────────────────────────
+   Al sobrescribir --font-sans, Tailwind v4 lo propaga vía --default-font-family
+   al preflight (html), de modo que TODO el sitio hereda Manrope sin tocar un
+   solo template. --font-display genera además la utilidad .font-display.
+   ─────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: 'Manrope', 'Manrope Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Sora', 'Sora Fallback', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Reglas base de la identidad ──────────────────────────────────────────────
+   Los encabezados usan Sora automáticamente: no hace falta ninguna clase en
+   los templates. El tracking negativo es progresivo (a mayor tamaño, más
+   cerrado) que es como se compone tipografía geométrica en display.
+   ─────────────────────────────────────────────────────────────────────────── */
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: var(--font-display);
+  }
+
+  h1 { letter-spacing: -0.032em; }
+  h2 { letter-spacing: -0.026em; }
+  h3 { letter-spacing: -0.018em; }
+  h4 { letter-spacing: -0.012em; }
+  h5, h6 { letter-spacing: -0.006em; }
+
+  /* Cifras alineadas y de ancho fijo en datos duros (precios, RUT, teléfonos,
+     contadores) para que no bailen al animarse ni se desalineen en columnas. */
+  .tabular {
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
 }
 
 /* Escanear todos los templates Django */
