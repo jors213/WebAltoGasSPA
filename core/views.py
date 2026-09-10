@@ -1,3 +1,5 @@
+import uuid
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
@@ -8,6 +10,25 @@ from django.views.decorators.cache import cache_page, never_cache
 from django.urls import reverse
 from .forms import ContactForm
 from .models import Contacto, SolicitudAsesoria
+
+# ── Precios de la asesoría online ───────────────────────────────────────────
+# Única fuente de verdad: antes el par 60000/30000 estaba escrito a mano en
+# cada vista, así que un cambio de tarifa obligaba a acordarse de los dos.
+PRECIOS_ASESORIA = {
+    'completa': 60000,
+    'express':  30000,
+}
+
+
+def monto_asesoria(tipo_asesoria):
+    """Precio en CLP del tipo de sesión, con `completa` como respaldo."""
+    return PRECIOS_ASESORIA.get(tipo_asesoria, PRECIOS_ASESORIA['completa'])
+
+
+def formatea_clp(monto):
+    """60000 -> "$60.000" (separador de miles chileno)."""
+    return f"${monto:,}".replace(",", ".")
+
 
 def home(request):
     services = [
@@ -286,12 +307,23 @@ def asesoria_online(request):
                 gateway='transferencia',
                 tipo_asesoria=tipo_asesoria,
                 mensaje=mensaje_cliente,
-                estado='PENDIENTE'
+                estado='PENDIENTE',
+                # Llave del enlace de pago. Sin ella la URL no resuelve, así que
+                # nadie puede leer los datos de una solicitud ajena probando
+                # /pago-transferencia/1/, /2/, /3/...
+                token_transaccion=uuid.uuid4(),
             )
 
-            monto = 60000 if tipo_asesoria == 'completa' else 30000
+            monto = monto_asesoria(tipo_asesoria)
             tipo_label = dict(SolicitudAsesoria.TIPO_CHOICES).get(tipo_asesoria, tipo_asesoria)
-            monto_fmt = f"${monto:,}".replace(",", ".")
+            monto_fmt = formatea_clp(monto)
+
+            # Absoluta porque viaja por correo: es la única forma de recuperar
+            # la página de pago si el cliente cierra la pestaña.
+            url_pago = request.build_absolute_uri(reverse('pago_transferencia', kwargs={
+                'pk': solicitud.pk,
+                'token': solicitud.token_transaccion,
+            }))
 
             email_context = {
                 'solicitud': solicitud,
@@ -301,6 +333,7 @@ def asesoria_online(request):
                 'tipo_label': tipo_label,
                 'telefono': telefono,
                 'email': email,
+                'url_pago': url_pago,
             }
             html_content = render_to_string('core/email_asesoria.html', email_context)
             text_content = strip_tags(html_content)
@@ -323,7 +356,8 @@ def asesoria_online(request):
                 f"Nombre: {nombre}\n"
                 f"Teléfono: {telefono}\n"
                 f"Email: {email}\n\n"
-                f"Proyecto / Consulta:\n{mensaje_cliente}"
+                f"Proyecto / Consulta:\n{mensaje_cliente}\n\n"
+                f"Página de pago del cliente:\n{url_pago}"
             )
             try:
                 send_mail(
@@ -336,13 +370,11 @@ def asesoria_online(request):
             except BaseException:
                 pass
 
-            return render(request, 'core/asesoria_online.html', {
-                'expertise_areas': expertise_areas,
-                'mostrar_modal': True,
-                'solicitud': solicitud,
-                'monto': monto,
-                'monto_fmt': monto_fmt,
-            })
+            # Patrón POST-Redirect-GET: recargar la página ya no vuelve a crear
+            # la solicitud ni a disparar los dos correos.
+            return redirect('pago_transferencia',
+                            pk=solicitud.pk,
+                            token=solicitud.token_transaccion)
 
         messages.error(request, "Por favor completa todos los campos correctamente.")
         return redirect('asesoria_online')
@@ -427,15 +459,23 @@ def servicio_proyectos(request):
     return render(request, 'core/servicio_proyectos.html', {'deliverables': deliverables})
 
 
-def pago_transferencia(request, pk):
+@never_cache
+def pago_transferencia(request, pk, token):
     """
-    Vista para Transferencia Bancaria Manual - muestra instrucciones y monto
+    Instrucciones de transferencia de UNA solicitud concreta.
+
+    El `token` es lo que protege la página: sin él la URL no resuelve, así que
+    los datos de contacto del cliente no quedan expuestos a quien pruebe
+    /pago-transferencia/1/, /2/, /3/... Va sin filtro de `estado` a propósito:
+    el enlace viaja en el correo de confirmación y tiene que seguir abriendo
+    aunque David ya haya marcado la solicitud como pagada.
     """
-    solicitud = get_object_or_404(SolicitudAsesoria, pk=pk, estado='PENDIENTE')
-    monto = 60000 if solicitud.tipo_asesoria == 'completa' else 30000
+    solicitud = get_object_or_404(SolicitudAsesoria, pk=pk, token_transaccion=token)
+    monto = monto_asesoria(solicitud.tipo_asesoria)
     context = {
         'solicitud': solicitud,
         'monto': monto,
-        'title': f'Pago Transferencia #{pk} - Alto Gas SPA'
+        'monto_fmt': formatea_clp(monto),
+        'title': f'Pago Transferencia #{pk} - Alto Gas SPA',
     }
     return render(request, 'core/pago_transferencia.html', context)

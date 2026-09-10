@@ -8,6 +8,7 @@ from django.http import HttpResponse
 
 robots_txt = """User-agent: *
 Disallow: /admin/
+Disallow: /pago-transferencia/
 Allow: /
 Sitemap: https://www.altogasspa.cl/sitemap.xml
 """
@@ -51,7 +52,9 @@ urlpatterns = [
     path('servicios/sello-verde/',         servicio_sello_verde,  name='servicio_sello_verde'),
     path('servicios/tramites-sec/',        servicio_tramites_sec, name='servicio_tramites_sec'),
     path('servicios/proyectos-ingenieria/',servicio_proyectos,    name='servicio_proyectos'),
-    path('pago-transferencia/<int:pk>/', pago_transferencia, name='pago_transferencia'),
+    # El token (UUID) es lo que autoriza a ver la solicitud: sin el par
+    # pk+token la URL no resuelve. Ver core.views.pago_transferencia.
+    path('pago-transferencia/<int:pk>/<uuid:token>/', pago_transferencia, name='pago_transferencia'),
 
     path('robots.txt', lambda request: HttpResponse(robots_txt, content_type='text/plain')),
     path('sitemap.xml', lambda request: HttpResponse(sitemap_xml, content_type='application/xml')),

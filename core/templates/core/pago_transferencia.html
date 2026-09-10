@@ -1,20 +1,62 @@
-{% extends "core/asesoria_online.html" %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth scroll-pt-24">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="Instrucciones para completar el pago por transferencia de tu asesoría online con Alto Gas SPA.">
 
-{% block title %}Pago Transferencia - Alto Gas SPA{% endblock %}
+    {% comment %}
+    noindex obligatorio: la página muestra nombre, teléfono y correo del cliente.
+    El robots.txt también bloquea /pago-transferencia/, pero esta etiqueta es la
+    que cuenta si alguien comparte el enlace y un buscador lo descubre igual.
+    {% endcomment %}
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="{% static 'core/img/flavicon.png' %}">
 
-{% block content %}
+    <!-- Fuentes de marca autoalojadas (Sora + Manrope). Precarga: el navegador
+         las pide en paralelo con el CSS, no despues, => sin parpadeo de texto. -->
+    <link rel="preload" href="{% static 'core/fonts/manrope-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'core/fonts/sora-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'core/css/tailwind.css' %}">
+    <script src="https://unpkg.com/lucide@1.43.0"></script>
+    <style>
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .card-lift {
+            transition: transform 0.3s cubic-bezier(.22,1,.36,1),
+                        box-shadow 0.3s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px -12px rgba(30,58,138,.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 font-sans text-slate-800">
+
+{% include 'core/_nav.html' with activo='asesoria' %}
+
 <!-- ═══════════════════════════════════════════════════════════
      HERO - Confirmación Transferencia
 ═══════════════════════════════════════════════════════════ -->
 <section class="min-h-screen pt-36 pb-28 bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900 text-white relative overflow-hidden">
-    <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
-    
-    <div class="container mx-auto px-6 max-w-2xl relative z-10">
-        <div data-reveal class="text-center mb-16">
+    <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+    {% comment %}
+    max-w-3xl y no 2xl: dentro de la tarjeta van dos columnas de datos y con 672px
+    los correos largos se parten a la mitad de una palabra.
+    {% endcomment %}
+    <div class="container mx-auto px-6 max-w-3xl relative z-10">
+        <div class="text-center mb-16">
             <div class="inline-flex items-center gap-2 bg-green-600 text-white text-sm font-bold px-6 py-3 rounded-full mb-8 shadow-2xl">
                 <span class="w-2 h-2 bg-green-300 rounded-full animate-ping"></span>
-                ✓ SOLICITUD #{ { solicitud.pk } } RECIBIDA
+                &#10003; SOLICITUD #{{ solicitud.pk }} RECIBIDA
             </div>
             <h1 class="font-display text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
                 Transferencia Bancaria
@@ -25,8 +67,21 @@
             </p>
         </div>
 
+        {% if solicitud.estado == 'PAGADO' %}
+        <div class="mb-10 flex items-start gap-4 bg-green-500/15 border border-green-400/40 rounded-2xl p-6">
+            <i data-lucide="check-circle-2" class="w-7 h-7 text-green-300 shrink-0"></i>
+            <div>
+                <p class="font-display font-bold text-white text-lg mb-1">Pago confirmado</p>
+                <p class="text-sm text-green-100 leading-relaxed">
+                    Ya recibimos tu transferencia. Te enviaremos la invitación de Google Calendar
+                    con el enlace a la videollamada al correo <span class="font-bold">{{ solicitud.email }}</span>.
+                </p>
+            </div>
+        </div>
+        {% endif %}
+
         <!-- Card Principal - Datos Bancarios -->
-        <div data-reveal data-delay="200" class="bg-white/10 backdrop-blur-xl rounded-3xl p-10 md:p-12 border border-white/20 shadow-2xl card-lift">
+        <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-10 md:p-12 border border-white/20 shadow-2xl card-lift">
             <div class="grid md:grid-cols-2 gap-8 mb-10">
                 <!-- Resumen Solicitud -->
                 <div>
@@ -35,21 +90,21 @@
                         Tu Solicitud
                     </h3>
                     <div class="space-y-4 text-lg">
-                        <div class="flex justify-between">
+                        <div class="flex justify-between gap-3">
                             <span class="text-gray-300">Cliente:</span>
-                            <span class="font-bold text-white">{{ solicitud.nombre }}</span>
+                            <span class="font-bold text-white text-right">{{ solicitud.nombre }}</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between gap-3">
                             <span class="text-gray-300">Teléfono:</span>
-                            <span class="font-bold text-orange-400">{{ solicitud.telefono }}</span>
+                            <span class="tabular font-bold text-orange-400 text-right">{{ solicitud.telefono }}</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between gap-3">
                             <span class="text-gray-300">Email:</span>
-                            <span class="font-bold text-blue-400">{{ solicitud.email }}</span>
+                            <span class="font-bold text-blue-400 text-right break-words">{{ solicitud.email }}</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center gap-3">
                             <span class="text-gray-300">Tipo:</span>
-                            <span class="bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm font-bold">
+                            <span class="bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm font-bold text-right">
                                 {{ solicitud.get_tipo_asesoria_display }}
                             </span>
                         </div>
@@ -63,21 +118,21 @@
                         Transferir A
                     </h3>
                     <div class="bg-gradient-to-r from-emerald-900/50 to-green-900/50 rounded-2xl p-6 border border-green-500/30 space-y-4">
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center gap-3">
                             <span class="text-green-200 font-semibold">Monto Exacto:</span>
-                            <span class="text-3xl font-display font-extrabold text-white">${{ monto|floatformat:0 }} CLP</span>
+                            <span class="tabular text-3xl font-display font-extrabold text-white">{{ monto_fmt }}</span>
                         </div>
                         <hr class="border-green-500/30 my-4">
                         <div class="space-y-3 text-sm">
-                            <div class="flex justify-between"><span class="text-gray-300">Titular:</span> <span class="font-mono font-bold text-white">DAVID RUBEN TORRES</span></div>
-                            <div class="flex justify-between"><span class="text-gray-300">RUT:</span> <span class="font-mono font-bold text-white">18.530.633-K</span></div>
-                            <div class="flex justify-between"><span class="text-gray-300">Banco:</span> <span class="font-mono font-bold text-white">Banco Bci</span></div>
-                            <div class="flex justify-between"><span class="text-gray-300">Tipo de Cuenta:</span> <span class="font-mono font-bold text-white">Cuenta Corriente</span></div>
-                            <div class="flex justify-between"><span class="text-gray-300">Nº Cuenta:</span> <span class="font-mono font-bold text-white">51331250</span></div>
-                            <div class="flex justify-between"><span class="text-gray-300">Email:</span> <span class="font-mono font-bold text-orange-400">Altogasspa@gmail.com</span></div>
+                            <div class="flex justify-between gap-3"><span class="text-gray-300">Titular:</span> <span class="font-bold text-white text-right">DAVID RUBEN TORRES</span></div>
+                            <div class="flex justify-between gap-3"><span class="text-gray-300">RUT:</span> <span class="tabular font-bold text-white text-right">18.530.633-K</span></div>
+                            <div class="flex justify-between gap-3"><span class="text-gray-300">Banco:</span> <span class="font-bold text-white text-right">Banco Bci</span></div>
+                            <div class="flex justify-between gap-3"><span class="text-gray-300">Tipo de Cuenta:</span> <span class="font-bold text-white text-right">Cuenta Corriente</span></div>
+                            <div class="flex justify-between gap-3"><span class="text-gray-300">Nº Cuenta:</span> <span class="tabular font-bold text-white text-right">51331250</span></div>
+                            <div class="flex justify-between gap-3"><span class="text-gray-300">Email:</span> <span class="font-bold text-orange-400 text-right break-words">Altogasspa@gmail.com</span></div>
                         </div>
                         <div class="pt-4 border-t border-green-500/30 text-xs text-green-200">
-                            📱 Usa mensaje RUT + Solicitud #{{ solicitud.pk }} en "Detalle"
+                            Usa como mensaje o "Detalle": RUT + Solicitud #{{ solicitud.pk }}
                         </div>
                     </div>
                 </div>
@@ -85,19 +140,22 @@
 
             <!-- CTA WhatsApp -->
             <div class="text-center">
-                <a href="https://wa.me/56931187107?text={{ 'Hola, acabo de solicitar una asesoría online (Solicitud #'|add:solicitud.pk|stringformat:'s' }}). Adjunto mi comprobante de transferencia de ${{ monto|floatformat:0 }} CLP. Gracias!'|urlencode }}"
+                <a href="https://wa.me/56931187107?text=Hola%20David%2C%20acabo%20de%20transferir%20el%20monto%20de%20mi%20solicitud%20%23{{ solicitud.pk }}%20y%20quiero%20enviar%20el%20comprobante."
                    target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 
+                   class="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600
                           text-white font-extrabold py-5 px-12 rounded-2xl shadow-2xl shadow-green-600/40
-                          transition-all duration-300 transform hover:-translate-y-2 hover:shadow-3xl text-lg font-display">
+                          transition-all duration-300 transform hover:-translate-y-2 text-lg font-display">
                     <i data-lucide="send" class="w-6 h-6"></i>
                     Ya Transferí - Enviar Comprobante
                 </a>
+                <p class="mt-4 text-sm text-gray-400">
+                    También te enviamos estos datos por correo a {{ solicitud.email }}.
+                </p>
             </div>
         </div>
 
         <!-- Trust Indicators -->
-        <div data-reveal data-delay="400" class="mt-20 grid md:grid-cols-3 gap-8 text-center text-sm">
+        <div class="mt-20 grid md:grid-cols-3 gap-8 text-center text-sm">
             <div class="flex flex-col items-center gap-2 p-6 bg-white/5 rounded-2xl border border-white/10">
                 <i data-lucide="shield-check" class="w-12 h-12 text-green-400 mb-3"></i>
                 <span class="font-bold text-white">Pago Seguro</span>
@@ -106,7 +164,7 @@
             <div class="flex flex-col items-center gap-2 p-6 bg-white/5 rounded-2xl border border-white/10">
                 <i data-lucide="clock" class="w-12 h-12 text-orange-400 mb-3"></i>
                 <span class="font-bold text-white">Confirmación</span>
-                <span class="text-gray-400">< 2 horas hábiles</span>
+                <span class="text-gray-400">&lt; 2 horas hábiles</span>
             </div>
             <div class="flex flex-col items-center gap-2 p-6 bg-white/5 rounded-2xl border border-white/10">
                 <i data-lucide="calendar-check" class="w-12 h-12 text-blue-400 mb-3"></i>
@@ -116,27 +174,9 @@
         </div>
     </div>
 </section>
-{% endblock %}
 
-{% block extra_css %}
-<style>
-    .grid-bg {
-        background-image:
-            linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-        background-size: 40px 40px;
-    }
-    .card-lift {
-        transition: transform 0.3s cubic-bezier(.22,1,.36,1),
-                    box-shadow 0.3s ease;
-    }
-    .card-lift:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 30px 80px -12px rgba(30,58,138,.3);
-    }
-</style>
-{% endblock %}
+{% include 'core/_footer.html' %}
 
-<script>
-    lucide.createIcons();
-</script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
