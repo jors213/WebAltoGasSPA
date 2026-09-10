@@ -136,7 +136,7 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Django 5.x: STATICFILES_STORAGE fue eliminado en 5.1; se configura via STORAGES.
+# Django 5.x: STATICFILES_STORAGE fue eliminado en 5.1; se configura vía STORAGES.
 # CompressedManifestStaticFilesStorage agrega hash al nombre (cache-busting +
 # Cache-Control immutable de WhiteNoise) y pre-genera los .br/.gz.
 STORAGES = {
