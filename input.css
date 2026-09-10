@@ -132,10 +132,108 @@
     font-variant-numeric: tabular-nums lining-nums;
     font-feature-settings: "tnum" 1, "lnum" 1;
   }
+
+  /* Display de marca sobre elementos que NO son encabezados (cifras del hero,
+     precios, logotipo del pie). En h1–h6 basta con las reglas de arriba.
+     Peso 800 = máximo real de Sora; 900 lo simularía el navegador. */
+  .disp {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.032em;
+    line-height: 1;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  /* Etiqueta técnica: códigos de norma, numeración de secciones, metadatos.
+     Usa la pila monoespaciada del sistema — no añade ninguna request extra
+     ni rompe la política de no servir fuentes desde terceros. */
+  .mono {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", monospace;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+}
+
+/* ── Texturas de marca ───────────────────────────────────────────────────────
+   Retícula de plano y grano sobre los fondos oscuros. Van aquí y no en el
+   <style> de cada template porque las usan el nav y el pie compartidos.
+   ─────────────────────────────────────────────────────────────────────────── */
+.blueprint {
+  background-image:
+    linear-gradient(rgba(75, 184, 232, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75, 184, 232, .06) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+.blueprint-green {
+  background-image:
+    linear-gradient(rgba(110, 231, 160, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 231, 160, .05) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .05;
+  mix-blend-mode: overlay;
+}
+
+/* Marcas de encuadre alrededor de las fotos (lámina técnica) */
+.tick {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+  border-color: rgba(75, 184, 232, .6);
+  border-style: solid;
+  border-width: 0;
+}
+
+.tick-tl { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.tick-tr { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.tick-bl { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.tick-br { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+/* Menú móvil del nav compartido */
+#mobile-menu { display: none; }
+#mobile-menu.open { display: flex; }
+
+/* Botón flotante de WhatsApp — sólo escritorio: en móvil manda la barra fija
+   del pie, si se mostraran los dos se solaparían. */
+@keyframes pulseWa {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, .5); }
+  50%      { box-shadow: 0 6px 40px rgba(37, 211, 102, .8); }
+}
+
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, .5);
+  text-decoration: none;
+  transition: transform .2s;
+  animation: pulseWa 3s infinite;
+}
+
+.wa-float:hover { transform: scale(1.1); }
+
+@media (min-width: 768px) {
+  .wa-float { display: flex; }
 }
 
 /* Escanear todos los templates Django */
 @source "./core/templates/**/*.html";
 
 /* Clases generadas dinámicamente desde views.py — forzar inclusión */
-@source inline("border-green-600 border-blue-600 border-orange-500 text-green-600 text-blue-600 text-orange-600 text-purple-600 text-red-600 text-slate-600 bg-green-100 bg-blue-100 bg-orange-100 bg-purple-100 bg-red-100 bg-slate-100");
+@source inline("border-green-600 border-blue-600 border-orange-500 text-green-600 text-blue-600 text-orange-600 text-purple-600 text-red-600 text-slate-600 bg-green-100 bg-blue-100 bg-orange-100 bg-purple-100 bg-red-100 bg-slate-100 bg-green-600 bg-blue-600 bg-orange-500");

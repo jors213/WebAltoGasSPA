@@ -1,0 +1,133 @@
+{% load static %}
+{% comment %}
+Barra de navegación compartida por TODAS las páginas.
+
+Uso:  include 'core/_nav.html' with activo='asesoria'
+Valores de `activo`: home · sello_verde · tramites_sec · proyectos · asesoria
+Alto: 68px en móvil, 80px desde md → compensar el contenido con pt-[68px] md:pt-20.
+
+OJO: los comentarios de varias líneas van con {% templatetag openblock %} comment {% templatetag closeblock %},
+nunca con llave-almohadilla, que sólo comenta UNA línea.
+{% endcomment %}
+<nav id="navbar"
+    class="fixed top-0 w-full z-50 h-[68px] md:h-20 flex items-center px-4 md:px-10 bg-[#0d1b35]/95 backdrop-blur-md border-b border-[#4BB8E8]/[0.16] transition-all duration-300">
+
+    <div class="flex items-center gap-3 md:gap-4">
+        <a href="{% url 'home' %}" class="flex-shrink-0">
+            <img src="{% static 'core/img/IconoAG.png' %}" alt="Alto Gas SPA" class="h-10 md:h-12 w-auto object-contain">
+        </a>
+        <div class="hidden lg:flex items-center gap-4">
+            <div class="w-px h-7 bg-white/[0.14]"></div>
+            <span class="flex items-center gap-2">
+                <span class="w-[7px] h-[7px] rounded-full bg-[#25a85e] ring-[3px] ring-[#25a85e]/20"></span>
+                <span class="mono text-[10px] text-[#6ee7a0]">Licencia SEC vigente</span>
+            </span>
+        </div>
+    </div>
+
+    <ul class="hidden md:flex flex-1 items-center justify-center gap-6 lg:gap-7 list-none">
+        <li class="flex flex-col items-center gap-1.5">
+            <a href="{% url 'home' %}"
+                class="text-sm {% if activo == 'home' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Inicio</a>
+            {% if activo == 'home' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
+        </li>
+        <li class="flex flex-col items-center gap-1.5">
+            <a href="{% url 'servicio_sello_verde' %}"
+                class="text-sm {% if activo == 'sello_verde' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Sello
+                Verde</a>
+            {% if activo == 'sello_verde' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
+        </li>
+        <li class="flex flex-col items-center gap-1.5">
+            <a href="{% url 'servicio_tramites_sec' %}"
+                class="text-sm {% if activo == 'tramites_sec' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Trámites
+                SEC</a>
+            {% if activo == 'tramites_sec' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
+        </li>
+        <li class="flex flex-col items-center gap-1.5">
+            <a href="{% url 'servicio_proyectos' %}"
+                class="text-sm {% if activo == 'proyectos' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Proyectos</a>
+            {% if activo == 'proyectos' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
+        </li>
+        <li class="flex flex-col items-center gap-1.5">
+            <span class="flex items-center gap-1.5">
+                <a href="{% url 'asesoria_online' %}"
+                    class="text-sm {% if activo == 'asesoria' %}text-white font-semibold{% else %}text-white/[0.66] font-medium hover:text-[#4BB8E8] transition-colors duration-200{% endif %}">Asesoría
+                    Online</a>
+                <span
+                    class="mono text-[8px] bg-[#F47B20]/[0.16] border border-[#F47B20]/50 text-[#ffb173] px-1.5 py-0.5 rounded">Nuevo</span>
+            </span>
+            {% if activo == 'asesoria' %}<span class="w-4 h-0.5 rounded bg-[#F47B20]"></span>{% endif %}
+        </li>
+        <li><a href="{% url 'home' %}#contacto"
+                class="text-white/[0.66] text-sm font-medium hover:text-[#4BB8E8] transition-colors duration-200">Contacto</a>
+        </li>
+    </ul>
+
+    <div class="flex items-center gap-3 md:gap-5 ml-auto md:ml-0">
+        <a href="tel:+56931187107" class="hidden lg:flex flex-col items-end gap-0.5 group">
+            <span class="mono text-[8px] text-white/40">Llámanos</span>
+            <span
+                class="tabular text-white text-[15px] font-bold tracking-tight group-hover:text-[#4BB8E8] transition-colors">+56
+                9 3118 7107</span>
+        </a>
+        <a href="https://wa.me/56931187107?text=Hola%20Alto%20Gas%20SPA%2C%20necesito%20informaci%C3%B3n"
+            target="_blank" rel="noopener"
+            class="hidden sm:inline-flex items-center gap-2 bg-[#F47B20] hover:bg-[#d96a10] text-white px-4 md:px-5 py-2.5 rounded-md font-bold text-sm transition-all duration-200 shadow-[0_8px_22px_rgba(244,123,32,0.34)]">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            WhatsApp
+        </a>
+        <button id="hamburger" onclick="toggleMenu()"
+            class="md:hidden flex flex-col gap-[5px] items-center justify-center w-11 h-11 cursor-pointer"
+            aria-label="Menú" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="w-[22px] h-0.5 bg-white rounded"></span>
+            <span class="w-[22px] h-0.5 bg-white rounded"></span>
+            <span class="w-[14px] h-0.5 bg-[#F47B20] rounded self-start ml-[11px]"></span>
+        </button>
+    </div>
+</nav>
+
+<div id="mobile-menu"
+    class="fixed top-[68px] left-0 right-0 z-40 bg-[#0d1b35] border-b border-white/10 flex-col px-5 py-3">
+    <a href="{% url 'home' %}" class="text-white/70 font-medium py-3.5 border-b border-white/5">Inicio</a>
+    <a href="{% url 'servicio_sello_verde' %}" class="text-white/70 font-medium py-3.5 border-b border-white/5">Sello
+        Verde</a>
+    <a href="{% url 'servicio_tramites_sec' %}" class="text-white/70 font-medium py-3.5 border-b border-white/5">Trámites
+        SEC</a>
+    <a href="{% url 'servicio_proyectos' %}"
+        class="text-white/70 font-medium py-3.5 border-b border-white/5">Proyectos</a>
+    <a href="{% url 'asesoria_online' %}" class="text-white/70 font-medium py-3.5 border-b border-white/5">Asesoría
+        Online</a>
+    <a href="{% url 'home' %}#contacto" class="text-white/70 font-medium py-3.5">Contacto</a>
+</div>
+
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById('mobile-menu');
+        var btn = document.getElementById('hamburger');
+        var abierto = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    }
+
+    document.querySelectorAll('#mobile-menu a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.remove('open');
+            document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    window.addEventListener('scroll', function () {
+        var nav = document.getElementById('navbar');
+        if (!nav) return;
+        nav.style.background = window.scrollY > 60
+            ? 'rgba(13,27,53,0.98)'
+            : 'rgba(13,27,53,0.95)';
+    });
+
+    // Red de seguridad para el nav y el pie compartidos: hoy cada página llama
+    // a lucide.createIcons() en un script posterior al include del pie, así que
+    // sus iconos se dibujan bien. Si alguien mueve ese script más arriba, este
+    // segundo pase los rescata. Repetir la llamada es inocuo.
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.lucide) lucide.createIcons();
+    });
+</script>

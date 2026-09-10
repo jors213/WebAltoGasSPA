@@ -12,31 +12,172 @@ from .models import Contacto, SolicitudAsesoria
 def home(request):
     services = [
         {
+            'code': "S-01",
             'title': "INSPECCIÓN Y SELLO VERDE",
             'icon': "check-circle-2",
             'desc': "Certificación oficial para edificios, hogares y locales. Realizamos la inspección periódica y gestionamos tu Sello Verde ante la SEC.",
+            'bullets': ["Prueba de hermeticidad", "Detección de fugas", "Inscripción del certificado"],
+            'url_name': "servicio_sello_verde",
             'border_color': "border-green-600",
             'icon_color': "text-green-600",
-            'bg_color': "bg-green-100"
+            'bg_color': "bg-green-100",
+            'dot_color': "bg-green-600"
         },
         {
+            'code': "S-02",
             'title': "DECLARACIÓN Y TRÁMITES SEC",
             'icon': "file-signature",
             'desc': "Regularizamos tus instalaciones. Tramitamos TC2, TC6, TC5 y TC7 encargándonos de toda la burocracia administrativa.",
+            'bullets': ["Formularios TC2 y TC6", "Formularios TC5 y TC7", "Regularización de obras antiguas"],
+            'url_name': "servicio_tramites_sec",
             'border_color': "border-blue-600",
             'icon_color': "text-blue-600",
-            'bg_color': "bg-blue-100"
+            'bg_color': "bg-blue-100",
+            'dot_color': "bg-blue-600"
         },
         {
+            'code': "S-03",
             'title': "PROYECTOS DE INGENIERÍA",
             'icon': "ruler",
             'desc': "Informes técnicos, Memorias de cálculo y Proyectos de Gas. Dimensionamiento normado de cilindros y estanques.",
+            'bullets': ["Memorias de cálculo", "Planos de red interior", "Dimensionamiento de estanques"],
+            'url_name': "servicio_proyectos",
             'border_color': "border-orange-500",
             'icon_color': "text-orange-600",
-            'bg_color': "bg-orange-100"
+            'bg_color': "bg-orange-100",
+            'dot_color': "bg-orange-500"
         }
     ]
 
+    # Reseñas reales publicadas en el perfil de Google Business de Alto Gas SPA.
+    # Para actualizarlas basta editar esta lista. `google_reviews` refleja el
+    # total y el promedio que muestra Google (revisar de vez en cuando).
+    google_rating = "5,0"
+    google_reviews = 24
+    # Pega aquí el enlace público a las reseñas de Google para activar el
+    # botón "Ver las opiniones en Google" (si queda vacío, el botón no se muestra).
+    google_reviews_url = ""
+
+    testimonials = [
+        {
+            'name': "Camilo Venegas Gotelli",
+            'meta': "Kinesiólogo · Sello Verde y TC6",
+            'text': "Muy agradecidos, me costó mucho confiar porque anteriormente me habían estafado, "
+                    "lo recomiendo totalmente. Tramitó sello verde y TC6.",
+        },
+        {
+            'name': "Lucas Espinoza",
+            'meta': "Revisión de instalación",
+            'text': "Excelente servicio. Los contacté para una revisión y me respondieron rapidísimo. "
+                    "Muy buena atención, súper claros para explicar los detalles técnicos y resolvieron "
+                    "todo a tiempo. 100% recomendados.",
+        },
+        {
+            'name': "Diego Urzúa",
+            'meta': "Trabajo ejecutado en terreno",
+            'text': "Excelente servicio, 100% recomendado. Se puede ver la experiencia en el servicio "
+                    "otorgado. Adicionalmente quiero agregar que tiene la paciencia de explicar con "
+                    "detalle el trabajo ejecutado.",
+        },
+    ]
+
+    faqs = [
+        {
+            'q': "¿Cada cuánto debo renovar la inspección de gas?",
+            'a': "La periodicidad la fija la normativa SEC según el tipo de inmueble y de instalación. "
+                 "En la inspección te dejamos indicada la fecha de vencimiento en el certificado y te "
+                 "avisamos antes de que expire para que no se te pase.",
+        },
+        {
+            'q': "Mi edificio quedó con sello rojo. ¿Qué significa y qué hago?",
+            'a': "El sello rojo indica que la instalación fue rechazada y no puede seguir operando en esas "
+                 "condiciones: la distribuidora puede suspender el suministro hasta que se regularice. "
+                 "Lo primero es un diagnóstico en terreno para saber qué se debe corregir; nosotros hacemos "
+                 "la reparación y la tramitación posterior ante la SEC.",
+        },
+        {
+            'q': "¿Trabajan con Gas Natural y Gas Licuado?",
+            'a': "Sí, con ambos. Atendemos instalaciones de red de gas natural y de gas licuado, tanto en "
+                 "cilindros como en estanques.",
+        },
+        {
+            'q': "¿Cuánto cuesta certificar un departamento, una casa o un edificio?",
+            'a': "Depende del tipo de inmueble, la cantidad de artefactos y el estado de la instalación. "
+                 "Cuéntanos esos datos por WhatsApp o por el formulario y te enviamos una cotización clara, "
+                 "sin costo y sin letra chica, en menos de 24 horas hábiles.",
+        },
+        {
+            'q': "¿Atienden fuera de la Región Metropolitana?",
+            'a': "Sí. Estamos en Santiago y trabajamos en regiones. Para la revisión de proyectos y planos "
+                 "también tenemos asesoría por videollamada, que funciona desde cualquier parte de Chile.",
+        },
+        {
+            'q': "¿Qué diferencia hay entre el TC6 y el Sello Verde?",
+            'a': "El TC6 es la declaración de los artefactos de gas ante la SEC. El Sello Verde es el "
+                 "resultado de la inspección periódica que acredita que la instalación cumple la norma. "
+                 "Van de la mano: sin los artefactos correctamente declarados no se obtiene el sello.",
+        },
+    ]
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            email = form.cleaned_data['email']
+            telefono = form.cleaned_data['telefono']
+            mensaje_cliente = form.cleaned_data['mensaje']
+            servicio = form.cleaned_data.get('servicio') or ''
+
+            # El servicio elegido viaja como prefijo del mensaje: califica el
+            # lead sin necesidad de migrar el modelo Contacto.
+            mensaje_guardado = f"[{servicio}] {mensaje_cliente}" if servicio else mensaje_cliente
+
+            Contacto.objects.create(
+                nombre=nombre,
+                email=email,
+                telefono=telefono,
+                mensaje=mensaje_guardado
+            )
+
+            cuerpo_correo = (
+                f"Nuevo contacto de: {nombre}\n"
+                f"Servicio: {servicio or 'No indicado'}\n"
+                f"Telefono: {telefono}\nEmail: {email}\n\n"
+                f"Mensaje:\n{mensaje_cliente}"
+            )
+            try:
+                send_mail(
+                    subject=f"Nuevo Lead Web ({servicio or 'General'}): {nombre}",
+                    message=cuerpo_correo,
+                    from_email=None,
+                    recipient_list=['Altogasspa@gmail.com'],
+                    fail_silently=True,
+                )
+            except BaseException:
+                pass
+
+            messages.success(request, "¡Solicitud recibida! Te contactaremos a la brevedad para coordinar la inspección.")
+            return redirect('home')
+    else:
+        form = ContactForm()
+
+    context = {
+        'title': 'Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile',
+        'services': services,
+        'testimonials': testimonials,
+        'faqs': faqs,
+        'google_rating': google_rating,
+        'google_reviews': google_reviews,
+        'google_reviews_url': google_reviews_url,
+        'form': form,
+    }
+    return render(request, 'core/home.html', context)
+
+
+def asesoria_online(request):
+    # Tarjetas del bloque "¿Qué podemos revisar?" de asesoria_online.html.
+    # Vivian en la vista home, que ya no las usa: la plantilla de esta pagina
+    # las recorria siempre vacias.
     expertise_areas = [
         {
             'title': 'Trazado y Recorrido de Tuberías',
@@ -81,126 +222,7 @@ def home(request):
             'bg':    'bg-red-100',
         },
     ]
-    if request.method == 'POST':
 
-        if request.POST.get('form_type') == 'asesoria':
-            nombre          = request.POST.get('nombre', '').strip()
-            email           = request.POST.get('email', '').strip()
-            telefono        = request.POST.get('telefono', '').strip()
-            tipo_asesoria   = request.POST.get('tipo_asesoria', 'completa')
-            mensaje_cliente = request.POST.get('mensaje', '').strip()
-
-            if nombre and email and telefono and mensaje_cliente:
-                solicitud = SolicitudAsesoria.objects.create(
-                    nombre=nombre,
-                    email=email,
-                    telefono=telefono,
-                    gateway='transferencia',
-                    tipo_asesoria=tipo_asesoria,
-                    mensaje=mensaje_cliente,
-                    estado='PENDIENTE'
-                )
-
-                monto = 40000 if tipo_asesoria == 'completa' else 20000
-                tipo_label = dict(SolicitudAsesoria.TIPO_CHOICES).get(tipo_asesoria, tipo_asesoria)
-
-                monto_fmt = f"${monto:,}".replace(",", ".")
-                email_context = {
-                    'solicitud': solicitud,
-                    'nombre': nombre,
-                    'monto': monto,
-                    'monto_fmt': monto_fmt,
-                    'tipo_label': tipo_label,
-                    'telefono': telefono,
-                    'email': email,
-                }
-                html_content = render_to_string('core/email_asesoria.html', email_context)
-                text_content = strip_tags(html_content)
-                try:
-                    send_mail(
-                        subject=f"Solicitud #{solicitud.pk} confirmada - Alto Gas SPA",
-                        message=text_content,
-                        from_email=None,
-                        recipient_list=[email],
-                        html_message=html_content,
-                        fail_silently=True,
-                    )
-                except BaseException:
-                    pass 
-                cuerpo_admin = (
-                    f"Nueva solicitud de ASESORÍA ONLINE #{solicitud.pk}\n\n"
-                    f"Gateway: TRANSFERENCIA\n"
-                    f"Tipo: {tipo_label}\n"
-                    f"Nombre: {nombre}\n"
-                    f"Teléfono: {telefono}\n"
-                    f"Email: {email}\n\n"
-                    f"Proyecto / Consulta:\n{mensaje_cliente}"
-                )
-                try:
-                    send_mail(
-                        subject=f"[Asesoría Online] #{solicitud.pk} TRANSFERENCIA: {nombre}",
-                        message=cuerpo_admin,
-                        from_email=None,
-                        recipient_list=['Altogasspa@gmail.com'],
-                        fail_silently=True,
-                    )
-                except BaseException:
-                    pass
-                context = {
-                    'title': 'Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile',
-                    'services': services,
-                    'expertise_areas': expertise_areas,
-                    'mostrar_modal': True,
-                    'solicitud': solicitud,
-                    'monto': monto,
-                    'monto_fmt': monto_fmt,
-                }
-                return render(request, 'core/home.html', context)
-
-            messages.error(request, "Por favor completa todos los campos correctamente.")
-            return redirect('home')
-        else:
-            form = ContactForm(request.POST)
-            if form.is_valid():
-                nombre = form.cleaned_data['nombre']
-                email = form.cleaned_data['email']
-                telefono = form.cleaned_data['telefono']
-                mensaje_cliente = form.cleaned_data['mensaje']
-
-                Contacto.objects.create(
-                    nombre=nombre,
-                    email=email,
-                    telefono=telefono,
-                    mensaje=mensaje_cliente
-                )
-
-                cuerpo_correo = f"Nuevo contacto de: {nombre}\nTelefono: {telefono}\nEmail: {email}\n\nMensaje:\n{mensaje_cliente}"
-                try:
-                    send_mail(
-                        subject=f"Nuevo Lead Web: {nombre}",
-                        message=cuerpo_correo,
-                        from_email=None,
-                        recipient_list=['Altogasspa@gmail.com'],
-                        fail_silently=True,
-                    )
-                except BaseException:
-                    pass 
-
-                messages.success(request, "¡Solicitud recibida! Te contactaremos a la brevedad para coordinar la inspección.")
-                return redirect('home')
-    else:
-        form = ContactForm()
-
-    context = {
-        'title': 'Alto Gas SPA - Sello Verde SEC | Ingeniería de Gas Chile',
-        'services': services,
-        'expertise_areas': expertise_areas,
-        'form': form,
-    }
-    return render(request, 'core/home.html', context)
-
-
-def asesoria_online(request):
     if request.method == 'POST':
         nombre          = request.POST.get('nombre', '').strip()
         email           = request.POST.get('email', '').strip()
@@ -267,6 +289,7 @@ def asesoria_online(request):
                 pass
 
             return render(request, 'core/asesoria_online.html', {
+                'expertise_areas': expertise_areas,
                 'mostrar_modal': True,
                 'solicitud': solicitud,
                 'monto': monto,
@@ -276,7 +299,9 @@ def asesoria_online(request):
         messages.error(request, "Por favor completa todos los campos correctamente.")
         return redirect('asesoria_online')
 
-    return render(request, 'core/asesoria_online.html')
+    return render(request, 'core/asesoria_online.html', {
+        'expertise_areas': expertise_areas,
+    })
 
 
 @cache_page(60 * 60)

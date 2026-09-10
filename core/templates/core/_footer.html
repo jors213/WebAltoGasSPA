@@ -1,0 +1,103 @@
+{% load static %}
+{% comment %}
+Pie de página compartido por TODAS las páginas.
+Incluye también la barra de acción fija de móvil (WhatsApp + Llamar).
+
+Uso:  include 'core/_footer.html'
+{% endcomment %}
+<footer class="relative overflow-hidden pt-14 pb-8 bg-[#070f22]">
+    <div class="absolute inset-0 blueprint opacity-60 pointer-events-none" aria-hidden="true"></div>
+    <div class="container mx-auto max-w-[1240px] px-6 md:px-10 relative z-10 flex flex-col gap-10">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_1fr] gap-10 lg:gap-12">
+
+            <div class="flex flex-col gap-4">
+                <div class="disp text-2xl text-white">Alto<span style="color:#F47B20">Gas</span> SPA</div>
+                <p class="text-sm leading-relaxed text-white/50 max-w-xs">Ingeniería, inspección y certificación de
+                    instalaciones de gas. Instaladores autorizados SEC en Santiago y regiones.</p>
+                <div class="flex gap-2.5 pt-1">
+                    <a href="https://www.instagram.com/altogaspa?utm_source=qr&igsh=MWl6bnZpdzJ3MmQ5MQ=="
+                        target="_blank" rel="noopener" aria-label="Instagram"
+                        class="w-10 h-10 rounded-md border border-white/[0.14] flex items-center justify-center hover:border-white/40 transition-colors">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/80" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg>
+                    </a>
+                    <a href="mailto:Altogasspa@gmail.com" aria-label="Correo"
+                        class="w-10 h-10 rounded-md border border-white/[0.14] flex items-center justify-center hover:border-white/40 transition-colors">
+                        <i data-lucide="mail" class="w-4 h-4 text-white/80"></i>
+                    </a>
+                    <a href="https://wa.me/56931187107" target="_blank" rel="noopener" aria-label="WhatsApp"
+                        class="w-10 h-10 rounded-md border border-white/[0.14] flex items-center justify-center hover:border-white/40 transition-colors">
+                        <i data-lucide="message-circle" class="w-4 h-4 text-white/80"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3.5">
+                <span class="mono text-[9px] text-[#4BB8E8]">Servicios</span>
+                <a href="{% url 'servicio_sello_verde' %}"
+                    class="text-sm text-white/55 hover:text-white transition-colors">Sello Verde SEC</a>
+                <a href="{% url 'servicio_tramites_sec' %}"
+                    class="text-sm text-white/55 hover:text-white transition-colors">Trámites SEC</a>
+                <a href="{% url 'servicio_proyectos' %}"
+                    class="text-sm text-white/55 hover:text-white transition-colors">Proyectos de ingeniería</a>
+                <a href="{% url 'asesoria_online' %}"
+                    class="text-sm text-white/55 hover:text-white transition-colors">Asesoría online</a>
+            </div>
+
+            <div class="flex flex-col gap-3.5">
+                <span class="mono text-[9px] text-[#4BB8E8]">La empresa</span>
+                <a href="{% url 'home' %}#servicios"
+                    class="text-sm text-white/55 hover:text-white transition-colors">Qué hacemos</a>
+                <a href="{% url 'home' %}#contacto"
+                    class="text-sm text-white/55 hover:text-white transition-colors">Contacto</a>
+                <a href="https://wa.me/56931187107" target="_blank" rel="noopener"
+                    class="text-sm text-white/55 hover:text-white transition-colors">Atención urgente</a>
+            </div>
+
+            <div class="flex flex-col gap-3.5">
+                <span class="mono text-[9px] text-[#4BB8E8]">Contacto</span>
+                <span class="tabular text-sm text-white/55">+56 9 3118 7107</span>
+                <span class="text-sm text-white/55">Altogasspa@gmail.com</span>
+                <span class="text-sm text-white/55">Lun a Vie · 09:00–18:00</span>
+                <span class="text-sm text-white/55">Estación Central, Santiago</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/10">
+            <span class="mono text-[9px] text-white/35">&copy; 2026 Alto Gas SPA</span>
+            <span class="mono text-[9px] text-white/35">Instalador SEC Clase 1 · Licencia vigente</span>
+        </div>
+    </div>
+</footer>
+
+{# Barra de acción fija en móvil #}
+<div
+    class="md:hidden fixed bottom-0 left-0 right-0 z-[998] flex flex-col gap-2.5 px-4 pt-3 pb-5 bg-white/[0.98] border-t border-slate-200 shadow-[0_-10px_30px_rgba(8,18,40,0.14)]">
+    <div class="flex items-center justify-between">
+        <span class="mono text-[8px] text-slate-400">Respuesta &lt; 24 h hábiles</span>
+        <span class="mono text-[8px] text-[#16a34a]">● Licencia SEC vigente</span>
+    </div>
+    <div class="flex items-center gap-2.5">
+        <a href="https://wa.me/56931187107?text=Hola%20Alto%20Gas%20SPA%2C%20necesito%20informaci%C3%B3n"
+            target="_blank" rel="noopener"
+            class="flex-1 flex items-center justify-center gap-2.5 min-h-[52px] bg-[#25a85e] text-white text-[15px] font-bold rounded-lg">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            WhatsApp
+        </a>
+        <a href="tel:+56931187107"
+            class="flex-1 flex items-center justify-center gap-2.5 min-h-[52px] bg-[#F47B20] text-white text-[15px] font-bold rounded-lg shadow-[0_8px_22px_rgba(244,123,32,0.34)]">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            Llamar
+        </a>
+    </div>
+</div>
+<div class="md:hidden h-[104px]" aria-hidden="true"></div>
+
+{# Botón flotante de WhatsApp (sólo escritorio, ver .wa-float en input.css) #}
+<a href="https://wa.me/56931187107?text=Hola%20Alto%20Gas%20SPA%2C%20necesito%20informaci%C3%B3n" class="wa-float"
+    target="_blank" rel="noopener" title="Escribir por WhatsApp" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" width="30" height="30" aria-hidden="true">
+        <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+</a>
